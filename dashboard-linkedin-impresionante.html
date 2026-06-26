@@ -191,64 +191,124 @@ nav{background:var(--white);border-bottom:1px solid var(--br);padding:.875rem 1.
   .gb-track{width:100%;min-width:unset}
 }
 </style>
+<style>
+#login-screen{position:fixed;inset:0;background:#F0EDE8;z-index:9999;display:flex;align-items:flex-start;justify-content:center;padding:4rem 1.5rem 1.5rem;overflow-y:auto}
+.lbox{background:#fff;border-radius:20px;padding:2rem 2rem 1.75rem;width:100%;max-width:360px;box-shadow:0 8px 40px rgba(0,0,0,.12)}
+.llogo{display:flex;align-items:center;justify-content:center;gap:.65rem;margin-bottom:1.25rem}
+.llogo-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#1A1816;line-height:1.1}
+.llogo-name b{color:#1A1FBE}
+.llogo-tag{font-size:.6rem;color:#7A776F;letter-spacing:.08em;text-transform:uppercase;margin-top:1px}
+.ltitle{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;color:#1A1816;text-align:center;margin-bottom:.35rem}
+.lsub{font-size:.8rem;color:#7A776F;text-align:center;margin-bottom:1.5rem}
+.llabel{display:block;font-size:.7rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#7A776F;margin-bottom:.4rem}
+/* DROPDOWN CUSTOM */
+.cdrop{position:relative;margin-bottom:1rem}
+.cdrop-btn{width:100%;padding:.75rem 1rem;border:1.5px solid #D1CEC9;border-radius:8px;font-family:'Inter',sans-serif;font-size:.95rem;color:#7A776F;background:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left;outline:none;-webkit-appearance:none;appearance:none}
+.cdrop-btn.selected{color:#1A1816}
+.cdrop-menu{display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1.5px solid #D1CEC9;border-radius:10px;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.15);overflow:visible}
+
+.cdrop-item{padding:.8rem 1rem;font-family:'Inter',sans-serif;font-size:.95rem;color:#1A1816;cursor:pointer;border-bottom:1px solid #F0EDE8;transition:background .15s}
+.cdrop-item:last-child{border-bottom:none}
+.cdrop-item:hover,.cdrop-item:active{background:#F0EDE8}
+.cdrop-item.supervisor{color:#1A1FBE;font-weight:600}
+/* PIN */
+.pinwrap{margin-bottom:1.25rem}
+.pininput{width:100%;padding:.75rem 1rem;border:1.5px solid #D1CEC9;border-radius:8px;font-family:'Inter',sans-serif;font-size:1.5rem;letter-spacing:.5em;color:#1A1816;background:#fff;outline:none;text-align:center;-webkit-appearance:none}
+.pininput:focus{border-color:#1A1FBE}
+/* BOTÓN */
+.lbtn{width:100%;background:#1A1FBE;color:#fff;border:none;border-radius:8px;padding:.875rem;font-family:'Inter',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;letter-spacing:.02em;-webkit-appearance:none}
+.lbtn:active{background:#1519A0}
+.lerr{margin-top:.65rem;text-align:center;font-size:.78rem;color:#DC2626;min-height:1.1rem}
+</style>
+<style>
+body{margin:0;padding:0}
+#ls{position:fixed;inset:0;background:#F0EDE8;z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem}
+.lb{background:#fff;border-radius:16px;padding:2rem;width:100%;max-width:340px;box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.ll{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-bottom:1rem}
+.ln{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#1A1816}
+.ln b{color:#1A1FBE}
+.lt{font-size:.58rem;color:#7A776F;letter-spacing:.08em;text-transform:uppercase}
+.lh{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:#1A1816;text-align:center;margin-bottom:.3rem}
+.ls2{font-size:.78rem;color:#7A776F;text-align:center;margin-bottom:1.25rem}
+.flbl{display:block;font-size:.68rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#7A776F;margin-bottom:.35rem}
+.fi{width:100%;padding:.7rem .9rem;border:1.5px solid #D1CEC9;border-radius:8px;font-family:'Inter',sans-serif;font-size:.9rem;color:#1A1816;background:#fff;outline:none;box-sizing:border-box}
+.fi:focus{border-color:#1A1FBE}
+.fg{margin-bottom:.875rem}
+select.fi{-webkit-appearance:auto;appearance:auto;cursor:pointer}
+.lbtn{width:100%;background:#1A1FBE;color:#fff;border:none;border-radius:8px;padding:.8rem;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;cursor:pointer;margin-top:.25rem;-webkit-appearance:none}
+.lbtn:active{background:#1519A0}
+.lerr{text-align:center;font-size:.75rem;color:#DC2626;min-height:1rem;margin-top:.5rem}
+</style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="login-screen">
-  <div class="login-box">
-    <div style="display:flex;align-items:center;justify-content:center;gap:.65rem;margin-bottom:.25rem">
-      <svg width="42" height="42" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="48" fill="#1A1FBE"/>
-        <text x="50" y="68" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="62" fill="white">i</text>
-      </svg>
-      <div style="text-align:left">
-        <div class="login-logo">IMPRES<b>IO</b>Nante<b>.</b></div>
-        <div style="font-size:.62rem;color:var(--gray);letter-spacing:.08em;text-transform:uppercase;margin-top:1px">Grandes Ideas Impresas</div>
-      </div>
+<div id="ls">
+  <div class="lb">
+    <div class="ll">
+      <svg width="40" height="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#1A1FBE"/><text x="50" y="68" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="62" fill="white">i</text></svg>
+      <div><div class="ln">IMPRES<b>IO</b>Nante</div><div class="lt">Grandes Ideas Impresas</div></div>
     </div>
-    <div class="login-sub">Portal de Asesores · LinkedIn</div>
-    <label class="login-label">Ingresa tu PIN de acceso</label>
-    <div class="pin-dots" id="pin-dots">
-      <div class="pin-dot" id="d0"></div>
-      <div class="pin-dot" id="d1"></div>
-      <div class="pin-dot" id="d2"></div>
-      <div class="pin-dot" id="d3"></div>
+    <div class="lh">Portal de Asesores</div>
+    <div class="ls2">Selecciona tu nombre e ingresa tu PIN</div>
+    <div class="fg">
+      <label class="flbl">Tu nombre</label>
+      <select id="sel" class="fi">
+        <option value="">Selecciona...</option>
+        <option value="marilyn">Marilyn</option>
+        <option value="frida">Frida</option>
+        <option value="luisdiego">Luis Diego</option>
+        <option value="jessica">Jessica</option>
+        <option value="supervisor">Supervisor</option>
+      </select>
     </div>
-    <div class="pin-pad">
-      <button class="pin-btn" onclick="pinPress('1')">1</button>
-      <button class="pin-btn" onclick="pinPress('2')">2</button>
-      <button class="pin-btn" onclick="pinPress('3')">3</button>
-      <button class="pin-btn" onclick="pinPress('4')">4</button>
-      <button class="pin-btn" onclick="pinPress('5')">5</button>
-      <button class="pin-btn" onclick="pinPress('6')">6</button>
-      <button class="pin-btn" onclick="pinPress('7')">7</button>
-      <button class="pin-btn" onclick="pinPress('8')">8</button>
-      <button class="pin-btn" onclick="pinPress('9')">9</button>
-      <button class="pin-del" onclick="pinDel()">⌫</button>
-      <button class="pin-btn" onclick="pinPress('0')">0</button>
-      <button class="pin-btn" onclick="pinPress('')" style="visibility:hidden"></button>
+    <div class="fg">
+      <label class="flbl">PIN</label>
+      <input id="pin" class="fi" type="password" maxlength="4" inputmode="numeric" placeholder="····" style="text-align:center;font-size:1.4rem;letter-spacing:.4em" onkeydown="if(event.key==='Enter')go()">
     </div>
-    <div class="pin-error" id="pin-error"></div>
+    <button class="lbtn" onclick="go()">Entrar →</button>
+    <div class="lerr" id="err"></div>
   </div>
 </div>
 
-<!-- APP -->
-<div id="app">
-  <nav>
-    <div class="nav-logo">IMPRES<b>IO</b>Nante<b>.</b> <span style="font-weight:400;opacity:.5;font-size:.82rem">LinkedIn</span></div>
-    <div class="nav-right">
-      <span class="nav-user" id="nav-user">—</span>
-      <button class="nav-logout" onclick="logout()">Cerrar sesión</button>
+<div id="app" style="display:none">
+  <nav style="position:sticky;top:0;z-index:50;background:rgba(240,237,232,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(26,24,22,.1);padding:.875rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+    <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#1A1816">IMPRES<span style="color:#1A1FBE">IO</span>Nante <span style="font-weight:400;opacity:.5;font-size:.82rem">LinkedIn</span></div>
+    <div style="display:flex;align-items:center;gap:.75rem">
+      <span id="nav-user" style="font-size:.78rem;font-weight:600;color:#7A776F;background:#E8E4DD;padding:.3rem .875rem;border-radius:20px;border:1px solid rgba(26,24,22,.1)">—</span>
+      <button onclick="logout()" style="font-size:.73rem;color:#7A776F;background:none;border:1px solid rgba(26,24,22,.1);border-radius:6px;padding:.3rem .75rem;cursor:pointer">Salir</button>
     </div>
   </nav>
   <div class="container" id="main-content"></div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── DATOS ────────────────────────────────────────────────────────────────────
+var currentUser=null,activeTab='posts',activeFilter='all';
+function go(){
+  var s=document.getElementById('sel').value;
+  var p=document.getElementById('pin').value.trim();
+  var e=document.getElementById('err');
+  if(!s){e.textContent='Selecciona tu nombre.';return;}
+  if(!p){e.textContent='Ingresa tu PIN.';return;}
+  if(PINS[p]!==s){e.textContent='PIN incorrecto.';document.getElementById('pin').value='';return;}
+  currentUser=s;
+  document.getElementById('ls').style.display='none';
+  document.getElementById('app').style.display='block';
+  document.getElementById('nav-user').textContent=s==='supervisor'?'👁 Supervisor':(ASESORES[s]?.nombre||s);
+  renderMain();
+}
+function logout(){
+  currentUser=null;
+  document.getElementById('ls').style.display='flex';
+  document.getElementById('app').style.display='none';
+  document.getElementById('err').textContent='';
+  document.getElementById('pin').value='';
+  document.getElementById('sel').value='';
+}
+function renderMain(){
+  if(currentUser==='supervisor') renderSupervisor();
+  else renderAsesor(currentUser);
+}
 const PINS = {
   '3581': 'supervisor',
   '7392': 'marilyn',
@@ -435,6 +495,22 @@ function toggle(aid,i){
 // ─── AUTH ─────────────────────────────────────────────────────────────────────
 let currentUser=null, activeTab='posts', activeFilter='all';
 
+var selVal='';
+function toggleDrop(){
+  var d=document.getElementById('sel-dropdown');
+  d.style.display=d.style.display==='none'?'block':'none';
+}
+function pickOpt(val,label){
+  selVal=val;
+  document.getElementById('sel-asesor').value=val;
+  document.getElementById('sel-text').textContent=label;
+  document.getElementById('sel-text').style.color='#1A1816';
+  document.getElementById('sel-dropdown').style.display='none';
+}
+document.addEventListener('click',function(e){
+  var cs=document.getElementById('custom-sel');
+  if(cs&&!cs.contains(e.target)) document.getElementById('sel-dropdown').style.display='none';
+});
 function doLogin(){
   const sel = document.getElementById('sel-asesor').value;
   const pin = document.getElementById('inp-pin').value.trim();
@@ -448,6 +524,10 @@ function doLogin(){
   document.getElementById('app').style.display='block';
   document.getElementById('nav-user').textContent = role==='supervisor' ? '👁 Supervisor' : (ASESORES[role]?.nombre||role);
   renderMain();
+}
+function renderMain(){
+  if(currentUser==='supervisor') renderSupervisor();
+  else renderAsesor(currentUser);
 }
 function logout(){ currentUser=null; document.getElementById('login-screen').style.display='flex'; document.getElementById('app').style.display='none'; document.getElementById('pin-error').textContent=''; document.getElementById('inp-pin').value=''; document.getElementById('sel-asesor').value=''; }
 
@@ -682,6 +762,8 @@ if(urlAsesor && ASESORES[urlAsesor]){
   // Pre-seleccionar asesor pero igual pedir PIN
   document.querySelector('.login-sub').textContent = `Hola ${ASESORES[urlAsesor].nombre} 👋 Ingresa tu PIN`;
 }
+
+
 </script>
 </body>
 </html>
