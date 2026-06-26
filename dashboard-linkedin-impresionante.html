@@ -645,6 +645,7 @@
           <option value="frida">Frida</option>
           <option value="luis-diego">Luis Diego</option>
           <option value="jessica">Jessica</option>
+          <option value="supervisor">Supervisor</option>
         </select>
       </div>
       
@@ -727,17 +728,19 @@
   <script>
   (function() {
     const PIN_SCHEMAS = {
-      marilyn: ['1001', '5001'],
-      frida: ['2001', '6001'],
-      'luis-diego': ['3001', '7001'],
-      jessica: ['4001', '8001']
+      marilyn: ['7392'],
+      frida: ['4817'],
+      'luis-diego': ['6254'],
+      jessica: ['9146'],
+      supervisor: ['3581']
     };
 
     const NAMES = {
       marilyn: 'Marilyn',
       frida: 'Frida',
       'luis-diego': 'Luis Diego',
-      jessica: 'Jessica'
+      jessica: 'Jessica',
+      supervisor: 'Supervisor'
     };
 
     const ASESORES = {
@@ -2319,7 +2322,9 @@
       
       // Load advisor content dynamically
       const target = document.getElementById('advisor-target');
-      if (target && ASESORES[user]) {
+      if (user === 'supervisor') {
+        target.innerHTML = ASESORES.marilyn + ASESORES.frida + ASESORES['luis-diego'] + ASESORES.jessica;
+      } else if (target && ASESORES[user]) {
         target.innerHTML = ASESORES[user];
       }
 
