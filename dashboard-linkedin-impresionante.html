@@ -596,15 +596,15 @@
       padding: 14px;
       border: none;
       border-radius: 8px;
-      background: #1A1FBE;
-      color: #fff;
+      background-color: #1A1FBE;
+      color: #ffffff;
       font-size: 15px;
       font-weight: 800;
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
     }
     #login-btn:hover {
-      background: #121587;
+      background-color: #1519A0;
     }
     #login-btn:active {
       transform: scale(0.98);
@@ -630,9 +630,12 @@
   <!-- PIN LOGIN OVERLAY -->
   <div id="login-overlay">
     <div class="login-card">
-      <div class="login-logo">
-        <div class="login-logo-dot"></div>
-        <span>IMPRESIONante</span>
+      <div style="display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:.5rem">
+        <svg width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#1A1FBE" d="M50,5 C52,5 58,8 65,12 C72,16 80,18 85,20 C90,22 95,25 95,30 C95,35 93,42 90,50 C87,58 85,65 83,72 C81,79 78,85 73,90 C68,95 62,97 56,97 C50,97 44,95 39,90 C34,85 31,79 29,72 C27,65 25,58 22,50 C19,42 17,35 17,30 C17,25 22,22 27,20 C32,18 40,16 47,12 C54,8 48,5 50,5Z"/>
+          <text x="50" y="72" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="58" fill="white">i</text>
+        </svg>
+        <span style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:#1A1816;letter-spacing:-.02em">IMPRES<span style="color:#1A1FBE">IO</span>Nante</span>
       </div>
       <h2>Portal de Asesores</h2>
       <p>Selecciona tu perfil e ingresa tu PIN de acceso para ver tu cronograma de LinkedIn.</p>
@@ -640,7 +643,7 @@
       <div class="form-group">
         <label for="advisor-select">Asesor</label>
         <select id="advisor-select">
-          <option value="" disabled selected>Selecciona tu nombre</option>
+          <option value="">Selecciona tu nombre</option>
           <option value="marilyn">Marilyn</option>
           <option value="frida">Frida</option>
           <option value="luis-diego">Luis Diego</option>
@@ -728,11 +731,11 @@
   <script>
   (function() {
     const PIN_SCHEMAS = {
-      marilyn: ['7392'],
-      frida: ['4817'],
-      'luis-diego': ['6254'],
-      jessica: ['9146'],
-      supervisor: ['3581']
+      "marilyn":    "7392",
+      "frida":      "4817",
+      "luis-diego": "6254",
+      "jessica":    "9146",
+      "supervisor": "3581"
     };
 
     const NAMES = {
@@ -2302,8 +2305,8 @@
         return;
       }
 
-      const validPins = PIN_SCHEMAS[user];
-      if (validPins.includes(pin)) {
+      const validPin = PIN_SCHEMAS[user];
+      if (validPin === pin) {
         sessionStorage.setItem('active_advisor', user);
         showDashboard(user);
       } else {
