@@ -123,6 +123,37 @@
       border-radius: 8px;
       background: rgba(255,255,255,.86);
     }
+    .upgrade-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+      max-width: 1180px;
+    }
+    .upgrade-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.9);
+    }
+    .protocol-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+      max-width: 1180px;
+    }
+    .protocol-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.9);
+    }
+    .script {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .script:last-child { border-bottom: 0; }
     .approval ul {
       columns: 2;
       column-gap: 30px;
@@ -300,6 +331,7 @@
       .stats, .cards, .mini-grid, .profile-system { grid-template-columns: 1fr; }
       .profile-card.wide, .profile-main { grid-column: auto; }
       .insights { grid-template-columns: 1fr; }
+      .upgrade-grid, .protocol-grid { grid-template-columns: 1fr; }
       .approval ul { columns: 1; }
       h1 { font-size: 42px; }
     }
@@ -327,6 +359,19 @@
     <div class="approval">
       <span class="kicker">Checklist 2026 antes de publicar</span>
       <ul><li>Las primeras dos lineas exponen un problema o tension real antes de &#x27;ver mas&#x27;.</li><li>No incluye enlace externo en el cuerpo del post.</li><li>Tiene 3 a 5 hashtags especificos.</li><li>Suena a asesor humano, no a folleto corporativo.</li><li>Incluye una pregunta genuina para conversacion, no engagement bait.</li><li>Usa foto real, carrusel PDF o video nativo cuando sea posible.</li><li>Aporta criterio, experiencia o ejemplo concreto.</li><li>Puede responderse con comentarios profundos, no solo likes.</li></ul>
+    </div>
+    <div class="upgrade-grid">
+      <div class="upgrade-card"><b>Visuales con lectura psicologica</b><p>Usar imagenes del contexto real del cliente: obra, fachada, punto de venta, vehiculo, instalacion o taller. Para construccion/inmobiliario: casco, chaleco, obra y senaletica real. Para retail/restaurantes: menu, fachada, display y flujo de clientes.</p></div><div class="upgrade-card"><b>Framework PAS</b><p>En posts comerciales, abrir con Problema, agitar el costo operativo/reputacional y cerrar con la solucion visual. Evitar sonar bonito sin tension de negocio.</p></div><div class="upgrade-card"><b>Zero-click value</b><p>Cada carrusel debe entregar valor sin obligar a salir de LinkedIn. Cada lamina debe ser util por si sola y motivar guardados.</p></div><div class="upgrade-card"><b>Comentarios de autoridad</b><p>Comentar 5-10 veces al dia en perfiles de prospectos. Cada comentario debe superar 15 palabras, aportar criterio, dato, pregunta inteligente o perspectiva lateral.</p></div><div class="upgrade-card"><b>Mensajeria sin venta fria</b><p>Despues de conectar, no mandar catalogo de inmediato. Abrir con contexto, observacion util y pregunta ligera de exploracion.</p></div>
+    </div>
+    <div class="protocol-grid">
+      <div class="protocol-card">
+        <span class="kicker">Protocolo de comentarios</span>
+        <ul><li>Elegir 10 prospectos semanales: marketing, compras, operaciones, restaurantes, hoteles, constructoras, escuelas y agencias.</li><li>Comentar en publicaciones reales del prospecto o de su empresa, no solo en posts virales.</li><li>Estructura del comentario: observacion concreta + criterio profesional + pregunta abierta.</li><li>Minimo 15 palabras por comentario; evitar &#x27;excelente&#x27;, &#x27;muy cierto&#x27; o comentarios genericos.</li><li>Objetivo: que el decisor perciba criterio y visite el perfil, no cerrar venta en el comentario.</li></ul>
+      </div>
+      <div class="protocol-card">
+        <span class="kicker">Guiones de conexion</span>
+        <div class="script"><b>Solicitud de conexion</b><p>Hola, [Nombre]. Vi que trabajas en [empresa/sector]. En Impresionante del Sureste comparto ideas sobre comunicacion visual, senaletica y publicidad B2B para negocios del sureste. Me gustaria conectar.</p></div><div class="script"><b>Primer mensaje tras aceptar</b><p>Gracias por conectar, [Nombre]. Vi que en [empresa] trabajan con [sector/contexto]. Justo estoy compartiendo aprendizajes sobre como mejorar visibilidad fisica de marca sin depender solo de promociones. Espero que te sea util.</p></div><div class="script"><b>Mensaje de exploracion suave</b><p>Pregunta rapida: cuando trabajan materiales visuales o senaletica, ¿el mayor reto suele ser tiempo, calidad, instalacion o consistencia de marca?</p></div><div class="script"><b>Mensaje con recurso</b><p>Te comparto una idea que puede servir: antes de cotizar una pieza visual conviene definir ubicacion, distancia de lectura y duracion esperada. Si en algun momento quieres revisar un proyecto, con gusto te oriento.</p></div>
+      </div>
     </div>
     <div class="stats">
       <div class="stat"><strong>48</strong><span>publicaciones totales</span></div>
@@ -400,7 +445,7 @@
           </div>
           <details open>
             <summary>Copy listo para publicar</summary>
-            <p class="copy">Una buena publicidad visual no solo debe verse bien.<br><br>Tambien debe cumplir una funcion de negocio:<br><br>- atraer atencion,<br>- comunicar con claridad,<br>- orientar al cliente,<br>- generar confianza,<br>- y ayudar a vender.<br><br>Cuando una empresa invierte en impresion, senaletica o branding corporativo sin un objetivo claro, corre el riesgo de comprar solo &quot;material&quot;.<br><br>Cuando lo hace con estrategia, la publicidad deja de ser un gasto y se convierte en una herramienta de crecimiento.<br><br>En Impresionante del Sureste ayudamos a empresas a transformar sus espacios fisicos en puntos de contacto con sus clientes.</p>
+            <p class="copy">Una mala pieza visual no solo se ve mal.<br><br>Tambien puede hacer que una marca pierda confianza, ventas y tiempo.<br><br>Cuando una empresa manda imprimir sin objetivo claro, suelen aparecer los mismos problemas:<br><br>- mensajes que no se entienden,<br>- materiales que no resisten,<br>- instalaciones que se retrasan,<br>- colores que no representan la marca,<br>- piezas que terminan pareciendo gasto, no inversion.<br><br>Ese es el verdadero costo de improvisar la comunicacion visual.<br><br>Una buena publicidad visual debe atraer atencion, comunicar con claridad, orientar al cliente, generar confianza y ayudar a vender.<br><br>En Impresionante del Sureste ayudamos a empresas a transformar sus espacios fisicos en puntos de contacto con sus clientes.</p>
           </details>
           <div class="cta"><b>CTA</b><p></p></div>
           <div class="tags"></div>
@@ -418,7 +463,7 @@
           </div>
           <details open>
             <summary>Copy listo para publicar</summary>
-            <p class="copy">En ventas B2B, he aprendido que el cliente no siempre busca &quot;una lona&quot;, &quot;un vinil&quot; o &quot;una impresion&quot;.<br><br>Muchas veces busca algo mas profundo:<br><br>- que su negocio se vea profesional,<br>- que su marca sea recordada,<br>- que su sucursal comunique confianza,<br>- que una campana salga a tiempo,<br>- que el proveedor no le falle.<br><br>Por eso la publicidad visual debe venderse como una solucion, no como una pieza suelta.<br><br>La pregunta correcta no es solo:<br><br>&quot;¿Que medida necesita?&quot;<br><br>La pregunta correcta es:<br><br>&quot;¿Que necesita lograr tu marca con este material?&quot;</p>
+            <p class="copy">En ventas B2B, el problema casi nunca es solo &quot;necesito una lona&quot;.<br><br>El problema real puede ser mas serio:<br><br>- una sucursal que no comunica confianza,<br>- una campana que debe salir a tiempo,<br>- una fachada que no atrae clientes,<br>- una marca que se ve diferente en cada punto,<br>- un proveedor que puede fallar el dia de la instalacion.<br><br>Cuando eso pasa, el costo no es solo el material.<br><br>El costo es reputacion, tiempo y oportunidades perdidas.<br><br>Por eso la publicidad visual debe venderse como una solucion, no como una pieza suelta.<br><br>La pregunta correcta no es solo:<br><br>&quot;¿Que medida necesita?&quot;<br><br>La pregunta correcta es:<br><br>&quot;¿Que necesita lograr tu marca con este material?&quot;</p>
           </details>
           <div class="cta"><b>CTA</b><p></p></div>
           <div class="tags"></div>
