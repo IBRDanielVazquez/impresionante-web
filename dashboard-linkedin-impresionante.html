@@ -1,0 +1,1720 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cronograma por Asesor | Impresionante</title>
+  <style>
+    :root {
+      --ink: #14201d;
+      --muted: #62716d;
+      --line: #dce6e3;
+      --soft: #f4f8f7;
+      --brand: #008f7a;
+      --blue: #1f78d1;
+      --amber: #b86e00;
+      --violet: #6952c7;
+      --card: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.5;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 26px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(12px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+    }
+    .dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--brand), var(--blue));
+    }
+    nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a {
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    nav a:hover { background: var(--soft); color: var(--ink); }
+    .hero {
+      padding: 58px 7vw 42px;
+      background:
+        radial-gradient(circle at 84% 20%, rgba(0,143,122,.13), transparent 28%),
+        linear-gradient(120deg, rgba(0,143,122,.10), rgba(31,120,209,.08)),
+        #f7fbfa;
+    }
+    .kicker {
+      color: #006b5f;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 940px;
+      margin: 10px 0 14px;
+      font-size: clamp(38px, 5.4vw, 72px);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+    .hero p {
+      max-width: 790px;
+      color: #344540;
+      font-size: 19px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 920px;
+      margin-top: 26px;
+    }
+    .insights {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+      max-width: 1180px;
+    }
+    .insight {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.86);
+    }
+    .insight b {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--ink);
+    }
+    .approval {
+      margin-top: 20px;
+      max-width: 1180px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.86);
+    }
+    .upgrade-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+      max-width: 1180px;
+    }
+    .upgrade-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.9);
+    }
+    .protocol-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+      max-width: 1180px;
+    }
+    .protocol-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.9);
+    }
+    .script {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .script:last-child { border-bottom: 0; }
+    .approval ul {
+      columns: 2;
+      column-gap: 30px;
+    }
+    .stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.82);
+    }
+    .stat strong {
+      display: block;
+      color: #006b5f;
+      font-size: 30px;
+      line-height: 1;
+    }
+    .stat span { color: var(--muted); font-size: 13px; }
+    main { padding: 36px 7vw 72px; }
+    .advisor-section {
+      scroll-margin-top: 90px;
+      margin-bottom: 54px;
+    }
+    .advisor-title {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px;
+      border-radius: 8px;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .advisor-title h2 {
+      margin: 4px 0 4px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1;
+    }
+    .advisor-title p { margin: 0; color: rgba(255,255,255,.88); }
+    .advisor-title .kicker { color: rgba(255,255,255,.82); }
+    .advisor-title strong {
+      white-space: nowrap;
+      font-size: 24px;
+    }
+    .marilyn { background: linear-gradient(135deg, var(--brand), #006b5f); }
+    .frida { background: linear-gradient(135deg, var(--blue), #155aa0); }
+    .luis { background: linear-gradient(135deg, var(--amber), #8b5300); }
+    .jessica { background: linear-gradient(135deg, var(--violet), #4c3c94); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .profile-system {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .profile-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 8px 20px rgba(20,32,29,.045);
+    }
+    .profile-card.wide, .profile-main {
+      grid-column: 1 / -1;
+    }
+    .mini-label {
+      display: inline-flex;
+      min-height: 25px;
+      align-items: center;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: #006b5f;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+    .suggested {
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 900;
+    }
+    ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+    li { margin-bottom: 7px; }
+    .checklist b { color: var(--ink); }
+    .post-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: 0 10px 26px rgba(20,32,29,.06);
+      padding: 20px;
+    }
+    .post-head {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .week, .day {
+      display: inline-flex;
+      align-items: center;
+      min-height: 27px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: #006b5f;
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .day { color: var(--ink); }
+    h3 {
+      margin: 0 0 14px;
+      font-size: 21px;
+      line-height: 1.16;
+    }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .mini-grid div, .cta {
+      padding: 12px;
+      border-radius: 8px;
+      background: var(--soft);
+    }
+    b { color: var(--ink); font-size: 13px; }
+    p { margin: 5px 0 0; color: var(--muted); }
+    details {
+      margin: 14px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    summary {
+      cursor: pointer;
+      padding: 12px 14px;
+      font-weight: 900;
+      color: #006b5f;
+    }
+    .copy {
+      margin: 0;
+      padding: 0 14px 14px;
+      color: #33423e;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 14px;
+    }
+    .tags span {
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: #eef6f4;
+      color: #006b5f;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    @media (max-width: 980px) {
+      .stats, .cards { grid-template-columns: 1fr 1fr; }
+      .advisor-title { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      .topbar { position: static; padding: 14px 18px; align-items: flex-start; flex-direction: column; }
+      .hero, main { padding-left: 20px; padding-right: 20px; }
+      .stats, .cards, .mini-grid, .profile-system { grid-template-columns: 1fr; }
+      .profile-card.wide, .profile-main { grid-column: auto; }
+      .insights { grid-template-columns: 1fr; }
+      .upgrade-grid, .protocol-grid { grid-template-columns: 1fr; }
+      .approval ul { columns: 1; }
+      h1 { font-size: 42px; }
+    }
+
+    /* ── PIN LOGIN SYSTEM ── */
+    #login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #f4f8f7 0%, #dce6e3 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      font-family: Inter, sans-serif;
+    }
+    .login-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 50px rgba(20, 32, 29, 0.12);
+      text-align: center;
+    }
+    .login-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 1.25rem;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+    .login-logo-dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--brand), var(--blue));
+    }
+    .login-card h2 {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .login-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .form-group select, .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 15px;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group select:focus, .form-group input:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(0, 143, 122, 0.12);
+    }
+    .login-error-msg {
+      color: #b42318;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: none;
+    }
+    #login-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    #login-btn:hover {
+      background: #007665;
+    }
+    #login-btn:active {
+      transform: scale(0.98);
+    }
+    .logout-btn {
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .logout-btn:hover {
+      background: var(--soft);
+    }
+  </style>
+
+</head>
+<body>
+  <!-- PIN LOGIN OVERLAY -->
+  <div id="login-overlay">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-logo-dot"></div>
+        <span>IMPRESIONante</span>
+      </div>
+      <h2>Portal de Asesores</h2>
+      <p>Selecciona tu perfil e ingresa tu PIN de acceso para ver tu cronograma de LinkedIn.</p>
+      
+      <div class="form-group">
+        <label for="advisor-select">Asesor</label>
+        <select id="advisor-select">
+          <option value="" disabled selected>Selecciona tu nombre</option>
+          <option value="marilyn">Marilyn</option>
+          <option value="frida">Frida</option>
+          <option value="luis">Luis Diego</option>
+          <option value="jessica">Jessica</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="pin-input">PIN de Acceso</label>
+        <input type="password" id="pin-input" placeholder="••••" maxlength="4" pattern="[0-9]*" inputmode="numeric">
+      </div>
+      
+      <div id="login-error" class="login-error-msg">PIN incorrecto. Inténtalo de nuevo.</div>
+      
+      <button id="login-btn">Entrar al Dashboard</button>
+    </div>
+  </div>
+
+  <div class="dashboard-content" id="dashboard-content" style="display: none;">
+
+  <header class="topbar">
+    <div class="brand"><span class="dot"></span> Cronograma por asesor</div>
+    <nav>
+      <a href="#marilyn">Marilyn</a>
+      <a href="#frida">Frida</a>
+      <a href="#luis-diego">Luis Diego</a>
+      <a href="#jessica">Jessica</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="kicker">Programa dividido por asesor</span>
+    <h1>Publicaciones listas para programar persona por persona.</h1>
+    <p>Cada asesor tiene su propio bloque con sus posts ordenados por semana y dia, incluyendo copy completo, visual sugerido, CTA y hashtags. Todos tienen la misma cantidad de publicaciones para posicionar al equipo completo.</p>
+    <p>Ahora tambien incluye auditoria de perfil: foto, banner, titular, acerca de, experiencia, destacados, habilidades, red, recomendaciones y reglas para no caer en practicas que reduzcan confianza o visibilidad.</p>
+    <div class="insights">
+      <div class="insight"><b>Depth Score</b><p>LinkedIn 2026 pondera mas dwell time, guardados, compartidos por mensaje privado y profundidad de comentarios que likes vacios.</p></div><div class="insight"><b>Perfiles personales</b><p>Los asesores deben ser el motor principal de alcance: el contenido personal suele superar por mucho a la pagina corporativa.</p></div><div class="insight"><b>Enlaces externos</b><p>Evitar URLs en el cuerpo del post. La publicacion debe entregar valor completo dentro de LinkedIn.</p></div><div class="insight"><b>Formatos ganadores</b><p>Carruseles PDF nativos de 6-9 laminas y videos nativos de menos de 30 segundos con subtitulos.</p></div><div class="insight"><b>CTAs suaves</b><p>Cerrar con preguntas reales de negocio. Evitar &#x27;comenta SI&#x27; o cualquier engagement bait.</p></div><div class="insight"><b>Comentarios profundos</b><p>Responder con seguimiento, datos o una pregunta adicional para crear conversaciones multicapa.</p></div><div class="insight"><b>Hashtags</b><p>Usar 3-5 hashtags especificos: mezcla sector, solucion y ubicacion. Evitar listas largas.</p></div><div class="insight"><b>4-1-1</b><p>Por cada 6 publicaciones: 4 educativas/historias, 1 caso o promocion suave y 1 venta directa ligera.</p></div>
+    </div>
+    <div class="approval">
+      <span class="kicker">Checklist 2026 antes de publicar</span>
+      <ul><li>Las primeras dos lineas exponen un problema o tension real antes de &#x27;ver mas&#x27;.</li><li>No incluye enlace externo en el cuerpo del post.</li><li>Tiene 3 a 5 hashtags especificos.</li><li>Suena a asesor humano, no a folleto corporativo.</li><li>Incluye una pregunta genuina para conversacion, no engagement bait.</li><li>Usa foto real, carrusel PDF o video nativo cuando sea posible.</li><li>Aporta criterio, experiencia o ejemplo concreto.</li><li>Puede responderse con comentarios profundos, no solo likes.</li></ul>
+    </div>
+    <div class="upgrade-grid">
+      <div class="upgrade-card"><b>Visuales con lectura psicologica</b><p>Usar imagenes del contexto real del cliente: obra, fachada, punto de venta, vehiculo, instalacion o taller. Para construccion/inmobiliario: casco, chaleco, obra y senaletica real. Para retail/restaurantes: menu, fachada, display y flujo de clientes.</p></div><div class="upgrade-card"><b>Framework PAS</b><p>En posts comerciales, abrir con Problema, agitar el costo operativo/reputacional y cerrar con la solucion visual. Evitar sonar bonito sin tension de negocio.</p></div><div class="upgrade-card"><b>Zero-click value</b><p>Cada carrusel debe entregar valor sin obligar a salir de LinkedIn. Cada lamina debe ser util por si sola y motivar guardados.</p></div><div class="upgrade-card"><b>Comentarios de autoridad</b><p>Comentar 5-10 veces al dia en perfiles de prospectos. Cada comentario debe superar 15 palabras, aportar criterio, dato, pregunta inteligente o perspectiva lateral.</p></div><div class="upgrade-card"><b>Mensajeria sin venta fria</b><p>Despues de conectar, no mandar catalogo de inmediato. Abrir con contexto, observacion util y pregunta ligera de exploracion.</p></div>
+    </div>
+    <div class="protocol-grid">
+      <div class="protocol-card">
+        <span class="kicker">Protocolo de comentarios</span>
+        <ul><li>Elegir 10 prospectos semanales: marketing, compras, operaciones, restaurantes, hoteles, constructoras, escuelas y agencias.</li><li>Comentar en publicaciones reales del prospecto o de su empresa, no solo en posts virales.</li><li>Estructura del comentario: observacion concreta + criterio profesional + pregunta abierta.</li><li>Minimo 15 palabras por comentario; evitar &#x27;excelente&#x27;, &#x27;muy cierto&#x27; o comentarios genericos.</li><li>Objetivo: que el decisor perciba criterio y visite el perfil, no cerrar venta en el comentario.</li></ul>
+      </div>
+      <div class="protocol-card">
+        <span class="kicker">Guiones de conexion</span>
+        <div class="script"><b>Solicitud de conexion</b><p>Hola, [Nombre]. Vi que trabajas en [empresa/sector]. En Impresionante del Sureste comparto ideas sobre comunicacion visual, senaletica y publicidad B2B para negocios del sureste. Me gustaria conectar.</p></div><div class="script"><b>Primer mensaje tras aceptar</b><p>Gracias por conectar, [Nombre]. Vi que en [empresa] trabajan con [sector/contexto]. Justo estoy compartiendo aprendizajes sobre como mejorar visibilidad fisica de marca sin depender solo de promociones. Espero que te sea util.</p></div><div class="script"><b>Mensaje de exploracion suave</b><p>Pregunta rapida: cuando trabajan materiales visuales o senaletica, ¿el mayor reto suele ser tiempo, calidad, instalacion o consistencia de marca?</p></div><div class="script"><b>Mensaje con recurso</b><p>Te comparto una idea que puede servir: antes de cotizar una pieza visual conviene definir ubicacion, distancia de lectura y duracion esperada. Si en algun momento quieres revisar un proyecto, con gusto te oriento.</p></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>48</strong><span>publicaciones totales</span></div>
+      <div class="stat"><strong>12</strong><span>posts Marilyn</span></div><div class="stat"><strong>12</strong><span>posts Frida</span></div><div class="stat"><strong>12</strong><span>posts Luis Diego</span></div><div class="stat"><strong>12</strong><span>posts Jessica</span></div>
+    </div>
+  </section>
+
+  <main>
+    
+    <section class="advisor-section" id="marilyn">
+      <div class="advisor-title marilyn">
+        <div>
+          <span class="kicker">Asesor/a</span>
+          <h2>Marilyn</h2>
+          <p>Lider comercial B2B</p>
+        </div>
+        <strong>12 posts</strong>
+      </div>
+      <div class="profile-system">
+        <article class="profile-card profile-main">
+          <span class="mini-label">Diagnostico del perfil</span>
+          <p>Es el perfil comercial mas listo para liderar la presencia B2B: tiene titular claro, experiencia en Impresionante, antecedente en BBVA, formacion administrativa y publicaciones recientes. Debe pasar de posts generales a autoridad comercial con casos, criterios de compra y conversaciones con decisores.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Titular recomendado</span>
+          <p class="suggested">Ejecutiva Comercial B2B en Impresionante del Sureste | Branding corporativo, impresion y publicidad visual para empresas</p>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Acerca de sugerido</span>
+          <p class="copy">Ayudo a empresas del sureste a fortalecer su visibilidad mediante branding corporativo, impresion, publicidad visual e instalacion publicitaria.<br><br>Trabajo con negocios que necesitan comunicar mejor, verse mas profesionales y convertir sus espacios fisicos en puntos de contacto con sus clientes.<br><br>Mi enfoque es comercial y consultivo: entender el objetivo, recomendar la solucion adecuada y acompanar el proceso para que cada material visual tenga una funcion clara.<br><br>Conectemos si trabajas en marketing, compras, administracion o desarrollo comercial y buscas mejorar la presencia visual de tu marca.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Experiencia: que mejorar</span>
+          <ul><li>Ejecutiva de cuentas B2B - Impresionante del Sureste: asesoria comercial para proyectos de branding corporativo, impresion, publicidad visual y comunicacion fisica.</li><li>Agregar bullets medibles: sectores atendidos, tipos de proyectos, coordinacion con produccion, seguimiento a cotizaciones y acompanamiento al cliente.</li><li>BBVA: convertir la experiencia financiera en confianza comercial: atencion, analisis de necesidades, seguimiento y relacion con clientes.</li></ul>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Habilidades recomendadas</span>
+          <p>Ventas B2B, Branding corporativo, Publicidad visual, Impresion digital, Desarrollo comercial, Atencion a clientes, Prospeccion, Negociacion, CRM, Compras B2B, Comunicacion visual, Marketing B2B, Administracion, Seguimiento comercial, Customer experience.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Destacados</span>
+          <p>1) Post de publicidad visual como inversion. 2) Caso real de Impresionante explicado. 3) PDF/checklist: como elegir proveedor de publicidad visual.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Crecimiento de red</span>
+          <p>Conectar cada semana con 15 perfiles: gerentes de marketing, compras, administracion, duenos de PyME, restaurantes, hoteles, escuelas y agencias.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Prioridad inmediata</span>
+          <p>Mantener 3 posts por semana y comentar en publicaciones de decisores 10 minutos al dia.</p>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Checklist seccion por seccion</span>
+          <ul class="checklist"><li><b>Foto de perfil:</b> Rostro claro, buena luz, fondo limpio, encuadre profesional. Evitar selfies oscuras, lentes, filtros fuertes o fotos recortadas de eventos.</li><li><b>Banner:</b> Usar banner de Impresionante con promesa B2B: Comunicacion visual para empresas del sureste. Incluir servicios clave: gran formato, senaletica, rotulacion, branding, instalacion.</li><li><b>Titular:</b> Formula recomendada: rol + problema que resuelve + categoria. Evitar frases genericas como &#x27;ventas&#x27; sin contexto.</li><li><b>Acerca de:</b> 4 bloques: a quien ayuda, que problema resuelve, como trabaja, llamado a conectar. Escribir en primera persona, sin sonar a folleto corporativo.</li><li><b>Experiencia:</b> Cada puesto debe tener 3-5 bullets con funciones, sectores, tipos de proyectos y resultados cualitativos. No dejar cargos sin descripcion.</li><li><b>Destacado:</b> Fijar 3 piezas: post de autoridad, caso/proyecto, checklist o recurso util. Esto ayuda a que el perfil no dependa solo del ultimo post.</li><li><b>Actividad:</b> Publicar con constancia y comentar en perfiles de clientes potenciales. No publicar solo promociones.</li><li><b>Habilidades:</b> Agregar habilidades alineadas al rol y pedir validaciones internas/clientes. Priorizar ventas, comunicacion visual, materiales y atencion.</li><li><b>Recomendaciones:</b> Pedir 2-3 recomendaciones reales: cliente, companero interno y responsable de proyecto. Evitar recomendaciones copiadas.</li><li><b>Contacto y URL:</b> URL publica limpia, ciudad correcta, empresa vinculada y datos profesionales consistentes. No exponer datos personales innecesarios.</li></ul>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Reglas para no afectar visibilidad en LinkedIn</span>
+          <ul class="checklist"><li>No publicar el mismo copy exacto en todos los asesores.</li><li>No saturar con hashtags: usar 3 a 5 ultra-especificos.</li><li>No vender agresivamente en cada post; priorizar valor, criterio y ejemplos.</li><li>No usar enlaces externos en el cuerpo del post; si se requiere enlace, llevarlo a comentario o perfil.</li><li>Responder comentarios pronto y con respuestas humanas, no solo &#x27;gracias&#x27;.</li><li>Evitar engagement artificial, cadenas de likes o comentarios vacios.</li><li>Usar fotos reales y casos cuando existan, sin revelar informacion confidencial.</li><li>Mantener consistencia entre titular, acerca de, experiencia y contenido.</li><li>Priorizar carruseles PDF nativos de 6 a 9 laminas y videos nativos menores a 30 segundos.</li><li>Escribir para retencion: gancho fuerte en las primeras dos lineas, parrafos cortos y una idea central por post.</li></ul>
+        </article>
+      </div>
+      <div class="cards">
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Lunes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Una mala pieza visual no solo se ve mal.<br><br>Tambien puede hacer que una marca pierda confianza, ventas y tiempo.<br><br>Cuando una empresa manda imprimir sin objetivo claro, suelen aparecer los mismos problemas:<br><br>- mensajes que no se entienden,<br>- materiales que no resisten,<br>- instalaciones que se retrasan,<br>- colores que no representan la marca,<br>- piezas que terminan pareciendo gasto, no inversion.<br><br>Ese es el verdadero costo de improvisar la comunicacion visual.<br><br>Una buena publicidad visual debe atraer atencion, comunicar con claridad, orientar al cliente, generar confianza y ayudar a vender.<br><br>En Impresionante del Sureste ayudamos a empresas a transformar sus espacios fisicos en puntos de contacto con sus clientes.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Viernes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">En ventas B2B, el problema casi nunca es solo &quot;necesito una lona&quot;.<br><br>El problema real puede ser mas serio:<br><br>- una sucursal que no comunica confianza,<br>- una campana que debe salir a tiempo,<br>- una fachada que no atrae clientes,<br>- una marca que se ve diferente en cada punto,<br>- un proveedor que puede fallar el dia de la instalacion.<br><br>Cuando eso pasa, el costo no es solo el material.<br><br>El costo es reputacion, tiempo y oportunidades perdidas.<br><br>Por eso la publicidad visual debe venderse como una solucion, no como una pieza suelta.<br><br>La pregunta correcta no es solo:<br><br>&quot;¿Que medida necesita?&quot;<br><br>La pregunta correcta es:<br><br>&quot;¿Que necesita lograr tu marca con este material?&quot;</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Cada proyecto de publicidad visual tiene una pregunta detras:<br><br>¿Como hacemos que esta marca se vea mejor, se entienda mas rapido y conecte con sus clientes?<br><br>La respuesta no siempre esta en imprimir mas.<br><br>A veces esta en:<br><br>- elegir mejor el material,<br>- ordenar el mensaje,<br>- mejorar la ubicacion,<br>- cuidar la instalacion,<br>- mantener consistencia con la marca.<br><br>En Impresionante del Sureste trabajamos para que cada pieza visual tenga una funcion clara.<br><br>Porque cuando la comunicacion visual esta bien pensada, la marca no solo se ve: se entiende.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Lunes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Elegir un proveedor de publicidad visual no deberia depender solo del precio.<br><br>En proyectos B2B, tambien importa:<br><br>1. Que entienda el objetivo de la marca.<br>2. Que recomiende materiales adecuados.<br>3. Que pueda cumplir tiempos.<br>4. Que cuide la calidad de impresion.<br>5. Que tenga criterio para instalacion.<br>6. Que de seguimiento despues de entregar.<br><br>Una cotizacion barata puede parecer atractiva.<br><br>Pero si el material falla, el color no corresponde o la instalacion queda mal, el costo real termina siendo mayor.<br><br>En comunicacion visual, el proveedor tambien cuida la reputacion de tu marca.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Viernes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">La publicidad visual se vuelve gasto cuando se improvisa.<br><br>Se vuelve inversion cuando tiene objetivo.<br><br>No es lo mismo imprimir por urgencia que imprimir con una estrategia clara:<br><br>- que mensaje debe comunicar,<br>- a quien debe atraer,<br>- donde se va a colocar,<br>- cuanto tiempo debe durar,<br>- que accion debe provocar.<br><br>Una empresa puede invertir en lonas, viniles, rotulacion o senaletica.<br><br>Pero el verdadero valor esta en que esas piezas ayuden a vender, orientar, posicionar o generar confianza.<br><br>La pregunta no es:<br><br>&quot;¿Cuanto cuesta imprimir?&quot;<br><br>La pregunta es:<br><br>&quot;¿Que oportunidad puede abrir esta comunicacion visual?&quot;</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">En compras B2B, elegir proveedor no es solo comparar precios.<br><br>Tambien es reducir riesgos.<br><br>Riesgo de retraso.<br><br>Riesgo de mala calidad.<br><br>Riesgo de instalacion deficiente.<br><br>Riesgo de que la marca se vea diferente a lo planeado.<br><br>Riesgo de tener que repetir el trabajo.<br><br>Por eso, una buena compra de publicidad visual debe considerar calidad, tiempos, materiales, asesoria e instalacion.<br><br>El proveedor correcto no solo entrega un producto.<br><br>Tambien ayuda a que la marca se vea como debe verse.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Lunes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">El branding corporativo no termina en el logo.<br><br>Tambien se expresa en los espacios fisicos:<br><br>- fachadas,<br>- recepciones,<br>- cristales,<br>- muros,<br>- vehiculos,<br>- senaletica,<br>- exhibidores,<br>- materiales promocionales.<br><br>Cada uno de esos puntos puede fortalecer o debilitar la percepcion de una marca.<br><br>Cuando una empresa cuida su presencia visual, transmite orden, confianza y profesionalismo.<br><br>Cuando no la cuida, puede parecer improvisada aunque tenga un gran producto o servicio.<br><br>La comunicacion visual es parte de la experiencia de marca.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Viernes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Mi experiencia en el sector financiero me dejo una leccion que hoy aplico en ventas B2B:<br><br>la confianza se construye con claridad.<br><br>Un cliente necesita entender:<br><br>- que esta contratando,<br>- que problema resuelve,<br>- que opciones tiene,<br>- que riesgos existen,<br>- que resultado puede esperar.<br><br>En publicidad visual pasa algo similar.<br><br>No se trata solo de vender una impresion.<br><br>Se trata de acompanar al cliente para que tome una mejor decision para su marca.<br><br>Cuando hay claridad, hay mas confianza.<br><br>Y cuando hay confianza, la relacion comercial cambia.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Un buen caso de publicidad visual se puede explicar con tres preguntas:<br><br>1. ¿Que necesitaba comunicar la marca?<br>2. ¿Donde debia verse?<br>3. ¿Que solucion visual ayudaba mejor?<br><br>Cuando esas tres respuestas estan claras, el proyecto deja de ser solo impresion.<br><br>Se convierte en una solucion de comunicacion.<br><br>En Impresionante del Sureste trabajamos con empresas que buscan verse mejor, comunicar con mas claridad y fortalecer su presencia en el mercado.<br><br>Cada material debe tener una razon.<br><br>Cada instalacion debe tener un objetivo.<br><br>Cada pieza debe cuidar la marca.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Lunes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Una campana visual deberia empezar con un objetivo.<br><br>No con el material.<br><br>Primero hay que definir:<br><br>- que queremos comunicar,<br>- a quien queremos llegar,<br>- donde se va a ver,<br>- que accion esperamos,<br>- cuanto tiempo debe durar,<br>- que imagen debe proyectar la marca.<br><br>Despues viene la decision de formato:<br><br>lona, vinil, senaletica, rotulacion, material rigido, promocional o instalacion especial.<br><br>Cuando se empieza por el objetivo, el material se elige mejor.<br><br>Y el resultado tiene mas sentido para el negocio.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Viernes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Una marca se construye en cada detalle.<br><br>En el logo, si.<br><br>Pero tambien en:<br><br>- el color impreso,<br>- la claridad del mensaje,<br>- la calidad del material,<br>- la instalacion,<br>- la fachada,<br>- la senaletica,<br>- el vehiculo,<br>- el punto de venta.<br><br>Cada pieza visual puede fortalecer la confianza o debilitarla.<br><br>Por eso, cuando una empresa invierte en publicidad visual, no solo compra impresion.<br><br>Esta cuidando la forma en que el mercado la percibe.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Este mes he confirmado algo:<br><br>la comunicacion visual tiene un papel muy importante en el crecimiento de una empresa.<br><br>No solo porque ayuda a verse mejor.<br><br>Sino porque ayuda a:<br><br>- generar confianza,<br>- ordenar mensajes,<br>- destacar en el mercado,<br>- comunicar promociones,<br>- orientar clientes,<br>- fortalecer la presencia de marca.<br><br>En un entorno competitivo, las empresas necesitan ser visibles, claras y consistentes.<br><br>La publicidad visual bien pensada puede ayudar mucho en ese proceso.<br><br>En Impresionante del Sureste seguiremos compartiendo ideas, casos y aprendizajes para que mas empresas aprovechen mejor su imagen fisica.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        </div>
+    </section>
+    
+    <section class="advisor-section" id="frida">
+      <div class="advisor-title frida">
+        <div>
+          <span class="kicker">Asesor/a</span>
+          <h2>Frida</h2>
+          <p>Prospeccion y posicionamiento</p>
+        </div>
+        <strong>12 posts</strong>
+      </div>
+      <div class="profile-system">
+        <article class="profile-card profile-main">
+          <span class="mini-label">Diagnostico del perfil</span>
+          <p>Tiene narrativa correcta de posicionamiento y visibilidad, pero red pequena y poca prueba visible. Debe aterrizar su discurso en preguntas de cotizacion, necesidades reales de empresas y ejemplos de presencia de marca.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Titular recomendado</span>
+          <p class="suggested">Ejecutiva de Ventas B2B en Impresionante del Sureste | Ayudo a empresas a ganar visibilidad con publicidad visual, impresion e instalacion estrategica</p>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Acerca de sugerido</span>
+          <p class="copy">Ayudo a empresas a fortalecer su presencia de marca mediante soluciones de publicidad visual, impresion e instalacion.<br><br>Mi trabajo es acompanar a negocios que buscan verse mas profesionales, destacar frente a su competencia y comunicar mejor en sus espacios fisicos.<br><br>Me interesa conectar con empresas que quieren convertir fachadas, puntos de venta, promociones y materiales impresos en herramientas reales de visibilidad.<br><br>Si tu marca necesita ser mas clara, visible y recordable, podemos conversar.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Experiencia: que mejorar</span>
+          <ul><li>Ejecutiva de ventas - Impresionante del Sureste: asesoria para proyectos de publicidad visual, impresion, posicionamiento y visibilidad de marca.</li><li>Administrador de cuenta - DTS Tornillos y Suspensiones: explicar funciones comerciales, seguimiento de clientes, cuentas y atencion.</li><li>Agregar ejemplos de sectores atendidos cuando existan: retail, restaurantes, escuelas, eventos, servicios y negocios locales.</li></ul>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Habilidades recomendadas</span>
+          <p>Ventas, Ventas B2B, Prospeccion, Posicionamiento de marca, Publicidad visual, Atencion a clientes, Comunicacion comercial, Branding, Negociacion, Seguimiento, Impresion digital, Marketing B2B, Desarrollo de negocios, Cotizaciones, Servicio al cliente.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Destacados</span>
+          <p>1) Post sobre marcas visibles. 2) Checklist antes de cotizar publicidad. 3) Caso simple: de necesidad del cliente a solucion visual.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Crecimiento de red</span>
+          <p>Conectar con emprendedores B2B, duenos de restaurantes, marcas locales, encargados de ventas, marketing y negocios en Tuxtla/Chiapas.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Prioridad inmediata</span>
+          <p>Crecer red primero: 15 conexiones semanales y 2 posts por semana con ejemplos concretos.</p>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Checklist seccion por seccion</span>
+          <ul class="checklist"><li><b>Foto de perfil:</b> Rostro claro, buena luz, fondo limpio, encuadre profesional. Evitar selfies oscuras, lentes, filtros fuertes o fotos recortadas de eventos.</li><li><b>Banner:</b> Usar banner de Impresionante con promesa B2B: Comunicacion visual para empresas del sureste. Incluir servicios clave: gran formato, senaletica, rotulacion, branding, instalacion.</li><li><b>Titular:</b> Formula recomendada: rol + problema que resuelve + categoria. Evitar frases genericas como &#x27;ventas&#x27; sin contexto.</li><li><b>Acerca de:</b> 4 bloques: a quien ayuda, que problema resuelve, como trabaja, llamado a conectar. Escribir en primera persona, sin sonar a folleto corporativo.</li><li><b>Experiencia:</b> Cada puesto debe tener 3-5 bullets con funciones, sectores, tipos de proyectos y resultados cualitativos. No dejar cargos sin descripcion.</li><li><b>Destacado:</b> Fijar 3 piezas: post de autoridad, caso/proyecto, checklist o recurso util. Esto ayuda a que el perfil no dependa solo del ultimo post.</li><li><b>Actividad:</b> Publicar con constancia y comentar en perfiles de clientes potenciales. No publicar solo promociones.</li><li><b>Habilidades:</b> Agregar habilidades alineadas al rol y pedir validaciones internas/clientes. Priorizar ventas, comunicacion visual, materiales y atencion.</li><li><b>Recomendaciones:</b> Pedir 2-3 recomendaciones reales: cliente, companero interno y responsable de proyecto. Evitar recomendaciones copiadas.</li><li><b>Contacto y URL:</b> URL publica limpia, ciudad correcta, empresa vinculada y datos profesionales consistentes. No exponer datos personales innecesarios.</li></ul>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Reglas para no afectar visibilidad en LinkedIn</span>
+          <ul class="checklist"><li>No publicar el mismo copy exacto en todos los asesores.</li><li>No saturar con hashtags: usar 3 a 5 ultra-especificos.</li><li>No vender agresivamente en cada post; priorizar valor, criterio y ejemplos.</li><li>No usar enlaces externos en el cuerpo del post; si se requiere enlace, llevarlo a comentario o perfil.</li><li>Responder comentarios pronto y con respuestas humanas, no solo &#x27;gracias&#x27;.</li><li>Evitar engagement artificial, cadenas de likes o comentarios vacios.</li><li>Usar fotos reales y casos cuando existan, sin revelar informacion confidencial.</li><li>Mantener consistencia entre titular, acerca de, experiencia y contenido.</li><li>Priorizar carruseles PDF nativos de 6 a 9 laminas y videos nativos menores a 30 segundos.</li><li>Escribir para retencion: gancho fuerte en las primeras dos lineas, parrafos cortos y una idea central por post.</li></ul>
+        </article>
+      </div>
+      <div class="cards">
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Miercoles</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Las marcas que logran destacar no lo hacen por casualidad.<br><br>Detras de una empresa visible normalmente hay decisiones muy concretas:<br><br>- donde aparece la marca,<br>- que mensaje repite,<br>- como se ve frente a su competencia,<br>- que tan facil es reconocerla,<br>- que confianza transmite en sus espacios fisicos.<br><br>En publicidad visual, cada pieza comunica algo.<br><br>Una lona, una fachada, un vinil o una rotulacion pueden parecer materiales sencillos, pero tambien son puntos de contacto con el cliente.<br><br>Una marca visible es una marca con mas oportunidades.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Sabado</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Antes de cotizar publicidad para tu negocio, conviene tener claras 3 cosas:<br><br>1. Donde se va a colocar.<br>2. A que distancia debe leerse.<br>3. Que accion quieres que genere.<br><br>No es lo mismo imprimir para una fachada, un evento, un punto de venta o una campana temporal.<br><br>El material, el tamano y el mensaje deben responder al objetivo.<br><br>Una buena cotizacion empieza con buenas preguntas.<br><br>Y mientras mas claro este el objetivo, mas facil sera recomendar una solucion que realmente funcione.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Una marca tiene pocos segundos para ser entendida.<br><br>Cuando alguien pasa frente a un local, ve una fachada o recibe una promocion, normalmente no se detiene a analizar todo.<br><br>Primero responde tres preguntas:<br><br>- ¿Que es este negocio?<br>- ¿Que ofrece?<br>- ¿Por que deberia importarme?<br><br>Si la comunicacion visual no responde eso rapido, la marca pierde fuerza.<br><br>Por eso no se trata solo de imprimir algo bonito.<br><br>Se trata de crear mensajes visibles, claros y faciles de recordar.<br><br>Una buena pieza visual debe ayudar a que el cliente entienda antes de preguntar.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Miercoles</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">En mercados competitivos, no basta con existir.<br><br>Una empresa necesita ser visible, clara y recordable.<br><br>La publicidad visual ayuda a responder tres preguntas en segundos:<br><br>- quien eres,<br>- que ofreces,<br>- por que deberian acercarse.<br><br>Si una fachada, lona, vinil o senaletica no comunica eso, la marca pierde oportunidades.<br><br>Destacar no siempre significa hacer algo mas grande.<br><br>A veces significa comunicar mejor.<br><br>Mejor ubicacion.<br><br>Mejor mensaje.<br><br>Mejor material.<br><br>Mejor consistencia visual.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Sabado</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Si una empresa quiere ganar visibilidad, puede empezar con tres acciones simples:<br><br>1. Revisar si su fachada comunica claramente que ofrece.<br>2. Usar sus espacios fisicos como puntos de contacto con el cliente.<br>3. Mantener consistencia visual entre promociones, senaletica, vehiculos y materiales impresos.<br><br>La marca no vive solo en redes sociales.<br><br>Tambien vive en el local, en la calle, en el punto de venta, en los vehiculos y en cada material que el cliente ve.<br><br>Cuando todo comunica de forma consistente, la empresa se vuelve mas facil de reconocer y recordar.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">El punto de venta tambien comunica.<br><br>No solo vende quien atiende.<br><br>Tambien venden:<br><br>- los menus,<br>- las promociones,<br>- los cristales,<br>- los muros,<br>- los exhibidores,<br>- la senaletica,<br>- la fachada.<br><br>Cada elemento puede ayudar a que el cliente entienda mejor, confie mas y tome una decision.<br><br>Cuando una empresa cuida su presencia visual, el negocio se percibe mas claro y profesional.<br><br>La publicidad visual no debe estar puesta al azar.<br><br>Debe tener una funcion.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Miercoles</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">En un mercado competitivo, una empresa necesita ser facil de encontrar, entender y recordar.<br><br>La visibilidad no depende solo de estar en redes.<br><br>Tambien depende de como se presenta fisicamente:<br><br>- su fachada,<br>- sus anuncios,<br>- sus promociones,<br>- sus vehiculos,<br>- su punto de venta,<br>- su senaletica.<br><br>Cada espacio puede convertirse en una oportunidad para reforzar la marca.<br><br>Si el cliente pasa frente a tu negocio y no entiende que haces, hay una oportunidad perdida.<br><br>La comunicacion visual ayuda a reducir esa distancia.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Sabado</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Hay errores visuales que hacen que una marca pierda fuerza:<br><br>1. Mensajes demasiado largos.<br>2. Letras pequenas para la distancia.<br>3. Colores con poco contraste.<br>4. Material incorrecto para exterior.<br>5. Promociones sin jerarquia.<br>6. Fachadas sin claridad.<br>7. Publicidad que no dice que hacer despues.<br><br>La publicidad visual debe ayudar al cliente a entender rapido.<br><br>Si una pieza requiere demasiado esfuerzo para leerse, probablemente no esta cumpliendo su funcion.<br><br>Comunicar mejor tambien es vender mejor.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Ganar visibilidad no siempre significa hacer el anuncio mas grande.<br><br>A veces significa hacerlo mas claro.<br><br>Mas directo.<br><br>Mas facil de leer.<br><br>Mas consistente con la marca.<br><br>Muchas empresas llenan sus piezas visuales de informacion pensando que asi comunican mas.<br><br>Pero el cliente normalmente necesita entender rapido:<br><br>- quien eres,<br>- que ofreces,<br>- que debe hacer despues.<br><br>La buena comunicacion visual no grita.<br><br>Ordena el mensaje para que la marca sea mas facil de recordar.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Miercoles</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Si una empresa quiere ganar presencia de marca, puede empezar con acciones concretas:<br><br>1. Hacer que su fachada sea clara y visible.<br>2. Usar senaletica para orientar y comunicar mejor.<br>3. Convertir sus vehiculos, cristales o muros en puntos de contacto.<br><br>No siempre se necesita una campana enorme.<br><br>A veces se necesita aprovechar mejor los espacios que la empresa ya tiene.<br><br>La comunicacion visual ayuda a que una marca este presente en los lugares donde el cliente decide, camina, espera, compra o pregunta.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Sabado</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">La publicidad fisica sigue siendo importante porque acompaña al cliente en el mundo real.<br><br>La ve al pasar por una calle.<br><br>La ve al entrar a un negocio.<br><br>La ve en una sucursal.<br><br>La ve en un vehiculo.<br><br>La ve en una promocion.<br><br>Y en pocos segundos decide si una marca se percibe clara, confiable y profesional.<br><br>Por eso, cada pieza visual debe tener intencion.<br><br>No se trata de llenar espacios.<br><br>Se trata de comunicar mejor.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Una de las ideas mas importantes en publicidad visual es esta:<br><br>el cliente no compra solo un producto.<br><br>Compra una solucion.<br><br>Una lona puede resolver visibilidad.<br><br>Un vinil puede mejorar la imagen de un espacio.<br><br>Una senaletica puede orientar mejor.<br><br>Una rotulacion puede convertir un vehiculo en publicidad.<br><br>Un material rigido puede elevar la percepcion de una marca.<br><br>Cuando entendemos el objetivo, el producto correcto aparece con mas claridad.<br><br>Por eso, antes de vender, hay que preguntar.<br><br>Y antes de imprimir, hay que entender.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        </div>
+    </section>
+    
+    <section class="advisor-section" id="luis-diego">
+      <div class="advisor-title luis">
+        <div>
+          <span class="kicker">Asesor/a</span>
+          <h2>Luis Diego</h2>
+          <p>Tecnico-comercial</p>
+        </div>
+        <strong>12 posts</strong>
+      </div>
+      <div class="profile-system">
+        <article class="profile-card profile-main">
+          <span class="mini-label">Diagnostico del perfil</span>
+          <p>El perfil tiene potencial tecnico por el &#x27;Ing.&#x27;, pero esta demasiado breve. Debe convertirse en autoridad tecnico-comercial: materiales, instalacion, durabilidad, rotulacion, gran formato y decisiones que evitan retrabajos.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Titular recomendado</span>
+          <p class="suggested">Ing. Diego Jimenez | Asesor tecnico-comercial en publicidad visual, gran formato e instalacion publicitaria</p>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Acerca de sugerido</span>
+          <p class="copy">Ayudo a empresas a elegir soluciones de publicidad visual que comuniquen mejor y funcionen en el contexto real donde seran instaladas.<br><br>Mi enfoque combina asesoria comercial con criterio tecnico: material adecuado, superficie, durabilidad, legibilidad, instalacion y calidad final.<br><br>En Impresionante del Sureste trabajamos con impresion, gran formato, rotulacion, materiales para interior/exterior y soluciones visuales para negocios.<br><br>Si tu empresa necesita que su publicidad se vea bien y dure lo necesario, puedo ayudarte a revisar la mejor opcion antes de producir.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Experiencia: que mejorar</span>
+          <ul><li>Asesor comercial - Impresionante del Sureste: agregar descripcion detallada de asesor tecnico-comercial en materiales, gran formato, rotulacion e instalacion.</li><li>Incluir responsabilidades: levantamiento de necesidades, recomendacion de materiales, revision de uso final, seguimiento de produccion e instalacion.</li><li>Agregar ejemplos de proyectos: exterior, vehiculos, punto de venta, fachadas, senaletica o materiales rigidos.</li></ul>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Habilidades recomendadas</span>
+          <p>Gran formato, Materiales graficos, Instalacion publicitaria, Rotulacion vehicular, Vinil, Lonas, Impresion digital, Publicidad exterior, Asesoria tecnica, Produccion grafica, Calidad de impresion, Durabilidad, Atencion a clientes, Ventas tecnicas, Comunicacion visual.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Destacados</span>
+          <p>1) Post: no todos los materiales sirven para exterior. 2) Comparativa vinil/lona/rigido. 3) Video corto de instalacion o revision de material.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Crecimiento de red</span>
+          <p>Conectar con operaciones, flotillas, constructoras, talleres, empresas de servicios, marketing operativo y encargados de mantenimiento.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Prioridad inmediata</span>
+          <p>Optimizar titular y acerca de antes de publicar; despues sostener 2 posts tecnicos por semana.</p>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Checklist seccion por seccion</span>
+          <ul class="checklist"><li><b>Foto de perfil:</b> Rostro claro, buena luz, fondo limpio, encuadre profesional. Evitar selfies oscuras, lentes, filtros fuertes o fotos recortadas de eventos.</li><li><b>Banner:</b> Usar banner de Impresionante con promesa B2B: Comunicacion visual para empresas del sureste. Incluir servicios clave: gran formato, senaletica, rotulacion, branding, instalacion.</li><li><b>Titular:</b> Formula recomendada: rol + problema que resuelve + categoria. Evitar frases genericas como &#x27;ventas&#x27; sin contexto.</li><li><b>Acerca de:</b> 4 bloques: a quien ayuda, que problema resuelve, como trabaja, llamado a conectar. Escribir en primera persona, sin sonar a folleto corporativo.</li><li><b>Experiencia:</b> Cada puesto debe tener 3-5 bullets con funciones, sectores, tipos de proyectos y resultados cualitativos. No dejar cargos sin descripcion.</li><li><b>Destacado:</b> Fijar 3 piezas: post de autoridad, caso/proyecto, checklist o recurso util. Esto ayuda a que el perfil no dependa solo del ultimo post.</li><li><b>Actividad:</b> Publicar con constancia y comentar en perfiles de clientes potenciales. No publicar solo promociones.</li><li><b>Habilidades:</b> Agregar habilidades alineadas al rol y pedir validaciones internas/clientes. Priorizar ventas, comunicacion visual, materiales y atencion.</li><li><b>Recomendaciones:</b> Pedir 2-3 recomendaciones reales: cliente, companero interno y responsable de proyecto. Evitar recomendaciones copiadas.</li><li><b>Contacto y URL:</b> URL publica limpia, ciudad correcta, empresa vinculada y datos profesionales consistentes. No exponer datos personales innecesarios.</li></ul>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Reglas para no afectar visibilidad en LinkedIn</span>
+          <ul class="checklist"><li>No publicar el mismo copy exacto en todos los asesores.</li><li>No saturar con hashtags: usar 3 a 5 ultra-especificos.</li><li>No vender agresivamente en cada post; priorizar valor, criterio y ejemplos.</li><li>No usar enlaces externos en el cuerpo del post; si se requiere enlace, llevarlo a comentario o perfil.</li><li>Responder comentarios pronto y con respuestas humanas, no solo &#x27;gracias&#x27;.</li><li>Evitar engagement artificial, cadenas de likes o comentarios vacios.</li><li>Usar fotos reales y casos cuando existan, sin revelar informacion confidencial.</li><li>Mantener consistencia entre titular, acerca de, experiencia y contenido.</li><li>Priorizar carruseles PDF nativos de 6 a 9 laminas y videos nativos menores a 30 segundos.</li><li>Escribir para retencion: gancho fuerte en las primeras dos lineas, parrafos cortos y una idea central por post.</li></ul>
+        </article>
+      </div>
+      <div class="cards">
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Martes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">No todos los materiales sirven para exterior.<br><br>Antes de elegir entre lona, vinil, microperforado o material rigido, hay que revisar el contexto:<br><br>- sol,<br>- lluvia,<br>- superficie,<br>- tiempo de uso,<br>- distancia de lectura,<br>- forma de instalacion.<br><br>El material correcto no siempre es el mas caro.<br><br>Es el que resuelve mejor el lugar donde se va a usar.<br><br>Si tu publicidad va a estar expuesta al clima, la decision tecnica importa tanto como el diseno.<br><br>Un buen resultado empieza antes de imprimir: empieza eligiendo bien.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Sabado</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Gran formato no significa solo imprimir grande.<br><br>Tambien implica pensar en:<br><br>- legibilidad,<br>- distancia,<br>- resolucion,<br>- color,<br>- material,<br>- instalacion,<br>- durabilidad.<br><br>Una pieza puede verse bien en pantalla y aun asi fallar cuando se instala.<br><br>Por eso, antes de producir, conviene revisar archivo, medidas, superficie y objetivo.<br><br>La calidad final empieza mucho antes de imprimir.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Antes de imprimir, el archivo tambien debe revisarse.<br><br>Un diseno puede verse bien en pantalla, pero tener problemas al producirse si no cumple con puntos basicos:<br><br>- medidas correctas,<br>- buena resolucion,<br>- textos legibles,<br>- colores preparados,<br>- margenes seguros,<br>- imagenes de calidad,<br>- formato adecuado para produccion.<br><br>Cuando el archivo llega listo, se reducen errores, retrasos y retrabajos.<br><br>La calidad final no empieza en la maquina.<br><br>Empieza desde el archivo que se entrega.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Martes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Vinil, lona o material rigido: no son lo mismo.<br><br>Cada uno responde a una necesidad distinta.<br><br>La lona suele funcionar bien para comunicacion visible, eventos, fachadas temporales o promociones.<br><br>El vinil es util cuando necesitas adherir la imagen a una superficie: cristal, pared, vehiculo o exhibidor.<br><br>Los materiales rigidos ayudan cuando se busca mayor presencia, estructura o una imagen mas firme y profesional.<br><br>La decision correcta depende de:<br><br>- ubicacion,<br>- duracion,<br>- clima,<br>- superficie,<br>- presupuesto,<br>- objetivo visual.<br><br>Antes de elegir material, hay que entender donde va a vivir la pieza.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Sabado</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">El vinil no falla solo.<br><br>Muchas veces el problema esta en la superficie.<br><br>Antes de instalar, hay que revisar:<br><br>- si esta limpia,<br>- si tiene polvo,<br>- si tiene humedad,<br>- si esta porosa,<br>- si tiene grasa,<br>- si recibe mucho sol,<br>- si la textura permite adherencia.<br><br>Una buena instalacion depende tanto del material como de la preparacion.<br><br>Por eso, cuando se trata de publicidad visual, no basta con imprimir bien.<br><br>Tambien hay que instalar correctamente.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Un error comun en gran formato es disenar como si todos fueran a verlo de cerca.<br><br>Pero muchas piezas se leen desde la calle, desde un auto, desde una banqueta o desde varios metros de distancia.<br><br>Por eso hay que revisar:<br><br>- tamano de letra,<br>- contraste,<br>- cantidad de texto,<br>- jerarquia del mensaje,<br>- ubicacion,<br>- velocidad con la que pasa el cliente.<br><br>Si el mensaje no se lee a la distancia real, la pieza pierde efectividad.<br><br>En gran formato, menos texto y mas claridad casi siempre funciona mejor.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Martes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Una buena impresion puede arruinarse con una mala instalacion.<br><br>Algunos errores comunes:<br><br>- no medir correctamente,<br>- no limpiar la superficie,<br>- elegir material incorrecto,<br>- no considerar clima o exposicion,<br>- instalar con prisa,<br>- no revisar nivelacion,<br>- no contemplar mantenimiento.<br><br>La instalacion es parte del resultado final.<br><br>No es un paso secundario.<br><br>Cuando una pieza visual queda bien instalada, se ve mejor, dura mas y protege la imagen de la marca.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Sabado</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Un vehiculo rotulado puede trabajar como publicidad todos los dias.<br><br>Pero para que funcione bien, hay que cuidar varios puntos:<br><br>- diseno legible,<br>- datos de contacto claros,<br>- material adecuado,<br>- preparacion de superficie,<br>- instalacion correcta,<br>- ubicacion de la informacion,<br>- resistencia al uso diario.<br><br>La rotulacion vehicular no es solo poner un logo en una unidad.<br><br>Es convertir un vehiculo en un medio de visibilidad para la marca.<br><br>Cuando esta bien hecha, comunica incluso cuando el vehiculo esta estacionado.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">La publicidad exterior exige mas que una buena impresion.<br><br>Debe resistir condiciones reales:<br><br>- sol,<br>- lluvia,<br>- polvo,<br>- viento,<br>- humedad,<br>- limpieza,<br>- roce,<br>- tiempo de exposicion.<br><br>Cuando se elige un material incorrecto, el problema aparece despues: decoloracion, desprendimiento, desgaste o necesidad de reinstalar.<br><br>Por eso conviene pensar en durabilidad desde el inicio.<br><br>No todo material sirve para todo espacio.<br><br>Y no toda publicidad necesita durar lo mismo.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Martes</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">La calidad de impresion no se mide solo por que &quot;se vea bonito&quot;.<br><br>Tambien se nota en:<br><br>- nitidez,<br>- color,<br>- resolucion,<br>- material,<br>- acabado,<br>- resistencia,<br>- instalacion,<br>- consistencia con la marca.<br><br>Un archivo puede verse bien en pantalla, pero necesitar ajustes para producirse correctamente.<br><br>Por eso es importante revisar medidas, resolucion y uso final antes de imprimir.<br><br>La calidad empieza en el archivo y termina en la instalacion.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Sabado</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">La durabilidad de una pieza visual no depende solo del material.<br><br>Tambien depende de:<br><br>- donde se instala,<br>- como se instala,<br>- cuanto sol recibe,<br>- si esta expuesta a lluvia,<br>- si se limpia correctamente,<br>- si tiene roce o movimiento,<br>- si el material era adecuado para ese uso.<br><br>Por eso, antes de imprimir, conviene pensar en la vida util esperada.<br><br>No todos los proyectos necesitan durar años.<br><br>Pero todos deberian durar lo suficiente para cumplir su objetivo.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Antes de instalar publicidad visual, conviene revisar cinco puntos:<br><br>1. Medidas reales del espacio.<br>2. Estado de la superficie.<br>3. Condiciones de clima o exposicion.<br>4. Material seleccionado.<br>5. Forma de fijacion o aplicacion.<br><br>Saltarse cualquiera de estos pasos puede generar problemas despues.<br><br>Una instalacion bien planeada se nota en la durabilidad, en la apariencia y en la confianza que proyecta la marca.<br><br>La instalacion no es el final del proyecto.<br><br>Es una parte clave del resultado.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        </div>
+    </section>
+    
+    <section class="advisor-section" id="jessica">
+      <div class="advisor-title jessica">
+        <div>
+          <span class="kicker">Asesor/a</span>
+          <h2>Jessica</h2>
+          <p>Experiencia de cliente</p>
+        </div>
+        <strong>12 posts</strong>
+      </div>
+      <div class="profile-system">
+        <article class="profile-card profile-main">
+          <span class="mini-label">Diagnostico del perfil</span>
+          <p>Tiene el activo mas valioso de experiencia interna: 4 anos en Impresionante. Hoy su perfil esta subutilizado: titular vacio, sin posts recientes y poca red. Debe convertirse en voz de experiencia de cliente y memoria comercial.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Titular recomendado</span>
+          <p class="suggested">Asesora comercial | Ayudo a negocios a mejorar su presencia visual con impresion, senaletica y publicidad</p>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Acerca de sugerido</span>
+          <p class="copy">Trabajo en Impresionante del Sureste asesorando a clientes que buscan mejorar la imagen visual de sus negocios.<br><br>Durante estos anos he visto que muchos clientes llegan pidiendo un producto, pero en realidad necesitan resolver una necesidad: visibilidad, confianza, orientacion, promocion o presencia de marca.<br><br>Mi enfoque es escuchar, entender el objetivo y ayudar a encontrar la solucion visual mas adecuada para cada espacio, material y presupuesto.<br><br>Comparto aprendizajes sobre publicidad visual, atencion a clientes, punto de venta, fachadas, senaletica y comunicacion para negocios locales.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Experiencia: que mejorar</span>
+          <ul><li>Asesora de ventas - Impresionante del Sureste: destacar 4 anos de experiencia, atencion a clientes, cotizaciones, seguimiento y conocimiento de necesidades reales.</li><li>Agregar bullets: asesoria a negocios locales, apoyo en seleccion de materiales, comunicacion con clientes y seguimiento de proyectos.</li><li>No exagerar alcance: si es jornada parcial, comunicar valor por experiencia acumulada y trato con clientes.</li></ul>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Habilidades recomendadas</span>
+          <p>Atencion a clientes, Ventas, Publicidad visual, Impresion digital, Senaletica, Punto de venta, Negocios locales, Cotizaciones, Servicio al cliente, Comunicacion visual, Branding, Seguimiento comercial, Experiencia de cliente, Materiales impresos, Asesoria comercial.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Destacados</span>
+          <p>1) Primer post: lo que aprendi atendiendo clientes. 2) FAQ antes de cotizar. 3) Historia de fachada/primera impresion.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Crecimiento de red</span>
+          <p>Conectar con restaurantes, tiendas, escuelas, hoteles, negocios locales, marcas de consumo y emprendedores de Chiapas.</p>
+        </article>
+        <article class="profile-card">
+          <span class="mini-label">Prioridad inmediata</span>
+          <p>Corregir titular vacio hoy mismo y publicar primer post de reactivacion con experiencia real.</p>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Checklist seccion por seccion</span>
+          <ul class="checklist"><li><b>Foto de perfil:</b> Rostro claro, buena luz, fondo limpio, encuadre profesional. Evitar selfies oscuras, lentes, filtros fuertes o fotos recortadas de eventos.</li><li><b>Banner:</b> Usar banner de Impresionante con promesa B2B: Comunicacion visual para empresas del sureste. Incluir servicios clave: gran formato, senaletica, rotulacion, branding, instalacion.</li><li><b>Titular:</b> Formula recomendada: rol + problema que resuelve + categoria. Evitar frases genericas como &#x27;ventas&#x27; sin contexto.</li><li><b>Acerca de:</b> 4 bloques: a quien ayuda, que problema resuelve, como trabaja, llamado a conectar. Escribir en primera persona, sin sonar a folleto corporativo.</li><li><b>Experiencia:</b> Cada puesto debe tener 3-5 bullets con funciones, sectores, tipos de proyectos y resultados cualitativos. No dejar cargos sin descripcion.</li><li><b>Destacado:</b> Fijar 3 piezas: post de autoridad, caso/proyecto, checklist o recurso util. Esto ayuda a que el perfil no dependa solo del ultimo post.</li><li><b>Actividad:</b> Publicar con constancia y comentar en perfiles de clientes potenciales. No publicar solo promociones.</li><li><b>Habilidades:</b> Agregar habilidades alineadas al rol y pedir validaciones internas/clientes. Priorizar ventas, comunicacion visual, materiales y atencion.</li><li><b>Recomendaciones:</b> Pedir 2-3 recomendaciones reales: cliente, companero interno y responsable de proyecto. Evitar recomendaciones copiadas.</li><li><b>Contacto y URL:</b> URL publica limpia, ciudad correcta, empresa vinculada y datos profesionales consistentes. No exponer datos personales innecesarios.</li></ul>
+        </article>
+        <article class="profile-card wide">
+          <span class="mini-label">Reglas para no afectar visibilidad en LinkedIn</span>
+          <ul class="checklist"><li>No publicar el mismo copy exacto en todos los asesores.</li><li>No saturar con hashtags: usar 3 a 5 ultra-especificos.</li><li>No vender agresivamente en cada post; priorizar valor, criterio y ejemplos.</li><li>No usar enlaces externos en el cuerpo del post; si se requiere enlace, llevarlo a comentario o perfil.</li><li>Responder comentarios pronto y con respuestas humanas, no solo &#x27;gracias&#x27;.</li><li>Evitar engagement artificial, cadenas de likes o comentarios vacios.</li><li>Usar fotos reales y casos cuando existan, sin revelar informacion confidencial.</li><li>Mantener consistencia entre titular, acerca de, experiencia y contenido.</li><li>Priorizar carruseles PDF nativos de 6 a 9 laminas y videos nativos menores a 30 segundos.</li><li>Escribir para retencion: gancho fuerte en las primeras dos lineas, parrafos cortos y una idea central por post.</li></ul>
+        </article>
+      </div>
+      <div class="cards">
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Jueves</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Despues de atender clientes en publicidad visual, hay algo que se repite:<br><br>muchos llegan pidiendo un producto, pero en realidad necesitan resolver un problema.<br><br>Piden una lona, pero necesitan visibilidad.<br><br>Piden un vinil, pero necesitan que su local se vea mas profesional.<br><br>Piden una impresion, pero necesitan comunicar mejor una promocion.<br><br>Por eso, antes de cotizar, la pregunta mas importante es:<br><br>¿Que quieres lograr con este material?<br><br>Cuando esa respuesta esta clara, es mucho mas facil recomendar tamano, material, ubicacion y acabado.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">La fachada de un negocio comunica antes de que alguien entre.<br><br>Puede transmitir:<br><br>- confianza,<br>- orden,<br>- profesionalismo,<br>- claridad,<br>- descuido,<br>- improvisacion.<br><br>Todo depende de como se vea y que tan claro sea el mensaje.<br><br>La publicidad visual no solo sirve para decorar.<br><br>Tambien ayuda a que el cliente entienda quien eres, que ofreces y por que deberia acercarse.<br><br>En muchos negocios, la primera venta empieza desde afuera.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 1</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">En publicidad visual, escuchar bien cambia el resultado.<br><br>Antes de vender un material, hay que entender que necesita lograr el cliente.<br><br>A veces quiere que su negocio se vea mas profesional.<br><br>A veces necesita que lo encuentren mas facil.<br><br>A veces busca promocionar algo.<br><br>A veces quiere ordenar su punto de venta.<br><br>Si solo vendemos el producto, podemos quedarnos cortos.<br><br>Si entendemos el problema, podemos recomendar mejor.<br><br>Una buena asesoria empieza con escuchar antes de cotizar.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Jueves</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Algo que he aprendido atendiendo clientes es que muchas veces llegan con una idea, pero necesitan acompanamiento para convertirla en algo funcional.<br><br>No se trata solo de imprimir.<br><br>Se trata de entender:<br><br>- donde se va a colocar,<br>- quien lo va a ver,<br>- cuanto tiempo debe durar,<br>- que mensaje debe comunicar,<br>- que imagen quiere proyectar el negocio.<br><br>Cuando esas preguntas se responden bien, el resultado mejora.<br><br>La publicidad visual funciona mejor cuando hay claridad antes de producir.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">La senaletica no solo decora.<br><br>Tambien ayuda al cliente.<br><br>Una buena senal puede:<br><br>- orientar,<br>- reducir dudas,<br>- ordenar espacios,<br>- comunicar instrucciones,<br>- mejorar la experiencia,<br>- hacer que un negocio se vea mas profesional.<br><br>Cuando una persona entra a un lugar y entiende rapidamente donde ir, que hacer o que evitar, la marca transmite orden y confianza.<br><br>Por eso la senaletica tambien es parte del servicio al cliente.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 2</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Muchos clientes llegan sin saber que material pedir.<br><br>Y eso esta bien.<br><br>No tienen por que saber si necesitan lona, vinil, rigido, microperforado o algun otro material.<br><br>Lo importante es saber:<br><br>- donde se va a colocar,<br>- cuanto tiempo debe durar,<br>- si estara en interior o exterior,<br>- que mensaje debe comunicar,<br>- si necesita instalacion,<br>- que imagen quiere proyectar.<br><br>Con esa informacion se puede recomendar mejor.<br><br>Una buena asesoria convierte una idea general en una solucion mas clara.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Jueves</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">La primera impresion de un negocio muchas veces ocurre antes de hablar con alguien.<br><br>Ocurre cuando el cliente ve la fachada.<br><br>Cuando ve el anuncio.<br><br>Cuando lee una promocion.<br><br>Cuando entiende, o no entiende, que ofrece la empresa.<br><br>Una fachada clara puede ayudar a generar confianza.<br><br>Una fachada descuidada puede hacer que el cliente dude.<br><br>Por eso la publicidad visual no es solo imagen.<br><br>Tambien es percepcion.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">El punto de venta habla todo el tiempo.<br><br>Habla con sus colores.<br><br>Con sus senales.<br><br>Con sus promociones.<br><br>Con sus muros.<br><br>Con sus menus.<br><br>Con sus exhibidores.<br><br>Cuando todo se ve ordenado y coherente, el cliente percibe mas confianza.<br><br>Cuando todo se ve improvisado, la experiencia cambia.<br><br>La publicidad visual ayuda a que un negocio comunique mejor justo donde ocurre la decision de compra.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 3</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Una buena senal puede evitar muchas preguntas.<br><br>Puede decir donde entrar.<br><br>Donde pagar.<br><br>Donde esperar.<br><br>Que promocion esta activa.<br><br>Que area visitar.<br><br>Que camino seguir.<br><br>Cuando un espacio esta bien senalizado, el cliente se siente mas orientado.<br><br>Y cuando el cliente entiende mejor el lugar, la experiencia mejora.<br><br>La senaletica no es solo un detalle visual.<br><br>Tambien es parte de la atencion.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Jueves</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Trabajar en ventas de publicidad visual me ha ensenado algo importante:<br><br>cada cliente llega con una necesidad distinta.<br><br>Algunos quieren verse mas profesionales.<br><br>Otros necesitan que los encuentren mas facil.<br><br>Otros quieren comunicar una promocion.<br><br>Otros buscan renovar la imagen de su negocio.<br><br>Y muchos no saben exactamente que material necesitan.<br><br>Por eso, escuchar antes de recomendar es clave.<br><br>La mejor solucion no siempre es la mas grande ni la mas costosa.<br><br>Es la que ayuda mejor al objetivo del cliente.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Preguntas que ayudan mucho antes de cotizar publicidad visual:<br><br>1. ¿Donde se va a colocar?<br>2. ¿Que medidas tiene el espacio?<br>3. ¿Es interior o exterior?<br>4. ¿Cuanto tiempo debe durar?<br>5. ¿Ya tienes diseno?<br>6. ¿Que quieres que comunique?<br>7. ¿Necesita instalacion?<br><br>Responder esto desde el inicio ahorra tiempo y ayuda a recomendar mejor.<br><br>Mientras mas claro este el proyecto, mejor puede ser el resultado.<br><br>Una buena atencion empieza con buenas preguntas.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        
+        <article class="post-card">
+          <div class="post-head">
+            <span class="week">Semana 4</span>
+            <span class="day">Domingo</span>
+          </div>
+          <h3></h3>
+          <div class="mini-grid">
+            <div><b>Formato</b><p></p></div>
+            <div><b>Visual sugerido</b><p></p></div>
+          </div>
+          <details open>
+            <summary>Copy listo para publicar</summary>
+            <p class="copy">Cada cliente deja un aprendizaje.<br><br>Algunos llegan con urgencia.<br><br>Otros con dudas.<br><br>Otros con una idea muy clara.<br><br>Otros solo saben que necesitan verse mejor.<br><br>Trabajar en publicidad visual me ha ensenado que la confianza se construye acompanando bien el proceso.<br><br>Escuchar.<br><br>Preguntar.<br><br>Recomendar.<br><br>Dar seguimiento.<br><br>Y cuidar que el resultado ayude al negocio.<br><br>Esa parte humana tambien forma parte de la venta.</p>
+          </details>
+          <div class="cta"><b>CTA</b><p></p></div>
+          <div class="tags"></div>
+        </article>
+        </div>
+    </section>
+    
+  </main>
+  </div>
+
+  <script>
+  (function() {
+    const PIN_SCHEMAS = {
+      marilyn: ['1001', '5001'],
+      frida: ['2001', '6001'],
+      luis: ['3001', '7001'],
+      jessica: ['4001', '8001']
+    };
+
+    const NAMES = {
+      marilyn: 'Marilyn',
+      frida: 'Frida',
+      luis: 'Luis Diego',
+      jessica: 'Jessica'
+    };
+
+    const overlay = document.getElementById('login-overlay');
+    const content = document.getElementById('dashboard-content');
+    const select = document.getElementById('advisor-select');
+    const input = document.getElementById('pin-input');
+    const error = document.getElementById('login-error');
+    const button = document.getElementById('login-btn');
+
+    // Check existing session
+    const activeUser = sessionStorage.getItem('active_advisor');
+    if (activeUser && PIN_SCHEMAS[activeUser]) {
+      showDashboard(activeUser);
+    }
+
+    button.addEventListener('click', handleLogin);
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') handleLogin();
+    });
+
+    function handleLogin() {
+      const user = select.value;
+      const pin = input.value.trim();
+
+      if (!user) {
+        showError('Por favor selecciona tu nombre.');
+        return;
+      }
+
+      if (!pin) {
+        showError('Por favor ingresa tu PIN.');
+        return;
+      }
+
+      const validPins = PIN_SCHEMAS[user];
+      if (validPins.includes(pin)) {
+        sessionStorage.setItem('active_advisor', user);
+        showDashboard(user);
+      } else {
+        showError('PIN incorrecto. Inténtalo de nuevo.');
+      }
+    }
+
+    function showError(msg) {
+      error.textContent = msg;
+      error.style.display = 'block';
+    }
+
+    function showDashboard(user) {
+      overlay.style.display = 'none';
+      content.style.display = 'block';
+      
+      // Hide other advisors' sections
+      document.querySelectorAll('.advisor-section').forEach(sec => {
+        if (sec.id === user) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+
+      // Update navigation to show only the active advisor and logout button
+      const nav = document.querySelector('nav');
+      if (nav) {
+        nav.innerHTML = `
+          <span style="font-size: 13px; font-weight: 800; color: var(--ink); margin-right: 15px; display: inline-flex; align-items: center; gap: 8px;">
+            <span class="dot" style="display:inline-block; width:8px; height:8px; background:var(--brand); border-radius:50%;"></span>
+            Sesión: ${NAMES[user]}
+          </span>
+          <button class="logout-btn" onclick="logoutAdvisor()">Cerrar Sesión</button>
+        `;
+      }
+    }
+  })();
+
+  function logoutAdvisor() {
+    sessionStorage.removeItem('active_advisor');
+    window.location.reload();
+  }
+  </script>
+</body>
+
+</html>
