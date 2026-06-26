@@ -593,21 +593,25 @@
     }
     #login-btn {
       width: 100%;
-      padding: 14px;
+      padding: .85rem;
+      background: #1A1FBE;
+      color: #ffffff;
       border: none;
       border-radius: 8px;
-      background: #1A1FBE !important;
-      color: #ffffff !important;
-      font-size: 15px;
-      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+      font-size: .95rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
+      letter-spacing: .02em;
+      margin-top: .5rem;
+      -webkit-appearance: none;
+      appearance: none;
     }
     #login-btn:hover {
-      background-color: #1519A0;
+      background: #1519A0;
     }
     #login-btn:active {
-      transform: scale(0.98);
+      background: #1519A0;
     }
     .logout-btn {
       background: #fff;
@@ -630,15 +634,14 @@
   <!-- PIN LOGIN OVERLAY -->
   <div id="login-overlay">
     <div class="login-card">
-      <div style="display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:1.25rem">
-        <svg width="48" height="48" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#1A1FBE" d="M100 10 C80 10 55 20 38 35 C20 52 10 75 10 100 C10 125 20 148 38 165 C55 180 80 190 100 190 C120 190 145 180 162 165 C180 148 190 125 190 100 C190 75 180 52 162 35 C145 20 120 10 100 10Z M85 55 C85 50 88 47 93 47 L107 47 C112 47 115 50 115 55 L115 145 C115 150 112 153 107 153 L93 153 C88 153 85 150 85 145 Z"/>
-          <path fill="white" d="M72 60 C72 54 76 50 82 50 L88 50 L88 150 L82 150 C76 150 72 146 72 140 Z M112 50 L118 50 C124 50 128 54 128 60 L128 140 C128 146 124 150 118 150 L112 150 Z"/>
-          <path fill="white" d="M78 95 C74 88 76 80 83 76 L100 68 L117 76 C124 80 126 88 122 95 L100 138 Z"/>
+      <div style="display:flex;align-items:center;justify-content:center;gap:.65rem;margin-bottom:1.5rem">
+        <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="48" fill="#1A1FBE"/>
+          <text x="50" y="68" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="62" fill="white">i</text>
         </svg>
         <div>
-          <div style="font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:#1A1816;letter-spacing:-.02em;line-height:1">IMPRES<span style="color:#1A1FBE">IO</span>Nante</div>
-          <div style="font-size:.7rem;color:#7A776F;letter-spacing:.06em;text-transform:uppercase;margin-top:2px">Grandes Ideas Impresas</div>
+          <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#1A1816;letter-spacing:-.02em;line-height:1.1">IMPRES<span style="color:#1A1FBE">IO</span>Nante</div>
+          <div style="font-size:.65rem;color:#7A776F;letter-spacing:.07em;text-transform:uppercase;margin-top:1px">Grandes Ideas Impresas</div>
         </div>
       </div>
       <h2>Portal de Asesores</h2>
@@ -646,7 +649,7 @@
       
       <div class="form-group">
         <label for="advisor-select">Asesor</label>
-        <select id="advisor-select" name="advisor" style="width:100%;padding:.7rem .875rem;border:1px solid #d1cec9;border-radius:6px;font-family:'Inter',sans-serif;font-size:.9rem;color:#1A1816;background:#fff;outline:none;cursor:pointer">
+        <select id="advisor-select" name="advisor" style="width:100%;padding:.75rem 1rem;border:1.5px solid #d1cec9;border-radius:8px;font-family:'Inter',sans-serif;font-size:.95rem;color:#1A1816;background:#ffffff;outline:none;cursor:pointer">
           <option value="">Selecciona tu nombre</option>
           <option value="marilyn">Marilyn</option>
           <option value="frida">Frida</option>
