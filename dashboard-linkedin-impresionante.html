@@ -721,9 +721,27 @@
     </div>
   </section>
 
-  <main>
-    
-    <section class="advisor-section" id="marilyn">
+  <main id="advisor-target"></main>
+  </div>
+
+  <script>
+  (function() {
+    const PIN_SCHEMAS = {
+      marilyn: ['1001', '5001'],
+      frida: ['2001', '6001'],
+      'luis-diego': ['3001', '7001'],
+      jessica: ['4001', '8001']
+    };
+
+    const NAMES = {
+      marilyn: 'Marilyn',
+      frida: 'Frida',
+      'luis-diego': 'Luis Diego',
+      jessica: 'Jessica'
+    };
+
+    const ASESORES = {
+      marilyn: `<section class="advisor-section" id="marilyn">
       <div class="advisor-title marilyn">
         <div>
           <span class="kicker">Asesor/a</span>
@@ -1103,9 +1121,8 @@
           <div class="tags"><span>#ComunicacionVisual</span> <span>#PublicidadVisual</span> <span>#VentasB2B</span> <span>#BrandingCorporativo</span> <span>#Chiapas</span></div>
         </article>
         </div>
-    </section>
-    
-    <section class="advisor-section" id="frida">
+    </section>`,
+      frida: `<section class="advisor-section" id="frida">
       <div class="advisor-title frida">
         <div>
           <span class="kicker">Asesor/a</span>
@@ -1485,9 +1502,8 @@
           <div class="tags"><span>#SolucionesVisuales</span> <span>#PublicidadVisual</span> <span>#VentasB2B</span> <span>#Branding</span> <span>#Chiapas</span></div>
         </article>
         </div>
-    </section>
-    
-    <section class="advisor-section" id="luis-diego">
+    </section>`,
+      'luis-diego': `<section class="advisor-section" id="luis-diego">
       <div class="advisor-title luis">
         <div>
           <span class="kicker">Asesor/a</span>
@@ -1867,9 +1883,8 @@
           <div class="tags"><span>#Instalacion</span> <span>#GranFormato</span> <span>#PublicidadVisual</span> <span>#Materiales</span> <span>#Calidad</span></div>
         </article>
         </div>
-    </section>
-    
-    <section class="advisor-section" id="jessica">
+    </section>`,
+      jessica: `<section class="advisor-section" id="jessica">
       <div class="advisor-title jessica">
         <div>
           <span class="kicker">Asesor/a</span>
@@ -2249,25 +2264,7 @@
           <div class="tags"><span>#AtencionAClientes</span> <span>#Ventas</span> <span>#PublicidadVisual</span> <span>#Confianza</span> <span>#Chiapas</span></div>
         </article>
         </div>
-    </section>
-    
-  </main>
-  </div>
-
-  <script>
-  (function() {
-    const PIN_SCHEMAS = {
-      marilyn: ['1001', '5001'],
-      frida: ['2001', '6001'],
-      'luis-diego': ['3001', '7001'],
-      jessica: ['4001', '8001']
-    };
-
-    const NAMES = {
-      marilyn: 'Marilyn',
-      frida: 'Frida',
-      'luis-diego': 'Luis Diego',
-      jessica: 'Jessica'
+    </section>`
     };
 
     const overlay = document.getElementById('login-overlay');
@@ -2320,14 +2317,11 @@
       overlay.style.display = 'none';
       content.style.display = 'block';
       
-      // Hide other advisors' sections
-      document.querySelectorAll('.advisor-section').forEach(sec => {
-        if (sec.id === user) {
-          sec.style.display = 'block';
-        } else {
-          sec.style.display = 'none';
-        }
-      });
+      // Load advisor content dynamically
+      const target = document.getElementById('advisor-target');
+      if (target && ASESORES[user]) {
+        target.innerHTML = ASESORES[user];
+      }
 
       // Update navigation to show only the active advisor and logout button
       const nav = document.querySelector('nav');
