@@ -325,55 +325,124 @@ nav{background:rgba(7,7,15,0.85);backdrop-filter:blur(16px);border-bottom:1px so
 </head>
 <body>
 
-<div id="ls">
-  <div class="lb">
-    <div class="ll">
-      <svg width="40" height="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#1A1FBE"/><text x="50" y="68" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="62" fill="white">i</text></svg>
-      <div><div class="ln">IMPRES<b>IO</b>Nante</div><div class="lt">Grandes Ideas Impresas</div></div>
+<div id="app-container">
+  <!-- Login Screen -->
+  <div id="ls">
+    <div class="lb">
+      <div class="ll">
+        <svg width="36" height="36" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#0A84FF"/><text x="50" y="68" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="62" fill="white">i</text></svg>
+        <div><div class="ln">IMPRES<b>IO</b>Nante</div><div class="lt">Grandes Ideas Impresas</div></div>
+      </div>
+      <div class="lh">Portal de Asesores</div>
+      <div class="ls2">Selecciona tu perfil e ingresa tu PIN de acceso</div>
+      <div class="fg">
+        <label class="flbl">Asesor</label>
+        <select id="sel" class="fi">
+          <option value="">Selecciona...</option>
+          <option value="marilyn">Marilyn</option>
+          <option value="frida">Frida</option>
+          <option value="luisdiego">Luis Diego</option>
+          <option value="jessica">Jessica</option>
+          <option value="supervisor">Supervisor</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="flbl">PIN de acceso</label>
+        <input id="pin" class="fi" type="password" maxlength="4" inputmode="numeric" placeholder="····" style="text-align:center;font-size:1.4rem;letter-spacing:.4em" onkeydown="if(event.key==='Enter')go()">
+      </div>
+      <button class="lbtn" onclick="go()">Entrar al Dashboard</button>
+      <div class="lerr" id="err"></div>
     </div>
-    <div class="lh">Portal de Asesores</div>
-    <div class="ls2">Selecciona tu nombre e ingresa tu PIN</div>
-    <div class="fg">
-      <label class="flbl">Tu nombre</label>
-      <select id="sel" class="fi">
-        <option value="">Selecciona...</option>
-        <option value="marilyn">Marilyn</option>
-        <option value="frida">Frida</option>
-        <option value="luisdiego">Luis Diego</option>
-        <option value="jessica">Jessica</option>
-        <option value="supervisor">Supervisor</option>
-      </select>
-    </div>
-    <div class="fg">
-      <label class="flbl">PIN</label>
-      <input id="pin" class="fi" type="password" maxlength="4" inputmode="numeric" placeholder="····" style="text-align:center;font-size:1.4rem;letter-spacing:.4em" onkeydown="if(event.key==='Enter')go()">
-    </div>
-    <button class="lbtn" onclick="go()">Entrar →</button>
-    <div class="lerr" id="err"></div>
   </div>
-</div>
-
-<div id="app" style="display:none">
-  <nav>
-    <div class="nav-logo">IMPRES<b>IO</b>Nante <span style="font-weight:400;opacity:.5;font-size:.82rem">LinkedIn</span></div>
-    <div class="nav-right">
-      <span id="nav-user" class="nav-user">—</span>
-      <button onclick="logout()" class="nav-logout">Salir</button>
-    </div>
-  </nav>
-  <div class="container" id="main-content"></div>
+  
+  <!-- App Main Screen -->
+  <div id="app" style="display:none">
+    <header class="ios-nav-bar">
+      <div class="nav-left" id="nav-left-btn"></div>
+      <div class="nav-title" id="nav-title">IMPRESIONante</div>
+      <div class="nav-right">
+        <button class="logout-btn" onclick="logout()">Salir</button>
+      </div>
+    </header>
+    
+    <main class="ios-content" id="main-content"></main>
+    
+    <nav class="ios-tab-bar" id="bottom-tab-bar"></nav>
+  </div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
 var currentUser=null,activeTab='posts',activeFilter='all';
-var supervisorSelectedAsesor='marilyn';
+var supervisorSelectedAsesor=null;
 var supervisorActiveTab='posts';
 var supervisorActiveFilter='all';
+var currentSupervisorTab='resumen';
+
+var currentAsesorTab='posts';
+var currentAsesorFilter='all';
 
 function selectSupervisorAsesor(id){
   supervisorSelectedAsesor = id;
   renderSupervisor();
+}
+
+function goBackToAsesoresList() {
+  supervisorSelectedAsesor = null;
+  renderSupervisor();
+}
+
+function openAsesorDetail(id) {
+  supervisorSelectedAsesor = id;
+  renderSupervisor();
+}
+
+function switchSupervisorAsesorTab(tab) {
+  supervisorActiveTab = tab;
+  renderSupervisor();
+}
+
+function switchAsesorTab(tab) {
+  currentAsesorTab = tab;
+  renderAsesor(currentUser);
+}
+
+function setAsesorBottomTab(tab) {
+  currentAsesorTab = tab;
+  renderAsesor(currentUser);
+}
+
+function setSupervisorTab(tab){
+  currentSupervisorTab = tab;
+  if(tab === 'asesores') {
+    supervisorSelectedAsesor = null;
+  }
+  renderSupervisor();
+}
+
+function setAsesorFilter(f){
+  currentAsesorFilter = f;
+  renderAsesor(currentUser);
+}
+
+function updateSegmentedControlFilter(){
+  const segments = document.querySelectorAll('.ios-segmented-control .segment-item');
+  if (segments.length === 3) {
+    segments[0].classList.remove('active');
+    segments[1].classList.remove('active');
+    segments[2].classList.remove('active');
+    
+    if (currentAsesorFilter === 'all') segments[0].classList.add('active');
+    if (currentAsesorFilter === 'done') segments[1].classList.add('active');
+    if (currentAsesorFilter === 'pending') segments[2].classList.add('active');
+  }
+}
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? 
+    parseInt(result[1], 16) + ',' + parseInt(result[2], 16) + ',' + parseInt(result[3], 16) : 
+    '26,31,190';
 }
 
 function go(){
@@ -386,9 +455,9 @@ function go(){
   currentUser=s;
   document.getElementById('ls').style.display='none';
   document.getElementById('app').style.display='block';
-  document.getElementById('nav-user').textContent=s==='supervisor'?'👁 Supervisor':(ASESORES[s]?.nombre||s);
   renderMain();
 }
+
 function logout(){
   currentUser=null;
   document.getElementById('ls').style.display='flex';
@@ -397,10 +466,19 @@ function logout(){
   document.getElementById('pin').value='';
   document.getElementById('sel').value='';
 }
+
 function renderMain(){
-  if(currentUser==='supervisor') renderSupervisor();
-  else renderAsesor(currentUser);
+  if(currentUser==='supervisor') {
+    currentSupervisorTab = 'resumen';
+    supervisorSelectedAsesor = null;
+    renderSupervisor();
+  } else {
+    currentAsesorTab = 'posts';
+    currentAsesorFilter = 'all';
+    renderAsesor(currentUser);
+  }
 }
+
 const PINS = {
   '3581': 'supervisor',
   '7392': 'marilyn',
@@ -592,135 +670,310 @@ function toggle(aid,i){
 
 
 // SUPERVISOR
-function renderSupervisor(){
-  const total=Object.values(ASESORES).reduce((a,as)=>a+as.posts.length,0);
-  const done=Object.keys(STATE).length;
-  const pct=Math.round((done/total)*100);
-  const c=document.getElementById('main-content');
-  
-  const selectedId = supervisorSelectedAsesor || 'marilyn';
-  const asSelected = ASESORES[selectedId];
-  
-  // Swap activeTab and activeFilter temporarily so buildPosts and buildAudit use supervisor's selection
-  const tempTab = activeTab;
-  const tempFilter = activeFilter;
-  activeTab = supervisorActiveTab;
-  activeFilter = supervisorActiveFilter;
-  
-  const postsHTML = buildPosts(selectedId, asSelected);
-  const auditHTML = buildAudit(selectedId, asSelected);
-  
-  // Restore
-  activeTab = tempTab;
-  activeFilter = tempFilter;
-  
-  c.innerHTML=`
-    <div class="sup-header">
-      <div class="sup-title">Panel del Supervisor</div>
-      <div class="sup-sub">Progreso general del equipo · ${new Date().toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long'})}</div>
+function renderSupervisorTabBar(){
+  const tabBar = document.getElementById('bottom-tab-bar');
+  tabBar.innerHTML = `
+    <div class="tab-item ${currentSupervisorTab==='resumen'?'active':''}" onclick="setSupervisorTab('resumen')">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v6h-2v-6H5v-2h4V5h2v6h4v2z" fill="currentColor"/></svg>
+      <span class="tab-label">Resumen</span>
     </div>
-    <div class="global-bar">
-      <span class="gb-label">Progreso del equipo</span>
-      <div class="gb-track"><div class="gb-fill" style="width:${pct}%"></div></div>
-      <span class="gb-pct">${pct}%</span>
-      <span class="gb-count">${done} de ${total} publicaciones completadas</span>
+    <div class="tab-item ${currentSupervisorTab==='asesores'?'active':''}" onclick="setSupervisorTab('asesores')">
+      <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/></svg>
+      <span class="tab-label">Asesores</span>
     </div>
-    <div class="asesores-grid">
-      ${Object.entries(ASESORES).map(([id,as])=>{
-        const tot=as.posts.length;
-        const dn=as.posts.filter((_,i)=>isDone(id,i)).length;
-        const p=Math.round((dn/tot)*100);
-        const url=`${BASE_URL}?asesor=${id}`;
-        const msg=`Hola ${as.nombre} 👋\n\nEste es tu cronograma de publicaciones LinkedIn para IMPRESIONante.\n\n🔗 Link: ${url}\n🔑 Tu PIN: ${as.pin}\n\nEntra con tu PIN y ve marcando cada publicación como completada cuando la subas. ¡Cualquier duda me avisas!`;
-        const isSelected = id === selectedId;
-        return `<div class="asesor-card ${isSelected ? 'selected' : ''}">
-          <div class="ac-top">
-            <div class="ac-avatar" style="background:${as.color}">${as.emoji}</div>
-            <div style="flex:1">
-              <div class="ac-name">${as.nombre}</div>
-              <div class="ac-rol">${as.rol}</div>
-            </div>
-            <button class="inspect-btn ${isSelected ? 'active' : ''}" onclick="selectSupervisorAsesor('${id}')">
-              ${isSelected ? '👁 Viendo' : '🔍 Inspeccionar'}
-            </button>
-          </div>
-          <div class="ac-prog">
-            <div class="ac-prog-track"><div class="ac-prog-fill" style="width:${p}%;background:${as.color}"></div></div>
-            <div class="ac-prog-labels">
-              <span class="ac-prog-pct" style="color:${as.color}">${p}%</span>
-              <span class="ac-prog-count">${dn} / ${tot} posts</span>
-            </div>
-          </div>
-          <div class="ac-link-box">
-            <div class="ac-link-label">Link para compartir</div>
-            <div class="ac-link-row">
-              <span class="ac-link-url">${url}</span>
-              <button class="ac-copy-btn" onclick="copyMsg(\`${msg.replace(/`/g,'\\`')}\`)">📋 Copiar mensaje</button>
-            </div>
-            <div class="ac-pin">PIN del asesor: <b>${as.pin}</b></div>
-          </div>
-        </div>`
-      }).join('')}
-    </div>
-    
-    <!-- Inspector panel -->
-    <div class="inspector-panel">
-      <div class="inspector-header" style="border-left: 4px solid ${asSelected.color}">
-        <div class="inspector-meta">
-          <div class="inspector-avatar" style="background:${asSelected.color}">${asSelected.emoji}</div>
-          <div>
-            <div class="inspector-title">Inspeccionando a ${asSelected.nombre}</div>
-            <div class="inspector-subtitle">${asSelected.rol} · ${asSelected.posts.filter((_,i)=>isDone(selectedId,i)).length} de ${asSelected.posts.length} completados</div>
-          </div>
-        </div>
-        
-        <div class="inspector-tabs">
-          <div class="i-tab ${supervisorActiveTab==='posts'?'on':''}" onclick="switchTab('posts','${selectedId}')">📅 Publicaciones</div>
-          <div class="i-tab ${supervisorActiveTab==='audit'?'on':''}" onclick="switchTab('audit','${selectedId}')">📋 Auditoría del Perfil</div>
-        </div>
-      </div>
-      
-      <div class="inspector-body">
-        <div id="inspector-tab-posts" style="display:${supervisorActiveTab==='posts'?'block':'none'}">${postsHTML}</div>
-        <div id="inspector-tab-audit" style="display:${supervisorActiveTab==='audit'?'block':'none'}">${auditHTML}</div>
-      </div>
+    <div class="tab-item ${currentSupervisorTab==='accesos'?'active':''}" onclick="setSupervisorTab('accesos')">
+      <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" fill="currentColor"/></svg>
+      <span class="tab-label">Accesos</span>
     </div>
   `;
 }
 
-// ASESOR
+function renderSupervisorTabBar(){
+  const tabBar = document.getElementById('bottom-tab-bar');
+  tabBar.innerHTML = `
+    <div class="tab-item ${currentSupervisorTab==='resumen'?'active':''}" onclick="setSupervisorTab('resumen')">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v6h-2v-6H5v-2h4V5h2v6h4v2z" fill="currentColor"/></svg>
+      <span class="tab-label">Resumen</span>
+    </div>
+    <div class="tab-item ${currentSupervisorTab==='asesores'?'active':''}" onclick="setSupervisorTab('asesores')">
+      <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/></svg>
+      <span class="tab-label">Asesores</span>
+    </div>
+    <div class="tab-item ${currentSupervisorTab==='accesos'?'active':''}" onclick="setSupervisorTab('accesos')">
+      <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" fill="currentColor"/></svg>
+      <span class="tab-label">Accesos</span>
+    </div>
+  `;
+}
+
+function renderSupervisorTabBar(){
+  const tabBar = document.getElementById('bottom-tab-bar');
+  tabBar.innerHTML = `
+    <div class="tab-item ${currentSupervisorTab==='resumen'?'active':''}" onclick="setSupervisorTab('resumen')">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v6h-2v-6H5v-2h4V5h2v6h4v2z" fill="currentColor"/></svg>
+      <span class="tab-label">Resumen</span>
+    </div>
+    <div class="tab-item ${currentSupervisorTab==='asesores'?'active':''}" onclick="setSupervisorTab('asesores')">
+      <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/></svg>
+      <span class="tab-label">Asesores</span>
+    </div>
+    <div class="tab-item ${currentSupervisorTab==='accesos'?'active':''}" onclick="setSupervisorTab('accesos')">
+      <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" fill="currentColor"/></svg>
+      <span class="tab-label">Accesos</span>
+    </div>
+  `;
+}
+
+function renderSupervisor(){
+  const c = document.getElementById('main-content');
+  const navTitle = document.getElementById('nav-title');
+  const navLeft = document.getElementById('nav-left-btn');
+  
+  renderSupervisorTabBar();
+  
+  if (currentSupervisorTab === 'resumen') {
+    navTitle.textContent = "Resumen del Equipo";
+    navLeft.innerHTML = "";
+    
+    const total = Object.values(ASESORES).reduce((a,as)=>a+as.posts.length,0);
+    const done = Object.keys(STATE).length;
+    const pct = Math.round((done/total)*100);
+    
+    let html = `
+      <div class="ios-card global-progress-card">
+        <div class="card-title">PROGRESO GLOBAL DEL EQUIPO</div>
+        <div class="global-progress-value">${pct}%</div>
+        <div class="ios-progress-track"><div class="ios-progress-fill" style="width:${pct}%;background:linear-gradient(90deg, var(--ios-blue), var(--ios-green))"></div></div>
+        <div class="global-progress-sub">${done} de ${total} publicaciones completadas</div>
+      </div>
+      
+      <div class="ios-section-title">ESTADO DE ASESORES</div>
+      <div class="ios-list-container">
+    `;
+    
+    Object.entries(ASESORES).forEach(([id, as]) => {
+      const tot = as.posts.length;
+      const dn = as.posts.filter((_,i)=>isDone(id,i)).length;
+      const p = Math.round((dn/tot)*100);
+      
+      html += `
+        <div class="ios-list-item" onclick="openAsesorDetail('${id}')">
+          <div class="item-avatar" style="background:${as.color}">${as.emoji}</div>
+          <div class="item-info">
+            <div class="item-title">${as.nombre}</div>
+            <div class="item-subtitle">${as.rol}</div>
+          </div>
+          <div class="item-badge" style="color:${as.color};background:rgba(${hexToRgb(as.color)}, 0.15)">${p}%</div>
+          <div class="item-chevron">›</div>
+        </div>
+      `;
+    });
+    
+    html += `</div>`;
+    c.innerHTML = html;
+    
+  } else if (currentSupervisorTab === 'asesores') {
+    if (supervisorSelectedAsesor === null) {
+      navTitle.textContent = "Asesores";
+      navLeft.innerHTML = "";
+      
+      let html = `
+        <div class="ios-section-title">SELECCIONA UN ASESOR PARA INSPECCIONAR</div>
+        <div class="ios-list-container">
+      `;
+      
+      Object.entries(ASESORES).forEach(([id, as]) => {
+        const tot = as.posts.length;
+        const dn = as.posts.filter((_,i)=>isDone(id,i)).length;
+        
+        html += `
+          <div class="ios-list-item" onclick="openAsesorDetail('${id}')">
+            <div class="item-avatar" style="background:${as.color}">${as.emoji}</div>
+            <div class="item-info">
+              <div class="item-title">${as.nombre}</div>
+              <div class="item-subtitle">${as.rol}</div>
+            </div>
+            <div class="item-badge" style="color:${as.color};background:rgba(${hexToRgb(as.color)}, 0.1)">${dn}/${tot} posts</div>
+            <div class="item-chevron">›</div>
+          </div>
+        `;
+      });
+      
+      html += `</div>`;
+      c.innerHTML = html;
+      
+    } else {
+      const id = supervisorSelectedAsesor;
+      const as = ASESORES[id];
+      navTitle.textContent = as.nombre;
+      navLeft.innerHTML = `<button class="ios-back-btn" onclick="goBackToAsesoresList()">‹ Asesores</button>`;
+      
+      const tempTab = activeTab;
+      const tempFilter = activeFilter;
+      activeTab = supervisorActiveTab;
+      activeFilter = supervisorActiveFilter;
+      
+      const postsHTML = buildPosts(id, as);
+      const auditHTML = buildAudit(id, as);
+      
+      activeTab = tempTab;
+      activeFilter = tempFilter;
+      
+      let html = `
+        <div class="ios-segmented-control">
+          <div class="segment-item ${supervisorActiveTab==='posts'?'active':''}" onclick="switchSupervisorAsesorTab('posts')">Publicaciones</div>
+          <div class="segment-item ${supervisorActiveTab==='audit'?'active':''}" onclick="switchSupervisorAsesorTab('audit')">Auditoría</div>
+        </div>
+        
+        <div class="asesor-content-body">
+          <div id="inspector-tab-posts" style="display:${supervisorActiveTab==='posts'?'block':'none'}">
+            <div class="ios-segmented-control sub-filter">
+              <div class="segment-item ${supervisorActiveFilter==='all'?'active':''}" onclick="setFilter('all','${id}')">Todas</div>
+              <div class="segment-item ${supervisorActiveFilter==='done'?'active':''}" onclick="setFilter('done','${id}')">Completadas</div>
+              <div class="segment-item ${supervisorActiveFilter==='pending'?'active':''}" onclick="setFilter('pending','${id}')">Pendientes</div>
+            </div>
+            ${postsHTML}
+          </div>
+          <div id="inspector-tab-audit" style="display:${supervisorActiveTab==='audit'?'block':'none'}">${auditHTML}</div>
+        </div>
+      `;
+      c.innerHTML = html;
+    }
+    
+  } else if (currentSupervisorTab === 'accesos') {
+    navTitle.textContent = "Enlaces de Acceso";
+    navLeft.innerHTML = "";
+    
+    let html = `
+      <div class="ios-section-title">CREDENCIALES Y LINKS DE WHATSAPP</div>
+    `;
+    
+    Object.entries(ASESORES).forEach(([id, as]) => {
+      const url = `${BASE_URL}?asesor=${id}`;
+      const msg = `Hola ${as.nombre} 👋\n\nEste es tu cronograma de publicaciones LinkedIn para IMPRESIONante.\n\n🔗 Link: ${url}\n🔑 Tu PIN: ${as.pin}\n\nEntra con tu PIN y ve marcando cada publicación como completada cuando la subas. ¡Cualquier duda me avisas!`;
+      
+      html += `
+        <div class="ios-card access-card">
+          <div class="access-header">
+            <div class="access-avatar" style="background:${as.color}">${as.emoji}</div>
+            <div>
+              <div class="access-name">${as.nombre}</div>
+              <div class="access-pin">PIN: <b>${as.pin}</b></div>
+            </div>
+          </div>
+          <div class="access-link-row">
+            <input type="text" class="ios-input-read" readonly value="${url}">
+            <button class="ios-btn-sm" onclick="copyText('${url}')">Copiar</button>
+          </div>
+          <button class="ios-btn-primary" onclick="copyMsg(\`${msg.replace(RegExp('`','g'),'\\`')}\`)">📋 Copiar Mensaje WhatsApp</button>
+        </div>
+      `;
+    });
+    
+    c.innerHTML = html;
+  }
+}
+
+function renderAsesorTabBar() {
+  const tabBar = document.getElementById('bottom-tab-bar');
+  tabBar.innerHTML = `
+    <div class="tab-item ${currentAsesorTab==='posts'?'active':''}" onclick="setAsesorBottomTab('posts')">
+      <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5H7v2h5v-2zm4 0h-3v2h3v-2zm-4 4H7v2h5v-2zm4 0h-3v2h3v-2z" fill="currentColor"/></svg>
+      <span class="tab-label">Posts</span>
+    </div>
+    <div class="tab-item ${currentAsesorTab==='audit'?'active':''}" onclick="setAsesorBottomTab('audit')">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" fill="currentColor"/></svg>
+      <span class="tab-label">Auditoría</span>
+    </div>
+    <div class="tab-item ${currentAsesorTab==='perfil'?'active':''}" onclick="setAsesorBottomTab('perfil')">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" fill="currentColor"/></svg>
+      <span class="tab-label">Perfil</span>
+    </div>
+  `;
+}
+
 function renderAsesor(aid){
-  const as=ASESORES[aid];
-  const tot=as.posts.length;
-  const dn=as.posts.filter((_,i)=>isDone(aid,i)).length;
-  const pct=Math.round((dn/tot)*100);
-  const c=document.getElementById('main-content');
-
-  const auditHTML = buildAudit(aid,as);
-  const postsHTML = buildPosts(aid,as);
-
-  c.innerHTML=`
-    <div class="asesor-header">
-      <div class="ah-top">
-        <div class="ah-avatar" style="background:${as.color}">${as.emoji}</div>
-        <div>
-          <div class="ah-name">${as.nombre}</div>
-          <div class="ah-rol">${as.rol}</div>
+  const as = ASESORES[aid];
+  const c = document.getElementById('main-content');
+  const navTitle = document.getElementById('nav-title');
+  const navLeft = document.getElementById('nav-left-btn');
+  
+  navTitle.textContent = as.nombre;
+  navLeft.innerHTML = "";
+  
+  renderAsesorTabBar();
+  
+  const tempTab = activeTab;
+  const tempFilter = activeFilter;
+  activeTab = currentAsesorTab;
+  activeFilter = currentAsesorFilter;
+  
+  const postsHTML = buildPosts(aid, as);
+  const auditHTML = buildAudit(aid, as);
+  
+  activeTab = tempTab;
+  activeFilter = tempFilter;
+  
+  if (currentAsesorTab === 'posts') {
+    c.innerHTML = `
+      <div class="ios-segmented-control">
+        <div class="segment-item active" onclick="setAsesorFilter('all')">Todas (${as.posts.length})</div>
+        <div class="segment-item" onclick="setAsesorFilter('done')">Completadas (${as.posts.filter((_,i)=>isDone(aid,i)).length})</div>
+        <div class="segment-item" onclick="setAsesorFilter('pending')">Pendientes (${as.posts.filter((_,i)=>!isDone(aid,i)).length})</div>
+      </div>
+      <div class="asesor-content-body">${postsHTML}</div>
+    `;
+    updateSegmentedControlFilter();
+  } else if (currentAsesorTab === 'audit') {
+    c.innerHTML = `
+      <div class="asesor-content-body">${auditHTML}</div>
+    `;
+  } else if (currentAsesorTab === 'perfil') {
+    const tot = as.posts.length;
+    const dn = as.posts.filter((_,i)=>isDone(aid,i)).length;
+    const p = Math.round((dn/tot)*100);
+    
+    c.innerHTML = `
+      <div class="ios-profile-header">
+        <div class="profile-avatar" style="background:${as.color}">${as.emoji}</div>
+        <div class="profile-name">${as.nombre}</div>
+        <div class="profile-rol">${as.rol}</div>
+      </div>
+      
+      <div class="ios-section-title">MI RENDIMIENTO</div>
+      <div class="ios-card performance-card">
+        <div class="performance-metric">
+          <span class="metric-value">${p}%</span>
+          <span class="metric-label">Completado</span>
+        </div>
+        <div class="performance-metric">
+          <span class="metric-value">${dn}</span>
+          <span class="metric-label">Publicados</span>
+        </div>
+        <div class="performance-metric">
+          <span class="metric-value">${tot - dn}</span>
+          <span class="metric-label">Pendientes</span>
         </div>
       </div>
-      <div class="ah-prog-track"><div class="ah-prog-fill" style="width:${pct}%;background:${as.color}"></div></div>
-      <div class="ah-prog-labels">
-        <span class="ah-prog-pct" style="color:${as.color}">${pct}% completado</span>
-        <span class="ah-prog-count">${dn} de ${tot} publicaciones</span>
+      
+      <div class="ios-section-title">MIS CREDENCIALES</div>
+      <div class="ios-list-container">
+        <div class="ios-list-item-static">
+          <div class="list-item-label">Código PIN</div>
+          <div class="list-item-value" style="font-family:monospace;letter-spacing:0.1em;font-weight:700">${as.pin}</div>
+        </div>
+        <div class="ios-list-item-static">
+          <div class="list-item-label">Plataforma</div>
+          <div class="list-item-value">LinkedIn</div>
+        </div>
       </div>
-    </div>
-    <div class="asesor-tabs">
-      <div class="a-tab ${activeTab==='posts'?'on':''}" onclick="switchTab('posts','${aid}')">📅 Mis publicaciones</div>
-      <div class="a-tab ${activeTab==='audit'?'on':''}" onclick="switchTab('audit','${aid}')">📋 Auditoría de perfil</div>
-    </div>
-    <div id="tab-posts" style="display:${activeTab==='posts'?'block':'none'}">${postsHTML}</div>
-    <div id="tab-audit" style="display:${activeTab==='audit'?'block':'none'}">${auditHTML}</div>
-  `;
+      
+      <div class="ios-section-title">DIAGNÓSTICO DEL SUPERVISOR</div>
+      <div class="ios-card text-card">
+        <div class="card-text-body">${as.auditoria.diagnostico}</div>
+      </div>
+    `;
+  }
 }
 
 function switchTab(t,aid){
