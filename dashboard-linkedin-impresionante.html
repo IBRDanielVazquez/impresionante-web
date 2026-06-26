@@ -492,44 +492,7 @@ function toggle(aid,i){
   save(STATE); renderAsesor(aid);
 }
 
-// ─── AUTH ─────────────────────────────────────────────────────────────────────
-let currentUser=null, activeTab='posts', activeFilter='all';
 
-var selVal='';
-function toggleDrop(){
-  var d=document.getElementById('sel-dropdown');
-  d.style.display=d.style.display==='none'?'block':'none';
-}
-function pickOpt(val,label){
-  selVal=val;
-  document.getElementById('sel-asesor').value=val;
-  document.getElementById('sel-text').textContent=label;
-  document.getElementById('sel-text').style.color='#1A1816';
-  document.getElementById('sel-dropdown').style.display='none';
-}
-document.addEventListener('click',function(e){
-  var cs=document.getElementById('custom-sel');
-  if(cs&&!cs.contains(e.target)) document.getElementById('sel-dropdown').style.display='none';
-});
-function doLogin(){
-  const sel = document.getElementById('sel-asesor').value;
-  const pin = document.getElementById('inp-pin').value.trim();
-  const err = document.getElementById('pin-error');
-  if(!sel){ err.textContent='Selecciona tu nombre.'; return; }
-  if(!pin){ err.textContent='Ingresa tu PIN.'; return; }
-  const role = PINS[pin];
-  if(!role || role !== sel){ err.textContent='PIN incorrecto. Inténtalo de nuevo.'; document.getElementById('inp-pin').value=''; return; }
-  currentUser = role;
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('app').style.display='block';
-  document.getElementById('nav-user').textContent = role==='supervisor' ? '👁 Supervisor' : (ASESORES[role]?.nombre||role);
-  renderMain();
-}
-function renderMain(){
-  if(currentUser==='supervisor') renderSupervisor();
-  else renderAsesor(currentUser);
-}
-function logout(){ currentUser=null; document.getElementById('login-screen').style.display='flex'; document.getElementById('app').style.display='none'; document.getElementById('pin-error').textContent=''; document.getElementById('inp-pin').value=''; document.getElementById('sel-asesor').value=''; }
 
 // SUPERVISOR
 function renderSupervisor(){
