@@ -1999,65 +1999,61 @@ document.addEventListener('click',function(e){
 });
 
 function bMensajes(aid){
-  var M={
-    marilyn:{
-      prospectos:'Gerentes de marketing, compras, administracion, direccion comercial, duenos de PyME, hoteles, escuelas y cadenas locales.',
-      valueDrop:'Guia breve: 5 criterios para elegir proveedor de publicidad visual sin poner en riesgo marca, tiempos ni presupuesto.',
-      dolor:'Costo de improvisar comunicacion visual: materiales que no duran, instalacion que falla, imagen inconsistente o campana que no cumple su objetivo.',
-      conexion:'Hola [Nombre]. Vi que trabajas en [empresa/sector]. En Impresionante del Sureste comparto ideas sobre comunicacion visual, senaletica y publicidad B2B. Me gustaria conectar.',
-      bienvenida:'Gracias por conectar, [Nombre]. Vi que en [empresa] trabajan con [sector]. Comparto aprendizajes sobre como mejorar visibilidad fisica de marca. Espero que sea util.',
-      softPitch:'Pregunta rapida: cuando trabajan materiales visuales o senaletica, el mayor reto suele ser tiempo, calidad, instalacion o consistencia de marca?',
-      intencion:'Hola [Nombre], vi que [empresa] esta expandiendo. En Impresionante apoyamos con comunicacion visual para ese tipo de proyectos. Podria ser util conversar.',
-      nota:'Apertura 10 seg: quien eres y a quien ayudas. Valor 30 seg: criterio util sobre publicidad visual B2B. Cierre 10 seg: pregunta de exploracion sin pedir reunion.'
-    },
-    frida:{
-      prospectos:'Emprendedores B2B, duenos de restaurantes, marcas locales, encargados de ventas y marketing, negocios en crecimiento en Tuxtla y Chiapas.',
-      valueDrop:'Checklist visual: 3 senales de que tu fachada o punto de venta esta perdiendo clientes sin que lo notes.',
-      dolor:'Negocios que no son reconocibles aunque llevan anos operando porque su presencia visual no comunica con claridad.',
-      conexion:'Hola [Nombre]. Vi tu publicacion sobre visibilidad de marca. Comparto ideas similares desde Impresionante del Sureste. Me gustaria conectar.',
-      bienvenida:'Gracias por conectar, [Nombre]. Comparto ideas sobre como ganar visibilidad fisica de marca sin grandes presupuestos. Espero que sea util.',
-      softPitch:'Pregunta rapida: cuando alguien pasa frente a tu negocio, en segundos entiende exactamente que ofreces?',
-      intencion:'Hola [Nombre], vi que [empresa] esta renovando imagen. En Impresionante apoyamos ese tipo de proyectos con comunicacion visual.',
-      nota:'Apertura 10 seg: quien eres y a que negocio ayudas. Valor 30 seg: idea sobre visibilidad o fachada. Cierre 10 seg: pregunta ligera sobre su negocio.'
-    },
-    luisdiego:{
-      prospectos:'Responsables de operaciones, flotillas, constructoras, talleres, empresas de servicios, marketing operativo y encargados de mantenimiento.',
-      valueDrop:'Mini guia: como preparar superficie y archivo antes de instalar para que el vinil o lona dure el doble.',
-      dolor:'Materiales que fallan por mala eleccion tecnica: vinil que se despega, lona que se decolora, instalacion que queda mal por superficie incorrecta.',
-      conexion:'Hola [Nombre]. Vi tu publicacion sobre [tema tecnico]. Comparto criterios de materiales e instalacion desde Impresionante. Me gustaria conectar.',
-      bienvenida:'Gracias por conectar, [Nombre]. Comparto aprendizajes tecnicos sobre materiales, instalacion y publicidad visual para negocios. Espero que sea util.',
-      softPitch:'Cuando instalan publicidad exterior, el mayor problema suele ser el material, la superficie o el diseno del archivo?',
-      intencion:'Hola [Nombre], vi que [empresa] tiene flotilla o proyecto nuevo. En Impresionante apoyamos con rotulacion y publicidad visual tecnica.',
-      nota:'Apertura 10 seg: asesor tecnico en publicidad visual. Valor 30 seg: dato util sobre material o instalacion. Cierre 10 seg: pregunta sobre su proyecto.'
-    },
-    jessica:{
-      prospectos:'Restaurantes, tiendas, escuelas, hoteles, negocios locales, marcas de consumo y emprendedores de Chiapas.',
-      valueDrop:'Historia breve: lo que aprendi de 4 anos atendiendo clientes y como una pregunta simple mejora el resultado de cada proyecto.',
-      dolor:'Negocios locales que invierten en publicidad sin claridad del objetivo y terminan con materiales que no resuelven lo que necesitaban.',
-      conexion:'Hola [Nombre]. Vi tu publicacion sobre [negocio local]. En Impresionante ayudamos a negocios del sureste a verse mejor. Me gustaria conectar.',
-      bienvenida:'Gracias por conectar, [Nombre]. Con 4 anos en Impresionante tengo experiencia atendiendo distintos sectores locales. Espero que mis ideas sean utiles.',
-      softPitch:'Cuando un cliente llega a tu negocio por primera vez, que es lo primero que ve y que decision toma en los primeros 10 segundos?',
-      intencion:'Hola [Nombre], vi que [empresa] esta abriendo sucursal o remodelando. En Impresionante apoyamos con imagen visual para ese tipo de proyectos.',
-      nota:'Apertura 10 seg: 4 anos asesorando en publicidad visual. Valor 30 seg: aprendizaje sobre imagen para negocios locales. Cierre 10 seg: pregunta sobre su negocio.'
-    }
-  };
-  var m=M[aid]||M.marilyn;
-  function row(title,txt){return '<div class="eb"><div class="et">'+title+'</div><div class="ei">'+txt+'</div></div>';}
-  return row('👥 Prospectos prioritarios',m.prospectos)
-    +row('🎯 Value drop recomendado',m.valueDrop)
-    +row('💬 Dolor de conversacion',m.dolor)
-    +'<div class="eb"><div class="et">📨 Guiones de conexion</div>'
-    +'<div class="ei"><b>Solicitud de conexion:</b><br>'+m.conexion+'</div>'
-    +'<div class="ei" style="margin-top:.5rem"><b>Bienvenida tras aceptar:</b><br>'+m.bienvenida+'</div>'
-    +'<div class="ei" style="margin-top:.5rem"><b>Señal de intencion:</b><br>'+m.intencion+'</div>'
-    +'<div class="ei" style="margin-top:.5rem"><b>Soft pitch:</b><br>'+m.softPitch+'</div></div>'
-    +row('🎙️ Nota 10-30-10',m.nota)
-    +'<div class="eb"><div class="et">⚠️ Reglas anti-bot</div>'
-    +'<div class="ei"><b>Inbound-first:</b> Iniciar conversacion, no cerrar venta en frio.</div>'
-    +'<div class="ei" style="margin-top:.35rem"><b>Human-centered:</b> Contexto real, observacion util, cero lenguaje de bot.</div>'
-    +'<div class="ei" style="margin-top:.35rem"><b>Señales de intencion:</b> Visitas al perfil, cambios de puesto, expansion, remodelaciones, comentarios recientes.</div>'
-    +'<div class="ei" style="margin-top:.35rem"><b>No pitch-slapping:</b> No enviar catalogo apenas acepten. Primero agradecer, aportar valor y abrir pregunta ligera.</div>'
-    +'<div class="ei" style="margin-top:.35rem"><b>Prueba de voz alta:</b> Si suena incomodo o robotico al leerlo, reescribirlo antes de enviar.</div></div>';
+  var intro = '<div style="margin-bottom:1.5rem;font-size:0.95rem;line-height:1.6;color:var(--gr)">Como Investigador Principal y consultor estratégico, he estructurado la arquitectura exacta de conversión ("Content-to-Lead Funnel") para 2026. En el entorno actual, la era de los envíos masivos automatizados ha terminado. El algoritmo y los compradores penalizan severamente el "Pitch-slapping" (intentar vender inmediatamente tras conectar).<br><br>El objetivo de cualquier mensaje de alcance en 2026 es <b>iniciar una conversación, no cerrar un trato</b>. Para los asesores de <i>Impresionante del Sureste</i>, esta es la secuencia completa (End-to-End) basada en señales de intención, psicología B2B y las mejores métricas de conversión actuales:</div>';
+
+  function fase(num, title, obj, rule, content) {
+    return '<div style="margin-bottom:2rem;border-left:4px solid var(--brand);padding-left:1.5rem;background:#fbfefd;padding-top:1.5rem;padding-bottom:1.5rem;padding-right:1.5rem;border-radius:0 8px 8px 0;box-shadow:inset 0 0 0 1px rgba(0,143,122,.06)">'
+      + '<h3 style="margin-top:0;margin-bottom:0.8rem;color:var(--brand);font-size:1.2rem;letter-spacing:-0.3px">FASE '+num+': '+title+'</h3>'
+      + '<div style="font-size:0.9rem;margin-bottom:0.4rem;color:var(--ink)"><b>Objetivo:</b> '+obj+'</div>'
+      + '<div style="font-size:0.9rem;margin-bottom:1.2rem;color:var(--gr)"><b>Regla Algorítmica:</b> '+rule+'</div>'
+      + content
+      + '</div>';
+  }
+
+  function msgBlock(title, text) {
+    var id = 'msg-'+Math.random().toString(36).substr(2,9);
+    return '<div style="margin-bottom:1.5rem">'
+      + '<div style="font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;color:var(--ink)">'+title+'</div>'
+      + '<div id="'+id+'" style="display:none">'+text+'</div>'
+      + '<div style="background:#fff;padding:1.2rem;border:1px solid #cbded9;border-radius:8px;font-size:0.95rem;font-style:italic;color:#33423e;line-height:1.5;margin-bottom:0.8rem;box-shadow:0 1px 2px rgba(0,0,0,0.02)">"'+text+'"</div>'
+      + '<button class="bcp" data-tid="'+id+'" style="background:var(--bl);color:#fff;border:none;padding:0.5rem 1rem;border-radius:6px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;gap:0.4rem">📋 Copiar Guión</button>'
+      + '</div>';
+  }
+
+  var f1 = fase(1, 'Solicitud de Conexión (Sin fricción)', 'Aceptación.', 'El contexto va primero, cero ventas. El momento óptimo de envío es de martes a jueves, entre 8:00 AM y 5:00 PM.',
+    msgBlock('Opción A: El Admirador del Contenido (Basado en Interacción)', 'Hola [Nombre], tu publicación sobre [Tema] me hizo detener el scroll hoy. El punto que mencionaste sobre [Detalle específico] me pareció muy acertado; es un reto que veo mucho en [Su Industria]. Me encantaría conectar y seguir leyendo tu contenido. [Tu Nombre].') +
+    msgBlock('Opción B: Visitante del Perfil (Señal de Intención Fuerte)', 'Hola [Nombre], vi que recientemente pasaste por mi perfil. Me encantaría conectar y conocer más sobre los proyectos en los que estás trabajando actualmente en [Empresa]. ¡Un saludo!')
+  );
+
+  var f2 = fase(2, 'Mensaje de Bienvenida y "Value Drop" (Día 1 tras aceptar)', 'Apertura de diálogo y construcción de autoridad.', 'Agradecer la conexión y ofrecer un recurso educativo sin condiciones (Lead Magnet).',
+    msgBlock('Plantilla: Aporte de Solución (Value-First)', 'Hola [Nombre], gracias por conectar. Viendo que en [Empresa] están enfocados en [Contexto, ej. expandir su presencia física en Chiapas], pensé que este recurso te sería útil. Recientemente ayudamos a un equipo similar en tu sector a resolver [Problema, ej. el deterioro de su imagen exterior] y resumimos los aprendizajes aquí [Enlace]. Te lo comparto sin compromiso alguno. [Tu Nombre].')
+  );
+
+  var f3 = fase(3, 'El Seguimiento Estratégico (Días 3 a 7)', 'Añadir valor continuo.', 'Realizar el seguimiento de 2 a 5 días hábiles después del último contacto. Está estrictamente prohibido el clásico "solo pasaba a saludar" o "checking in"; siempre se debe aportar nuevo valor.',
+    msgBlock('Plantilla: El pivote del "Mensaje Enterrado"', 'Hola [Nombre], te escribo de nuevo por si mi último mensaje quedó enterrado en tu bandeja. Anteriormente mencioné nuestra investigación sobre [Tema de Comunicación Visual/Señalética]. Sé que estás ocupado/a, pero me encantaría compartir los datos si crees que serían útiles para tu enfoque actual en [Empresa]. Un saludo, [Tu Nombre].')
+  );
+
+  var f4 = fase(4, 'La Transición y el "Soft Pitch" (Días 10 a 14)', 'Calificación del prospecto y descubrimiento de problemas.', 'Basado en la curiosidad y enfocado en resolver un dolor corporativo tras haber establecido confianza.',
+    msgBlock('Plantilla: El Abridor de Curiosidad', 'Hola [Nombre], muchos [Cargo del prospecto, ej. Gerentes de Operaciones] con los que trabajo mencionan que [Punto de Dolor, ej. estandarizar la rotulación en múltiples sucursales] es su mayor dolor de cabeza ahora mismo. Tenía curiosidad, ¿están viendo el mismo patrón en [Empresa]? Hemos desarrollado un [Solución] que está ayudando a equipos como el tuyo a reducir [Problema] en un [Porcentaje]. ¿Estarías abierto/a a una breve charla para intercambiar ideas al respecto? [Tu Nombre].')
+  );
+
+  var f5 = fase(5, 'El Cierre y Agendamiento (Cuando hay respuesta positiva)', 'Agendar la llamada de descubrimiento ("Discovery Call").', 'Ofrecer opciones de muy baja fricción para no intimidar al comprador B2B.',
+    msgBlock('Plantilla A: El Cierre Suave (Soft Close)', 'He ayudado a otras empresas a resolver [Punto de dolor] usando la metodología que te compartí. ¿Tendría sentido que exploremos esto en una breve charla de 15 minutos el próximo martes o miércoles para ver si aplicaría a su flujo actual? Sin presión alguna.') +
+    msgBlock('Plantilla B: La Alternativa de Baja Fricción (Si el prospecto duda)', 'Si no es el momento para una llamada, tengo un recorrido en video de 5 minutos que muestra exactamente cómo resolvemos [Problema]. ¿Te gustaría que te lo envíe?')
+  );
+
+  var rules = '<div style="background:#111827;color:#f3f4f6;padding:1.8rem;border-radius:12px;margin-top:3rem;box-shadow:0 4px 6px rgba(0,0,0,0.1)">'
+    + '<h3 style="margin-top:0;color:#38bdf8;font-size:1.2rem;margin-bottom:1.2rem;letter-spacing:-0.3px">📏 REGLAS DE ORO DE REDACCIÓN 2026 PARA EL EQUIPO</h3>'
+    + '<p style="font-size:0.95rem;line-height:1.6;margin-bottom:1.2rem;color:#d1d5db">Para evitar ser detectados por el radar de "spam" de los prospectos y el algoritmo de LinkedIn, los asesores de <i>Impresionante del Sureste</i> deben someterse a estas 4 directrices tácticas:</p>'
+    + '<ol style="font-size:0.95rem;line-height:1.7;padding-left:1.5rem;color:#e5e7eb;margin-bottom:0">'
+    + '<li style="margin-bottom:1rem"><b>Framework "Be brief, be brilliant, be gone" (Sé breve, sé brillante, vete):</b> Los mensajes en 2026 no deben superar las <b>3 a 5 oraciones</b> en total. Nadie lee correos o DMs largos en LinkedIn.</li>'
+    + '<li style="margin-bottom:1rem"><b>La Prueba de Lectura en Voz Alta:</b> Los asesores deben leer cada mensaje en voz alta antes de enviarlo. Si suena robótico o excesivamente corporativo, no será respondido. El tono debe ser humano, conversacional y centrado en el cliente.</li>'
+    + '<li style="margin-bottom:1rem"><b>El Formato 10-30-10 para Notas de Voz y Video Nativo:</b> Si el asesor usa la app móvil de LinkedIn, enviar un video corto o nota de voz eleva radicalmente las respuestas. La estructura probada es:<ul style="padding-left:1.5rem;margin-top:0.5rem;color:#d1d5db"><li><b>Primeros 10 segundos:</b> Razón del contacto (Ej. "Vi tu perfil/web...").</li><li><b>Siguientes 30 segundos:</b> Propuesta de valor o problema identificado.</li><li><b>Últimos 10 segundos:</b> Llamado a la acción de interés (Ej. "¿Estarías abierto a conversar la próxima semana?").</li></ul></li>'
+    + '<li style="margin-bottom:0"><b>La Paradoja de la IA:</b> Usar herramientas de Inteligencia Artificial para <i>investigar</i> a la empresa es obligatorio, pero usar IA genérica para <i>escribir</i> el mensaje final reduce la tasa de respuesta. Los compradores de alto nivel detectan e ignoran los mensajes automatizados. El acercamiento debe ser siempre "Human-in-the-Loop".</li>'
+    + '</ol>'
+    + '</div>';
+
+  return intro + f1 + f2 + f3 + f4 + f5 + rules;
 }
 
 function bEst(){
