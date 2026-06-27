@@ -71,9 +71,9 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
 .ahf{height:6px;border-radius:4px;background:var(--bl);transition:width .5s}
 .ahp{font-size:.75rem;font-weight:600;color:var(--bl);white-space:nowrap}
 .ahc{font-size:.75rem;color:var(--gr);white-space:nowrap}
-.tabs{display:flex;background:var(--w);border-bottom:1px solid var(--bdr);flex-shrink:0}
-.tab{flex:1;padding:.8rem .25rem;text-align:center;font-size:.8rem;font-weight:500;color:var(--gr);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;line-height:1.2;transition:all .2s}
-.tab.on{color:var(--bl);border-bottom-color:var(--bl);font-weight:600}
+.tabs{display:flex;background:var(--w);border-top:1px solid var(--bdr);flex-shrink:0;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -2px 10px rgba(0,0,0,0.03);z-index:10}
+.tab{flex:1;padding:.6rem .25rem .8rem;text-align:center;font-size:.7rem;font-weight:500;color:var(--gr);border:none;background:none;cursor:pointer;line-height:1;transition:color .2s;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.tab.on{color:var(--bl);font-weight:700}
 .tc{display:none;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;padding:1.5rem 1rem}
 .tc.on{display:block}
 /* POSTS */
@@ -1831,16 +1831,16 @@ function rAsesor(aid,fromSup,keepTab){
     +'<div class="aht"><span class="ahe">'+as.emoji+'</span><div><div class="ahn">'+as.nombre+'</div><div class="ahr">'+as.rol+'</div></div></div>'
     +'<div class="ahbw"><div class="ahb"><div class="ahf" style="width:'+pct+'%"></div></div><span class="ahp">'+pct+'%</span><span class="ahc">'+dn+'/'+tot+'</span></div>'
     +'</div>'
+    +'<div id="TC-posts" class="tc'+(curTab==='posts'?' on':'')+'">'+bPosts(aid,as)+'</div>'
+    +'<div id="TC-perfil" class="tc'+(curTab==='perfil'?' on':'')+'">'+bPerfil(as)+'</div>'
+    +'<div id="TC-est" class="tc'+(curTab==='est'?' on':'')+'">'+bEst()+'</div>'
+    +'<div id="TC-msg" class="tc'+(curTab==='msg'?' on':'')+'">'+bMensajes(aid)+'</div>'
     +'<div class="tabs">'
-    +'<button class="tab'+(curTab==='posts'?' on':'')+'" data-t="posts">📅 Posts</button>'
-    +'<button class="tab'+(curTab==='perfil'?' on':'')+'" data-t="perfil">👤 Perfil</button>'
-    +'<button class="tab'+(curTab==='est'?' on':'')+'" data-t="est">⚡ Estrategia</button>'
-    +'<button class="tab'+(curTab==='msg'?' on':'')+'" data-t="msg">💬 Mensajes</button>'
+    +'<button class="tab'+(curTab==='posts'?' on':'')+'" data-t="posts"><span style="font-size:1.3rem;display:block;margin-bottom:0.15rem">📅</span>Posts</button>'
+    +'<button class="tab'+(curTab==='perfil'?' on':'')+'" data-t="perfil"><span style="font-size:1.3rem;display:block;margin-bottom:0.15rem">👤</span>Perfil</button>'
+    +'<button class="tab'+(curTab==='est'?' on':'')+'" data-t="est"><span style="font-size:1.3rem;display:block;margin-bottom:0.15rem">⚡</span>Estrategia</button>'
+    +'<button class="tab'+(curTab==='msg'?' on':'')+'" data-t="msg"><span style="font-size:1.3rem;display:block;margin-bottom:0.15rem">💬</span>Mensajes</button>'
     +'</div>'
-    +'<div id="TC-posts" class="tc'+(curTab==='posts'?' on':'')+'" style="padding:1rem;flex:1;overflow-y:auto">'+bPosts(aid,as)+'</div>'
-    +'<div id="TC-perfil" class="tc'+(curTab==='perfil'?' on':'')+'" style="padding:1rem;flex:1;overflow-y:auto">'+bPerfil(as)+'</div>'
-    +'<div id="TC-est" class="tc'+(curTab==='est'?' on':'')+'" style="padding:1rem;flex:1;overflow-y:auto">'+bEst()+'</div>'
-    +'<div id="TC-msg" class="tc'+(curTab==='msg'?' on':'')+'" style="padding:1rem;flex:1;overflow-y:auto">'+bMensajes(aid)+'</div>'
     +'</div>';
 
   document.querySelectorAll('.tab').forEach(function(tab){
