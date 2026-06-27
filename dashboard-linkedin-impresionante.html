@@ -491,8 +491,8 @@ function bPosts(aid,as){
         +'</div>'
         +'</div>'
         +'</div>';
-      html+=(ex.cta?'<div class="cta-blk"><div class="cta-label">CTA</div><div class="cta-text">'+ex.cta+'</div></div>':'');
-      html+=(ex.tags&&ex.tags.length?'<div class="tags-blk">'+ex.tags.map(function(t){return'<span class="tag">'+t+'</span>'}).join('')+'</div>':'');
+      html+=(p.cta?'<div class="cta-blk"><div class="cta-label">CTA</div><div class="cta-text">'+p.cta+'</div></div>':'');
+      html+=(p.hashtags&&p.hashtags.length?'<div class="tags-blk">'+p.hashtags.map(function(t){return'<span class="tag">'+t+'</span>'}).join('')+'</div>':'');
     });
   });
   return html;
