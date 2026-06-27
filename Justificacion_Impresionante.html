@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justificación de Proyecto - Impresionante del Sureste</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        :root {
+            --primary: #00138C;
+            --secondary: #1E293B;
+            --text: #334155;
+            --light: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #E2E8F0;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo-placeholder {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h1 {
+            color: var(--secondary);
+            font-size: 22px;
+            margin: 0 0 10px 0;
+        }
+
+        .date {
+            color: #64748B;
+            font-size: 14px;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #E2E8F0;
+            text-align: center;
+            font-size: 12px;
+            color: #94A3B8;
+        }
+
+        /* Print Specific Styles */
+        @media print {
+            body {
+                padding: 0;
+                background-color: #fff;
+            }
+            .container {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+
+        .print-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto 40px auto;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .print-btn:hover {
+            background-color: #000c5e;
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="window.print()" class="print-btn no-print">🖨️ Guardar como PDF</button>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-placeholder">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="24" height="24" rx="4" fill="#00138C"/>
+                    <path d="M12 6L18 18H6L12 6Z" fill="white"/>
+                </svg>
+                IMPRESIONANTE DEL SURESTE
+            </div>
+            <h1>Entrega y Justificación de Proyecto: <br>Plataforma de Gestión Comercial y Social Selling</h1>
+            <div class="date" id="currentDate"></div>
+        </div>
+
+        <h2>1. Descripción del Proyecto</h2>
+        <p>
+            Se desarrolló e implementó una <span class="highlight">Aplicación Web Progresiva (PWA) de monitoreo en tiempo real</span>, diseñada específicamente para gestionar, estandarizar y auditar la estrategia de "Social Selling" del equipo comercial en LinkedIn.
+        </p>
+        <p>
+            Esta herramienta centraliza el cronograma de publicaciones de los asesores (Diego, Jessica, Marilyn y Frida), asegurando que la estrategia de posicionamiento B2B de la empresa se ejecute de manera estructurada y medible.
+        </p>
+
+        <h2>2. Características Tecnológicas y Funcionalidades</h2>
+        <ul>
+            <li><span class="highlight">Arquitectura Serverless y Base de Datos en la Nube:</span> La aplicación está alojada en servidores de alto rendimiento (Vercel) y utiliza una base de datos NoSQL ultra-rápida en memoria (Redis/Upstash). Esto permite que cualquier cambio se sincronice en la nube en tiempo real (si un asesor marca una tarea en su dispositivo, la gerencia lo visualiza al instante).</li>
+            <li><span class="highlight">Control de Accesos por Roles (PIN):</span> Sistema de seguridad mediante códigos PIN personalizados para aislar las sesiones. Cada asesor solo puede visualizar y actualizar su propio progreso, garantizando la integridad de los datos, mientras que la gerencia tiene acceso maestro.</li>
+            <li><span class="highlight">Dashboard de Supervisión Global:</span> Un panel de control gerencial que muestra indicadores clave de rendimiento (KPIs) a través de barras de progreso dinámicas, tanto individuales como del equipo en general.</li>
+            <li><span class="highlight">Integración de Comunicación Inmediata:</span> Programación de enlaces dinámicos con la API de WhatsApp que generan mensajes automatizados con los datos de sesión de cada asesor, reduciendo el tiempo de soporte interno a un solo clic, además de accesos directos de auditoría hacia los perfiles de LinkedIn.</li>
+            <li><span class="highlight">Diseño UI/UX "App-like":</span> Interfaz adaptativa (Responsive Design) con la paleta de colores corporativa, navegación inferior (Bottom Navigation) estilo aplicación nativa y micro-interacciones visuales para una experiencia de usuario altamente fluida.</li>
+        </ul>
+
+        <h2>3. Retorno de Inversión (ROI) y Valor Empresarial</h2>
+        <ul>
+            <li><span class="highlight">Garantiza la Ejecución:</span> Transforma una estrategia teórica (publicar en LinkedIn) en tareas medibles y auditables. Lo que se mide, se mejora.</li>
+            <li><span class="highlight">Ahorro de Tiempo Gerencial:</span> La supervisión elimina los seguimientos manuales y reuniones de estatus; el tablero muestra el avance del equipo de ventas en un solo vistazo.</li>
+            <li><span class="highlight">Micro-gestión Cero:</span> Fomenta la responsabilidad individual del asesor al contar con su propia barra de progreso gamificada, impulsando la constancia sin requerir presión externa constante.</li>
+            <li><span class="highlight">Profesionalización Comercial:</span> Asegura que los perfiles de ventas de Impresionante del Sureste proyecten autoridad y profesionalismo en su mercado, atrayendo mejores prospectos corporativos y aumentando la tasa de cierre en ventas B2B.</li>
+        </ul>
+
+        <div class="footer">
+            Documento generado automáticamente por el Sistema de Desarrollo Tecnológico.<br>
+            Impresionante del Sureste &copy; <span id="year"></span>
+        </div>
+    </div>
+
+    <script>
+        const date = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = 'Fecha de emisión: ' + date.toLocaleDateString('es-ES', options);
+        document.getElementById('year').textContent = date.getFullYear();
+    </script>
+</body>
+</html>
