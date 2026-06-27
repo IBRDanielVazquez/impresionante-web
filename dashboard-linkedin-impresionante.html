@@ -570,7 +570,35 @@ function renderAsesorContent(aid, as){
           <div class="post-head">
             <span class="post-badge">Semana ${p.sem} · ${p.dia}</span>
           </div>
-          <div class="post-body">${p.copy}</div>
+          <div class="post-body">
+            ${p.formato && Object.keys(p.formato).length > 0 ? `
+            <div style="margin-bottom:12px; font-size:0.85rem">
+              <strong style="color:var(--brand)">Formato:</strong><br>
+              ${Object.entries(p.formato).map(([k,v])=>`<b>${k}:</b> ${v}`).join('<br>')}
+            </div>` : ''}
+            
+            ${p.visual && Object.keys(p.visual).length > 0 ? `
+            <div style="margin-bottom:12px; font-size:0.85rem">
+              <strong style="color:var(--brand)">Visual:</strong><br>
+              ${Object.entries(p.visual).map(([k,v])=>`<b>${k}:</b> ${v}`).join('<br>')}
+            </div>` : ''}
+            
+            <div style="margin-bottom:12px; font-size:0.85rem">
+              <strong style="color:var(--brand)">Copy:</strong><br>
+              ${p.copy}
+            </div>
+            
+            ${p.cta ? `
+            <div style="margin-bottom:12px; font-size:0.85rem">
+              <strong style="color:var(--brand)">CTA:</strong><br>
+              ${p.cta}
+            </div>` : ''}
+            
+            ${p.hashtags && p.hashtags.length > 0 ? `
+            <div style="margin-bottom:12px; font-size:0.85rem; color:var(--brand)">
+              ${p.hashtags.join(' ')}
+            </div>` : ''}
+          </div>
           <div class="post-foot">
             <label class="chk-label">
               <input type="checkbox" class="chk-input" ${d?'checked':''} onchange="toggle('${aid}',${i})">
