@@ -1,125 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<h
+    +'<button class="tab\'+(curTab===\'msg\'?\' on\':\'\')+\'" data-t="msg">💬 Mensajes</button>\'ead>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>IMPRESIONante | Dashboard Asesores</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>LinkedIn · IMPRESIONante</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --brand: #008f7a;
-  --brand-light: rgba(0, 143, 122, 0.1);
-  --ink: #14201d;
-  --muted: #62716d;
-  --line: #dce6e3;
-  --soft: #f4f8f7;
-  --card: #ffffff;
-  --blue: #1f78d1;
-  --blue-light: rgba(31, 120, 209, 0.1);
-  --green: #0ea5e9;
-  --shadow: 0 4px 12px rgba(20, 32, 29, 0.05);
-  --shadow-lg: 0 12px 24px rgba(20, 32, 29, 0.08);
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Inter', sans-serif;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { background: var(--soft); color: var(--ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
-
-/* ── LOGIN ── */
-#login-screen { position: fixed; inset: 0; background: radial-gradient(circle at top right, rgba(0,143,122,0.1), transparent), var(--soft); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
-.login-box { background: var(--card); border-radius: 20px; padding: 2.5rem; width: 100%; max-width: 380px; box-shadow: var(--shadow-lg); text-align: center; border: 1px solid var(--line); }
-.logo-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--brand), var(--blue)); border-radius: 12px; color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 24px; font-weight: 800; font-style: italic; margin: 0 auto 16px; }
-.login-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.02em; }
-.login-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
-.form-group { text-align: left; margin-bottom: 1.25rem; }
-.form-label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
-.form-input, .form-select { width: 100%; padding: 0.875rem 1rem; border: 1.5px solid var(--line); border-radius: 10px; background: var(--soft); color: var(--ink); font-family: var(--font-body); font-size: 1rem; font-weight: 500; outline: none; transition: border-color 0.2s, background 0.2s; }
-.form-input:focus, .form-select:focus { border-color: var(--brand); background: var(--card); }
-.btn { width: 100%; padding: 1rem; background: var(--brand); color: white; border: none; border-radius: 10px; font-family: var(--font-body); font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform 0.1s, background 0.2s; }
-.btn:active { transform: scale(0.97); }
-.btn:hover { background: #007665; }
-.login-error { color: #dc2626; font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem; height: 1.2rem; }
-
-/* ── APP FRAME ── */
-#app { display: none; padding-bottom: 80px; }
-.nav-bar { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
-.nav-left { flex: 1; }
-.nav-center { flex: 2; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: var(--ink); }
-.nav-right { flex: 1; display: flex; justify-content: flex-end; }
-.btn-back { background: none; border: none; color: var(--brand); font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 4px; cursor: pointer; }
-.btn-logout { background: var(--soft); border: 1px solid var(--line); color: var(--ink); font-size: 0.8rem; font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 8px; cursor: pointer; }
-
-/* ── TAB BAR (iOS STYLE) ── */
-.tab-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line); display: flex; justify-content: space-around; padding: 0.5rem 0 calc(env(safe-area-inset-bottom) + 0.5rem); z-index: 50; }
-.tab-item { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); cursor: pointer; flex: 1; padding: 0.25rem 0; transition: color 0.2s; }
-.tab-item svg { width: 24px; height: 24px; margin-bottom: 4px; }
-.tab-item span { font-size: 0.65rem; font-weight: 600; }
-.tab-item.active { color: var(--brand); }
-
-/* ── CONTENT ── */
-.container { max-width: 800px; margin: 0 auto; padding: 1.5rem; }
-.section-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--ink); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
-.stat-card { background: var(--brand-light); border: 1px solid rgba(0, 143, 122, 0.2); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
-.stat-value { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; color: var(--brand); line-height: 1; }
-.stat-label { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
-
-/* ── SUPERVISOR: ASESOR LIST ── */
-.asesor-list-item { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: transform 0.1s, box-shadow 0.2s; }
-.asesor-list-item:active { transform: scale(0.98); }
-.ali-left { display: flex; align-items: center; gap: 1rem; }
-.ali-avatar { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; font-family: var(--font-display); font-weight: 800; }
-.ali-info h3 { font-family: var(--font-body); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
-.ali-info p { font-size: 0.8rem; color: var(--muted); }
-.ali-right { display: flex; align-items: center; gap: 0.75rem; }
-.ali-progress { background: var(--soft); border-radius: 8px; padding: 0.4rem 0.6rem; font-size: 0.85rem; font-weight: 700; color: var(--brand); border: 1px solid var(--line); }
-.ali-arrow { color: var(--muted); }
-
-/* ── SEGMENTED CONTROL ── */
-.segmented-control { display: flex; background: var(--line); border-radius: 10px; padding: 2px; margin-bottom: 1.5rem; }
-.segment { flex: 1; text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--muted); padding: 0.5rem 0; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
-.segment.active { background: var(--card); color: var(--ink); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-
-/* ── POSTS ── */
-.post-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; margin-bottom: 1rem; overflow: hidden; box-shadow: var(--shadow); transition: border-color 0.2s; }
-.post-card.done { border-color: rgba(14, 165, 233, 0.4); background: rgba(14, 165, 233, 0.02); }
-.post-head { padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
-.post-badge { background: var(--blue-light); color: var(--blue); font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; }
-.post-body { padding: 1.25rem; font-size: 0.9rem; color: var(--ink); line-height: 1.6; white-space: pre-wrap; }
-.post-foot { padding: 0.75rem 1.25rem; background: var(--soft); border-top: 1px solid var(--line); display: flex; justify-content: flex-end; }
-.chk-label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 600; color: var(--ink); cursor: pointer; user-select: none; }
-.chk-box { width: 22px; height: 22px; border: 2px solid var(--line); border-radius: 6px; background: var(--card); display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-.chk-input:checked + .chk-box { background: var(--green); border-color: var(--green); }
-.chk-input:checked + .chk-box::after { content: '✓'; color: white; font-weight: 900; font-size: 0.85rem; }
-.chk-input { display: none; }
-
-/* ── AUDITORIA & INSIGHTS ── */
-.audit-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
-.audit-list li { font-size: 0.9rem; line-height: 1.5; color: var(--ink); display: flex; gap: 0.75rem; align-items: flex-start; }
-.audit-list li::before { content: '•'; color: var(--brand); font-weight: 900; font-size: 1.2rem; line-height: 1; margin-top: 2px; }
-.insight-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
-.insight-card { background: var(--card); border: 1px solid var(--line); padding: 1.25rem; border-radius: 12px; }
-.insight-card h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 800; color: var(--brand); margin-bottom: 0.5rem; }
-.insight-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
-
-/* ── TOAST ── */
-.toast { position: fixed; top: 1rem; left: 50%; transform: translateX(-50%) translateY(-20px); background: var(--ink); color: white; padding: 0.75rem 1.25rem; border-radius: 999px; font-size: 0.9rem; font-weight: 600; opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); z-index: 10000; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--bl:#1A1FBE;--bld:#1519A0;--bg:#F4F2EE;--w:#fff;--ink:#1A1816;--gr:#6B6966;--bdr:#E2DFD9;--gn:#16A34A;--gnbg:#F0FDF4;--gnbr:#BBF7D0}
+html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:var(--ink)}
+#SL{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:1.5rem;z-index:999}
+.lc{background:var(--w);border-radius:20px;padding:2rem;width:100%;max-width:340px;box-shadow:0 4px 24px rgba(0,0,0,.1)}
+.ll{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:1.25rem}
+.lm{width:40px;height:40px;border-radius:50%;background:var(--bl);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lm span{color:#fff;font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:22px;line-height:1}
+.ln{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--ink);line-height:1.1}
+.ln b{color:var(--bl)}
+.ltg{font-size:.58rem;color:var(--gr);letter-spacing:.07em;text-transform:uppercase;margin-top:2px}
+.lh{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;text-align:center;color:var(--ink);margin-bottom:.25rem}
+.ls{font-size:.8rem;color:var(--gr);text-align:center;margin-bottom:1.25rem}
+.fl{display:block;font-size:.68rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gr);margin-bottom:.35rem}
+.fg{margin-bottom:.875rem}
+.fs,.fi{width:100%;padding:.7rem .9rem;border:1.5px solid var(--bdr);border-radius:8px;font-family:'Inter',sans-serif;font-size:.92rem;color:var(--ink);background:var(--w);outline:none}
+.fs:focus,.fi:focus{border-color:var(--bl)}
+.fi{text-align:center;font-size:1.4rem;letter-spacing:.4em}
+.bb{width:100%;background:var(--bl);color:#fff;border:none;border-radius:8px;padding:.8rem;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;cursor:pointer;-webkit-appearance:none;-moz-appearance:none}
+.bb:active{background:var(--bld)}
+.le{font-size:.75rem;color:#DC2626;text-align:center;margin-top:.5rem;min-height:1rem}
+#AP{display:none;height:100%;flex-direction:column}
+.nt{background:var(--bl);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.nl{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#fff}
+.nb{background:rgba(255,255,255,.2);color:#fff;font-size:.75rem;font-weight:600;padding:.25rem .75rem;border-radius:20px}
+.no{background:none;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.72rem;padding:.25rem .65rem;border-radius:6px;cursor:pointer}
+.ac{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+/* SUPERVISOR */
+.sw{padding:1rem}
+.gc{background:var(--w);border-radius:12px;padding:1rem;margin-bottom:1rem;border:1px solid var(--bdr)}
+.glb{font-size:.68rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gr);margin-bottom:.5rem}
+.gbr{background:var(--bdr);border-radius:4px;height:8px;overflow:hidden;margin-bottom:.4rem}
+.gf{height:8px;border-radius:4px;background:var(--bl);transition:width .5s}
+.gp{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--bl)}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:.625rem;margin-bottom:1rem}
+.at{background:var(--w);border-radius:10px;padding:.875rem;border:1px solid var(--bdr);cursor:pointer}
+.at:active{opacity:.75}
+.ae{font-size:1.1rem;margin-bottom:.35rem;display:block}
+.an{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+.ar{font-size:.7rem;color:var(--gr);margin-bottom:.5rem;line-height:1.3}
+.abr{background:var(--bdr);border-radius:3px;height:4px;overflow:hidden;margin-bottom:.3rem}
+.af{height:4px;border-radius:3px}
+.ap{font-size:.68rem;color:var(--gr)}
+.xc{background:var(--w);border-radius:12px;border:1px solid var(--bdr);overflow:hidden}
+.xt{font-size:.72rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gr);padding:.75rem 1rem;border-bottom:1px solid var(--bdr)}
+.xr{padding:.75rem 1rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.xr:last-child{border-bottom:none}
+.xi{flex:1;min-width:0}
+.xn{font-size:.85rem;font-weight:600;color:var(--ink)}
+.xp{font-size:.72rem;color:var(--gr);font-family:monospace;letter-spacing:.06em}
+.cb{background:var(--bl);color:#fff;border:none;border-radius:6px;padding:.35rem .75rem;font-size:.7rem;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.cb:active{background:var(--bld)}
+/* ASESOR */
+.aw{display:flex;flex-direction:column;height:100%}
+.ah{background:var(--w);padding:.875rem 1rem;border-bottom:1px solid var(--bdr);flex-shrink:0}
+.aht{display:flex;align-items:center;gap:.75rem;margin-bottom:.625rem}
+.ahe{font-size:1.4rem}
+.ahn{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--ink)}
+.ahr{font-size:.72rem;color:var(--gr)}
+.ahbw{display:flex;align-items:center;gap:.5rem}
+.ahb{flex:1;background:var(--bdr);border-radius:4px;height:6px;overflow:hidden}
+.ahf{height:6px;border-radius:4px;background:var(--bl);transition:width .5s}
+.ahp{font-size:.75rem;font-weight:600;color:var(--bl);white-space:nowrap}
+.ahc{font-size:.7rem;color:var(--gr);white-space:nowrap}
+.tabs{display:flex;background:var(--w);border-bottom:1px solid var(--bdr);flex-shrink:0}
+.tab{flex:1;padding:.6rem .25rem;text-align:center;font-size:.73rem;font-weight:500;color:var(--gr);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;line-height:1.2}
+.tab.on{color:var(--bl);border-bottom-color:var(--bl);font-weight:600}
+.tc{display:none;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;padding:1rem}
+.tc.on{display:block}
+/* POSTS */
+.wl{font-size:.68rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gr);margin:0 0 .5rem;display:flex;align-items:center;gap:.5rem}
+.wl::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.pc{background:var(--w);border:1px solid var(--bdr);border-radius:10px;margin-bottom:.625rem;overflow:hidden}
+.pc.dn{border-color:var(--gnbr);background:var(--gnbg)}
+.ph{padding:.7rem .875rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;border-bottom:1px solid var(--bdr)}
+.pc.dn .ph{border-bottom-color:var(--gnbr)}
+.pd{font-size:.7rem;font-weight:600;color:var(--bl);background:#EEF0FF;padding:.2rem .55rem;border-radius:4px}
+.pc.dn .pd{background:var(--gnbr);color:var(--gn)}
+.ps{font-size:.68rem;color:var(--gr)}
+.chk{width:22px;height:22px;border:1.5px solid var(--bdr);border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;background:var(--w);flex-shrink:0}
+.pc.dn .chk{background:var(--gn);border-color:var(--gn)}
+.chki{display:none;width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.pc.dn .chki{display:block}
+.pb{padding:.875rem}
+.pcp{font-size:.82rem;color:var(--ink);line-height:1.7;white-space:pre-line;max-height:100px;overflow:hidden;transition:max-height .3s}
+.pcp.op{max-height:3000px}
+.pax{display:flex;gap:.5rem;margin-top:.625rem;align-items:center;flex-wrap:wrap}
+.bex{font-size:.7rem;color:var(--bl);background:none;border:none;cursor:pointer;padding:0}
+.bcp{font-size:.7rem;background:#EEF0FF;color:var(--bl);border:none;border-radius:5px;padding:.3rem .65rem;cursor:pointer;font-weight:600}
+.bcp:active{background:#D6D9FF}
+.pda{font-size:.67rem;color:var(--gn);font-weight:500}
+/* PERFIL */
+.pfb{background:var(--w);border:1px solid var(--bdr);border-radius:10px;padding:1rem;margin-bottom:.75rem}
+.pft{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--bl);margin-bottom:.625rem}
+.pftx{font-size:.82rem;color:var(--ink);line-height:1.65;white-space:pre-line}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem}
+.chip{font-size:.7rem;background:#EEF0FF;color:var(--bl);border-radius:5px;padding:.22rem .55rem;font-weight:500}
+.cl{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.cl li{font-size:.8rem;color:var(--ink);line-height:1.5;display:flex;gap:.5rem;align-items:flex-start}
+.cl li::before{content:'✓';color:var(--gn);font-weight:700;flex-shrink:0;margin-top:1px}
+.rl{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.rl li{font-size:.78rem;color:var(--gr);line-height:1.5;display:flex;gap:.5rem}
+.rl li::before{content:'·';color:var(--bl);font-weight:700;flex-shrink:0}
+.bcf{font-size:.65rem;background:#EEF0FF;color:var(--bl);border:none;border-radius:4px;padding:.2rem .5rem;cursor:pointer;float:right;font-weight:600;margin-left:.5rem}
+.bcf:active{background:#D6D9FF}
+/* ESTRATEGIA */
+.eb{background:var(--w);border:1px solid var(--bdr);border-radius:10px;padding:1rem;margin-bottom:.75rem}
+.et{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--bl);margin-bottom:.625rem}
+.ei{font-size:.82rem;color:var(--ink);padding:.5rem 0;border-bottom:1px solid var(--bdr);line-height:1.55}
+.ei:last-child{border-bottom:none}
+.bk{background:none;border:none;color:var(--bl);font-size:.8rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:.3rem;padding:.5rem 0 .75rem}
+/* TOAST */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1A1816;color:#fff;font-size:.8rem;font-weight:600;padding:.5rem 1.25rem;border-radius:20px;opacity:0;transition:all .25s;pointer-events:none;z-index:9999;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
-
-<div id="login-screen">
-  <div class="login-box">
-    <div class="logo-icon">i</div>
-    <h1 class="login-title">IMPRESIONante</h1>
-    <p class="login-sub">Dashboard de Publicaciones</p>
-    
-    <div class="form-group">
-      <label class="form-label">Usuario</label>
-      <select id="user-sel" class="form-select">
-        <option value="">Seleccionar...</option>
+<div id="SL">
+  <div class="lc">
+    <div class="ll">
+      <div class="lm"><span>i</span></div>
+      <div>
+        <div class="ln">IMPRES<b>IO</b>Nante</div>
+        <div class="ltg">Grandes Ideas Impresas</div>
+      </div>
+    </div>
+    <div class="lh">Portal de Asesores</div>
+    <div class="ls">Selecciona tu nombre e ingresa tu PIN</div>
+    <div class="fg">
+      <label class="fl">Tu nombre</label>
+      <select id="SEL" class="fs">
+        <option value="">Selecciona...</option>
         <option value="marilyn">Marilyn</option>
         <option value="frida">Frida</option>
         <option value="luisdiego">Luis Diego</option>
@@ -127,531 +146,531 @@ body { background: var(--soft); color: var(--ink); font-family: var(--font-body)
         <option value="supervisor">Supervisor</option>
       </select>
     </div>
-    
-    <div class="form-group">
-      <label class="form-label">PIN de acceso</label>
-      <input id="user-pin" class="form-input" type="password" maxlength="4" placeholder="••••" style="text-align:center;letter-spacing:0.3em" onkeydown="if(event.key==='Enter')login()">
+    <div class="fg">
+      <label class="fl">PIN</label>
+      <input id="PIN" class="fi" type="password" maxlength="4" inputmode="numeric" placeholder="····">
     </div>
-    
-    <div id="login-err" class="login-error"></div>
-    <button class="btn" onclick="login()">Ingresar</button>
+    <button class="bb" id="ENTRAR">Entrar &rarr;</button>
+    <div class="le" id="ERR"></div>
   </div>
 </div>
-
-<div id="app">
-  <div class="nav-bar">
-    <div class="nav-left" id="nav-left"></div>
-    <div class="nav-center" id="nav-title">IMPRESIONante</div>
-    <div class="nav-right" id="nav-right"><button class="btn-logout" onclick="logout()">Salir</button></div>
+<div id="AP">
+  <div class="nt">
+    <div class="nl">IMPRES<span style="opacity:.6;font-weight:400">IONante</span></div>
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <span class="nb" id="NU">—</span>
+      <button class="no" id="SALIR">Salir</button>
+    </div>
   </div>
-  
-  <div class="container" id="main-content"></div>
-  
-  <div class="tab-bar" id="tab-bar"></div>
+  <div class="ac" id="CONT"></div>
 </div>
-
-<div id="toast" class="toast"></div>
-
+<div class="toast" id="TOAST"></div>
 <script>
-{
+const PINS = {
   '3581': 'supervisor',
   '7392': 'marilyn',
   '4817': 'frida',
   '6254': 'luisdiego',
   '9146': 'jessica'
-}
+};
+
 const ASESORES = {
   marilyn: {
     nombre:'Marilyn', rol:'Líder Comercial B2B', color:'#1A1FBE', emoji:'👩‍💼', pin:'7392',
     auditoria:{
       diagnostico:'Es el perfil comercial más listo para liderar la presencia B2B: tiene titular claro, experiencia en Impresionante, antecedente en BBVA, formación administrativa y publicaciones recientes. Debe pasar de posts generales a autoridad comercial con casos, criterios de compra y conversaciones con decisores.',
       titular:'Ejecutiva Comercial B2B en Impresionante del Sureste | Branding corporativo, impresión y publicidad visual para empresas',
-      acercaDe:`Ayudo a empresas del sureste a fortalecer su visibilidad mediante branding corporativo, impresión, publicidad visual e instalación publicitaria.
-
-Trabajo con negocios que necesitan comunicar mejor, verse más profesionales y convertir sus espacios físicos en puntos de contacto con sus clientes.
-
-Mi enfoque es comercial y consultivo: entender el objetivo, recomendar la solución adecuada y acompañar el proceso para que cada material visual tenga una función clara.
-
-Conectemos si trabajas en marketing, compras, administración o desarrollo comercial y buscas mejorar la presencia visual de tu marca.`,
-      experiencia:`• Ejecutiva de cuentas B2B - Impresionante del Sureste: asesoría comercial para proyectos de branding corporativo, impresión, publicidad visual y comunicación física.
-• Agregar bullets medibles: sectores atendidos, tipos de proyectos, coordinación con producción, seguimiento a cotizaciones.
-• BBVA: convertir la experiencia financiera en confianza comercial: atención, análisis de necesidades, seguimiento y relación con clientes.`,
-      habilidades:['Ventas B2B','Branding corporativo','Publicidad visual','Impresión digital','Desarrollo comercial','Atención a clientes','Prospección','Negociación','CRM','Compras B2B','Comunicación visual','Marketing B2B'],
-      destacados:`1) Post de publicidad visual como inversión.
-2) Caso real de Impresionante explicado.
-3) PDF/checklist: cómo elegir proveedor de publicidad visual.`,
+      acercaDe:'Ayudo a empresas del sureste a fortalecer su visibilidad mediante branding corporativo, impresión, publicidad visual e instalación publicitaria.\n\nTrabajo con negocios que necesitan comunicar mejor, verse más profesionales y convertir sus espacios físicos en puntos de contacto con sus clientes.\n\nMi enfoque es comercial y consultivo: entender el objetivo, recomendar la solución adecuada y acompañar el proceso para que cada material visual tenga una función clara.\n\nConectemos si trabajas en marketing, compras, administración o desarrollo comercial y buscas mejorar la presencia visual de tu marca.',
+      experiencia:'- Ejecutiva de cuentas B2B - Impresionante del Sureste: asesoría comercial para proyectos de branding corporativo, impresión, publicidad visual y comunicación física.\n- Agregar bullets medibles: sectores atendidos, tipos de proyectos, coordinación con producción, seguimiento a cotizaciones y acompañamiento al cliente.\n- BBVA: convertir la experiencia financiera en confianza comercial: atención, análisis de necesidades, seguimiento y relación con clientes.',
+      habilidades:['Ventas B2B','Branding corporativo','Publicidad visual','Impresión digital','Desarrollo comercial','Atención a clientes','Prospección','Negociación','CRM','Compras B2B','Comunicación visual','Marketing B2B','Administración','Seguimiento comercial','Customer experience'],
+      destacados:'1) Post de publicidad visual como inversión.\n2) Caso real de Impresionante explicado.\n3) PDF/checklist: cómo elegir proveedor de publicidad visual.',
       red:'Conectar cada semana con 15 perfiles: gerentes de marketing, compras, administración, dueños de PyME, restaurantes, hoteles, escuelas y agencias.',
       prioridad:'Mantener 3 posts por semana y comentar en publicaciones de decisores 10 minutos al día.',
-      checklist:['Foto de perfil: rostro claro, buena luz, fondo limpio, encuadre profesional','Banner: usar banner de Impresionante con promesa B2B y servicios clave','Titular: rol + problema que resuelve + categoría. Evitar frases genéricas','Acerca de: 4 bloques en primera persona, sin sonar a folleto corporativo','Experiencia: 3-5 bullets por puesto con funciones, sectores y resultados cualitativos','Destacado: fijar 3 piezas — post de autoridad, caso/proyecto, checklist o recurso','Actividad: publicar con constancia y comentar en perfiles de clientes potenciales','Habilidades: agregar habilidades alineadas al rol y pedir validaciones','Recomendaciones: pedir 2-3 reales de cliente, compañero y responsable de proyecto','Contacto: URL pública limpia, ciudad correcta, empresa vinculada'],
-      reglas:['No publicar el mismo copy en todos los asesores','Usar 3 a 5 hashtags ultra-específicos, no listas largas','No vender agresivamente en cada post; priorizar valor y criterio','No usar enlaces externos en el cuerpo del post','Responder comentarios con respuestas humanas, no solo "gracias"','Evitar engagement artificial o comentarios vacíos','Usar fotos reales y casos cuando existan','Priorizar carruseles PDF nativos y videos nativos menor a 30 segundos','Gancho fuerte en las primeras dos líneas antes de "ver más"']
+      checklist:['Foto de perfil: rostro claro, buena luz, fondo limpio, encuadre profesional','Banner con promesa B2B: Comunicación visual para empresas del sureste','Titular: rol + problema que resuelve + categoría','Acerca de: 4 bloques en primera persona sin sonar a folleto','Experiencia: 3-5 bullets con funciones y resultados cualitativos','Destacado: 3 piezas fijadas (post autoridad, caso/proyecto, recurso útil)','Actividad constante y comentar en clientes potenciales','Habilidades alineadas al rol con validaciones','2-3 recomendaciones reales de cliente, compañero y responsable de proyecto','URL pública limpia, ciudad correcta, empresa vinculada'],
+      reglas:['No publicar el mismo copy en todos los asesores','3 a 5 hashtags ultra-específicos','No vender agresivamente, priorizar valor y criterio','Sin enlaces externos en el cuerpo del post','Responder comentarios con respuestas humanas, no solo gracias','Evitar engagement artificial','Usar fotos reales cuando existan','Priorizar carruseles PDF 6-9 láminas y videos nativos menos de 30 segundos','Gancho fuerte en las primeras dos líneas antes de ver más']
     },
     posts:[
-      {sem:1,dia:'Lunes',   copy:'Una buena publicidad visual no solo debe verse bien.\n\nTambién debe cumplir una función de negocio:\n\n- atraer atención,\n- comunicar con claridad,\n- orientar al cliente,\n- generar confianza,\n- y ayudar a vender.\n\nCuando una empresa invierte en impresión, señalética o branding corporativo sin un objetivo claro, corre el riesgo de comprar solo "material".\n\nCuando lo hace con estrategia, la publicidad deja de ser un gasto y se convierte en una herramienta de crecimiento.\n\nEn Impresionante del Sureste ayudamos a empresas a transformar sus espacios físicos en puntos de contacto con sus clientes.'},
-      {sem:1,dia:'Viernes', copy:'En ventas B2B, he aprendido que el cliente no siempre busca "una lona", "un vinil" o "una impresión".\n\nMuchas veces busca algo más profundo:\n\n- que su negocio se vea profesional,\n- que su marca sea recordada,\n- que su sucursal comunique confianza,\n- que una campaña salga a tiempo,\n- que el proveedor no le falle.\n\nPor eso la publicidad visual debe venderse como una solución, no como una pieza suelta.\n\nLa pregunta correcta no es solo: "¿Qué medida necesita?"\n\nLa pregunta correcta es: "¿Qué necesita lograr tu marca con este material?"'},
-      {sem:1,dia:'Domingo', copy:'Cada proyecto de publicidad visual tiene una pregunta detrás:\n\n¿Cómo hacemos que esta marca se vea mejor, se entienda más rápido y conecte con sus clientes?\n\nLa respuesta no siempre está en imprimir más.\n\nA veces está en:\n\n- elegir mejor el material,\n- ordenar el mensaje,\n- mejorar la ubicación,\n- cuidar la instalación,\n- mantener consistencia con la marca.\n\nEn Impresionante del Sureste trabajamos para que cada pieza visual tenga una función clara.\n\nPorque cuando la comunicación visual está bien pensada, la marca no solo se ve: se entiende.'},
-      {sem:2,dia:'Lunes',   copy:'Elegir un proveedor de publicidad visual no debería depender solo del precio.\n\nEn proyectos B2B, también importa:\n\n1. Que entienda el objetivo de la marca.\n2. Que recomiende materiales adecuados.\n3. Que pueda cumplir tiempos.\n4. Que cuide la calidad de impresión.\n5. Que tenga criterio para instalación.\n6. Que dé seguimiento después de entregar.\n\nUna cotización barata puede parecer atractiva.\n\nPero si el material falla, el color no corresponde o la instalación queda mal, el costo real termina siendo mayor.\n\nEn comunicación visual, el proveedor también cuida la reputación de tu marca.'},
-      {sem:2,dia:'Viernes', copy:'La publicidad visual se vuelve gasto cuando se improvisa.\n\nSe vuelve inversión cuando tiene objetivo.\n\nNo es lo mismo imprimir por urgencia que imprimir con una estrategia clara:\n\n- qué mensaje debe comunicar,\n- a quién debe atraer,\n- dónde se va a colocar,\n- cuánto tiempo debe durar,\n- qué acción debe provocar.\n\nLa pregunta no es: "¿Cuánto cuesta imprimir?"\n\nLa pregunta es: "¿Qué oportunidad puede abrir esta comunicación visual?"'},
-      {sem:2,dia:'Domingo', copy:'En compras B2B, elegir proveedor no es solo comparar precios.\n\nTambién es reducir riesgos.\n\nRiesgo de retraso.\nRiesgo de mala calidad.\nRiesgo de instalación deficiente.\nRiesgo de que la marca se vea diferente a lo planeado.\nRiesgo de tener que repetir el trabajo.\n\nPor eso, una buena compra de publicidad visual debe considerar calidad, tiempos, materiales, asesoría e instalación.\n\nEl proveedor correcto no solo entrega un producto.\n\nTambién ayuda a que la marca se vea como debe verse.'},
-      {sem:3,dia:'Lunes',   copy:'El branding corporativo no termina en el logo.\n\nTambién se expresa en los espacios físicos:\n\n- fachadas,\n- recepciones,\n- cristales,\n- muros,\n- vehículos,\n- señalética,\n- exhibidores,\n- materiales promocionales.\n\nCada uno de esos puntos puede fortalecer o debilitar la percepción de una marca.\n\nCuando una empresa cuida su presencia visual, transmite orden, confianza y profesionalismo.\n\nLa comunicación visual es parte de la experiencia de marca.'},
-      {sem:3,dia:'Viernes', copy:'Mi experiencia en el sector financiero me dejó una lección que hoy aplico en ventas B2B:\n\nla confianza se construye con claridad.\n\nUn cliente necesita entender:\n\n- qué está contratando,\n- qué problema resuelve,\n- qué opciones tiene,\n- qué riesgos existen,\n- qué resultado puede esperar.\n\nCuando hay claridad, hay más confianza.\n\nY cuando hay confianza, la relación comercial cambia.'},
-      {sem:3,dia:'Domingo', copy:'Un buen caso de publicidad visual se puede explicar con tres preguntas:\n\n1. ¿Qué necesitaba comunicar la marca?\n2. ¿Dónde debía verse?\n3. ¿Qué solución visual ayudaba mejor?\n\nCuando esas tres respuestas están claras, el proyecto deja de ser solo impresión.\n\nSe convierte en una solución de comunicación.\n\nEn Impresionante del Sureste trabajamos con empresas que buscan verse mejor, comunicar con más claridad y fortalecer su presencia en el mercado.'},
-      {sem:4,dia:'Lunes',   copy:'Una campaña visual debería empezar con un objetivo.\n\nNo con el material.\n\nPrimero hay que definir:\n\n- qué queremos comunicar,\n- a quién queremos llegar,\n- dónde se va a ver,\n- qué acción esperamos,\n- cuánto tiempo debe durar.\n\nDespués viene la decisión de formato.\n\nCuando se empieza por el objetivo, el material se elige mejor.\n\nY el resultado tiene más sentido para el negocio.'},
-      {sem:4,dia:'Viernes', copy:'Una marca se construye en cada detalle.\n\nEn el logo, sí.\n\nPero también en:\n\n- el color impreso,\n- la claridad del mensaje,\n- la calidad del material,\n- la instalación,\n- la fachada,\n- la señalética,\n- el vehículo,\n- el punto de venta.\n\nCada pieza visual puede fortalecer la confianza o debilitarla.\n\nCuando una empresa invierte en publicidad visual, no solo compra impresión.\n\nEstá cuidando la forma en que el mercado la percibe.'},
-      {sem:4,dia:'Domingo', copy:'Este mes he confirmado algo:\n\nla comunicación visual tiene un papel muy importante en el crecimiento de una empresa.\n\nNo solo porque ayuda a verse mejor.\n\nSino porque ayuda a generar confianza, ordenar mensajes, destacar en el mercado y fortalecer la presencia de marca.\n\nEn Impresionante del Sureste seguiremos compartiendo ideas, casos y aprendizajes para que más empresas aprovechen mejor su imagen física.'},
+      {sem:1,dia:'Martes',hora:'9:00 AM',copy:'Una buena publicidad visual no solo debe verse bien.\n\nTambién debe cumplir una función de negocio:\n\n- atraer atención,\n- comunicar con claridad,\n- orientar al cliente,\n- generar confianza,\n- y ayudar a vender.\n\nCuando una empresa invierte en impresión, señalética o branding corporativo sin un objetivo claro, corre el riesgo de comprar solo "material".\n\nCuando lo hace con estrategia, la publicidad deja de ser un gasto y se convierte en una herramienta de crecimiento.\n\nEn Impresionante del Sureste ayudamos a empresas a transformar sus espacios físicos en puntos de contacto con sus clientes.'},
+      {sem:1,dia:'Miércoles',hora:'10:00 AM',copy:'En ventas B2B, he aprendido que el cliente no siempre busca "una lona", "un vinil" o "una impresión".\n\nMuchas veces busca algo más profundo:\n\n- que su negocio se vea profesional,\n- que su marca sea recordada,\n- que su sucursal comunique confianza,\n- que una campaña salga a tiempo,\n- que el proveedor no le falle.\n\nPor eso la publicidad visual debe venderse como una solución, no como una pieza suelta.\n\nLa pregunta correcta no es solo:\n\n"¿Qué medida necesita?"\n\nLa pregunta correcta es:\n\n"¿Qué necesita lograr tu marca con este material?"'},
+      {sem:1,dia:'Jueves',hora:'9:00 AM',copy:'Cada proyecto de publicidad visual tiene una pregunta detrás:\n\n¿Cómo hacemos que esta marca se vea mejor, se entienda más rápido y conecte con sus clientes?\n\nLa respuesta no siempre está en imprimir más.\n\nA veces está en:\n\n- elegir mejor el material,\n- ordenar el mensaje,\n- mejorar la ubicación,\n- cuidar la instalación,\n- mantener consistencia con la marca.\n\nEn Impresionante del Sureste trabajamos para que cada pieza visual tenga una función clara.\n\nPorque cuando la comunicación visual está bien pensada, la marca no solo se ve: se entiende.'},
+      {sem:2,dia:'Martes',hora:'9:00 AM',copy:'Elegir un proveedor de publicidad visual no debería depender solo del precio.\n\nEn proyectos B2B, también importa:\n\n1. Que entienda el objetivo de la marca.\n2. Que recomiende materiales adecuados.\n3. Que pueda cumplir tiempos.\n4. Que cuide la calidad de impresión.\n5. Que tenga criterio para instalación.\n6. Que dé seguimiento después de entregar.\n\nUna cotización barata puede parecer atractiva.\n\nPero si el material falla, el color no corresponde o la instalación queda mal, el costo real termina siendo mayor.\n\nEn comunicación visual, el proveedor también cuida la reputación de tu marca.'},
+      {sem:2,dia:'Miércoles',hora:'10:00 AM',copy:'La publicidad visual se vuelve gasto cuando se improvisa.\n\nSe vuelve inversión cuando tiene objetivo.\n\nNo es lo mismo imprimir por urgencia que imprimir con una estrategia clara:\n\n- qué mensaje debe comunicar,\n- a quién debe atraer,\n- dónde se va a colocar,\n- cuánto tiempo debe durar,\n- qué acción debe provocar.\n\nLa pregunta no es:\n\n"¿Cuánto cuesta imprimir?"\n\nLa pregunta es:\n\n"¿Qué oportunidad puede abrir esta comunicación visual?"'},
+      {sem:2,dia:'Jueves',hora:'9:00 AM',copy:'En compras B2B, elegir proveedor no es solo comparar precios.\n\nTambién es reducir riesgos.\n\nRiesgo de retraso.\nRiesgo de mala calidad.\nRiesgo de instalación deficiente.\nRiesgo de que la marca se vea diferente a lo planeado.\nRiesgo de tener que repetir el trabajo.\n\nPor eso, una buena compra de publicidad visual debe considerar calidad, tiempos, materiales, asesoría e instalación.\n\nEl proveedor correcto no solo entrega un producto.\n\nTambién ayuda a que la marca se vea como debe verse.'},
+      {sem:3,dia:'Martes',hora:'9:00 AM',copy:'El branding corporativo no termina en el logo.\n\nTambién se expresa en los espacios físicos:\n\n- fachadas,\n- recepciones,\n- cristales,\n- muros,\n- vehículos,\n- señalética,\n- exhibidores,\n- materiales promocionales.\n\nCada uno de esos puntos puede fortalecer o debilitar la percepción de una marca.\n\nCuando una empresa cuida su presencia visual, transmite orden, confianza y profesionalismo.\n\nLa comunicación visual es parte de la experiencia de marca.'},
+      {sem:3,dia:'Miércoles',hora:'10:00 AM',copy:'Mi experiencia en el sector financiero me dejó una lección que hoy aplico en ventas B2B:\n\nla confianza se construye con claridad.\n\nUn cliente necesita entender:\n\n- qué está contratando,\n- qué problema resuelve,\n- qué opciones tiene,\n- qué riesgos existen,\n- qué resultado puede esperar.\n\nCuando hay claridad, hay más confianza.\n\nY cuando hay confianza, la relación comercial cambia.'},
+      {sem:3,dia:'Jueves',hora:'9:00 AM',copy:'Un buen caso de publicidad visual se puede explicar con tres preguntas:\n\n1. ¿Qué necesitaba comunicar la marca?\n2. ¿Dónde debía verse?\n3. ¿Qué solución visual ayudaba mejor?\n\nCuando esas tres respuestas están claras, el proyecto deja de ser solo impresión.\n\nSe convierte en una solución de comunicación.\n\nEn Impresionante del Sureste trabajamos con empresas que buscan verse mejor, comunicar con más claridad y fortalecer su presencia en el mercado.'},
+      {sem:4,dia:'Martes',hora:'9:00 AM',copy:'Una campaña visual debería empezar con un objetivo.\n\nNo con el material.\n\nPrimero hay que definir:\n\n- qué queremos comunicar,\n- a quién queremos llegar,\n- dónde se va a ver,\n- qué acción esperamos,\n- cuánto tiempo debe durar,\n- qué imagen debe proyectar la marca.\n\nDespués viene la decisión de formato.\n\nCuando se empieza por el objetivo, el material se elige mejor.\n\nY el resultado tiene más sentido para el negocio.'},
+      {sem:4,dia:'Miércoles',hora:'10:00 AM',copy:'Una marca se construye en cada detalle.\n\nEn el logo, sí.\n\nPero también en:\n\n- el color impreso,\n- la claridad del mensaje,\n- la calidad del material,\n- la instalación,\n- la fachada,\n- la señalética,\n- el vehículo,\n- el punto de venta.\n\nCada pieza visual puede fortalecer la confianza o debilitarla.\n\nCuando una empresa invierte en publicidad visual, está cuidando la forma en que el mercado la percibe.'},
+      {sem:4,dia:'Jueves',hora:'9:00 AM',copy:'Este mes he confirmado algo:\n\nla comunicación visual tiene un papel muy importante en el crecimiento de una empresa.\n\nNo solo porque ayuda a verse mejor.\n\nSino porque ayuda a:\n\n- generar confianza,\n- ordenar mensajes,\n- destacar en el mercado,\n- comunicar promociones,\n- orientar clientes,\n- fortalecer la presencia de marca.\n\nEn Impresionante del Sureste seguiremos compartiendo ideas, casos y aprendizajes.'}
     ]
   },
-  frida:{
+  frida: {
     nombre:'Frida', rol:'Prospección y Posicionamiento', color:'#0891B2', emoji:'👩‍💻', pin:'4817',
     auditoria:{
       diagnostico:'Tiene narrativa correcta de posicionamiento y visibilidad, pero red pequeña y poca prueba visible. Debe aterrizar su discurso en preguntas de cotización, necesidades reales de empresas y ejemplos de presencia de marca.',
       titular:'Ejecutiva de Ventas B2B en Impresionante del Sureste | Ayudo a empresas a ganar visibilidad con publicidad visual, impresión e instalación estratégica',
-      acercaDe:`Ayudo a empresas a fortalecer su presencia de marca mediante soluciones de publicidad visual, impresión e instalación.
-
-Mi trabajo es acompañar a negocios que buscan verse más profesionales, destacar frente a su competencia y comunicar mejor en sus espacios físicos.
-
-Me interesa conectar con empresas que quieren convertir fachadas, puntos de venta, promociones y materiales impresos en herramientas reales de visibilidad.
-
-Si tu marca necesita ser más clara, visible y recordable, podemos conversar.`,
-      experiencia:`• Ejecutiva de ventas - Impresionante del Sureste: asesoría para proyectos de publicidad visual, impresión, posicionamiento y visibilidad de marca.
-• Administrador de cuenta - DTS Tornillos y Suspensiones: funciones comerciales, seguimiento de clientes, cuentas y atención.
-• Agregar ejemplos de sectores atendidos: retail, restaurantes, escuelas, eventos, servicios y negocios locales.`,
-      habilidades:['Ventas','Ventas B2B','Prospección','Posicionamiento de marca','Publicidad visual','Atención a clientes','Comunicación comercial','Branding','Negociación','Seguimiento','Impresión digital','Marketing B2B','Desarrollo de negocios'],
-      destacados:`1) Post sobre marcas visibles.
-2) Checklist antes de cotizar publicidad.
-3) Caso simple: de necesidad del cliente a solución visual.`,
+      acercaDe:'Ayudo a empresas a fortalecer su presencia de marca mediante soluciones de publicidad visual, impresión e instalación.\n\nMi trabajo es acompañar a negocios que buscan verse más profesionales, destacar frente a su competencia y comunicar mejor en sus espacios físicos.\n\nMe interesa conectar con empresas que quieren convertir fachadas, puntos de venta, promociones y materiales impresos en herramientas reales de visibilidad.\n\nSi tu marca necesita ser más clara, visible y recordable, podemos conversar.',
+      experiencia:'- Ejecutiva de ventas - Impresionante del Sureste: asesoría para proyectos de publicidad visual, impresión, posicionamiento y visibilidad de marca.\n- Administrador de cuenta - DTS Tornillos y Suspensiones: funciones comerciales, seguimiento de clientes, cuentas y atención.\n- Agregar ejemplos de sectores atendidos: retail, restaurantes, escuelas, eventos, servicios y negocios locales.',
+      habilidades:['Ventas','Ventas B2B','Prospección','Posicionamiento de marca','Publicidad visual','Atención a clientes','Comunicación comercial','Branding','Negociación','Seguimiento','Impresión digital','Marketing B2B','Desarrollo de negocios','Cotizaciones','Servicio al cliente'],
+      destacados:'1) Post sobre marcas visibles.\n2) Checklist antes de cotizar publicidad.\n3) Caso simple: de necesidad del cliente a solución visual.',
       red:'Conectar con emprendedores B2B, dueños de restaurantes, marcas locales, encargados de ventas, marketing y negocios en Tuxtla/Chiapas.',
       prioridad:'Crecer red primero: 15 conexiones semanales y 2 posts por semana con ejemplos concretos.',
-      checklist:['Foto de perfil: rostro claro, buena luz, fondo limpio','Banner: Impresionante con promesa B2B y servicios clave','Titular: rol + problema + categoría, evitar frases genéricas','Acerca de: 4 bloques en primera persona','Experiencia: 3-5 bullets con funciones y resultados','Destacado: 3 piezas fijadas de autoridad, caso y recurso','Actividad constante y comentarios en clientes potenciales','Habilidades alineadas al rol con validaciones','2-3 recomendaciones reales','URL pública limpia y datos profesionales consistentes'],
+      checklist:['Foto de perfil: rostro claro, buena luz, fondo limpio','Banner con promesa B2B y servicios clave','Titular: rol + problema + categoría','Acerca de: 4 bloques en primera persona','Experiencia con bullets de funciones y resultados','Destacado: 3 piezas fijadas','Actividad constante y comentar en clientes potenciales','Habilidades alineadas con validaciones','2-3 recomendaciones reales','URL pública limpia y datos profesionales consistentes'],
       reglas:['No publicar el mismo copy que los demás asesores','3 a 5 hashtags específicos por post','Priorizar valor sobre venta directa','Sin enlaces externos en el cuerpo del post','Responder comentarios con profundidad','Usar fotos reales cuando existan','Carruseles PDF y videos nativos menos de 30 segundos','Gancho fuerte en primeras dos líneas']
     },
     posts:[
-      {sem:1,dia:'Miércoles',copy:'Las marcas que logran destacar no lo hacen por casualidad.\n\nDetrás de una empresa visible normalmente hay decisiones muy concretas:\n\n- dónde aparece la marca,\n- qué mensaje repite,\n- cómo se ve frente a su competencia,\n- qué tan fácil es reconocerla,\n- qué confianza transmite en sus espacios físicos.\n\nEn publicidad visual, cada pieza comunica algo.\n\nUna marca visible es una marca con más oportunidades.'},
-      {sem:1,dia:'Sábado',  copy:'Antes de cotizar publicidad para tu negocio, conviene tener claras 3 cosas:\n\n1. Dónde se va a colocar.\n2. A qué distancia debe leerse.\n3. Qué acción quieres que genere.\n\nNo es lo mismo imprimir para una fachada, un evento, un punto de venta o una campaña temporal.\n\nEl material, el tamaño y el mensaje deben responder al objetivo.\n\nUna buena cotización empieza con buenas preguntas.'},
-      {sem:1,dia:'Domingo', copy:'Una marca tiene pocos segundos para ser entendida.\n\nCuando alguien pasa frente a un local, ve una fachada o recibe una promoción, normalmente no se detiene a analizar todo.\n\nPrimero responde tres preguntas:\n\n- ¿Qué es este negocio?\n- ¿Qué ofrece?\n- ¿Por qué debería importarme?\n\nSi la comunicación visual no responde eso rápido, la marca pierde fuerza.\n\nPor eso no se trata solo de imprimir algo bonito.\n\nSe trata de crear mensajes visibles, claros y fáciles de recordar.'},
-      {sem:2,dia:'Miércoles',copy:'En mercados competitivos, no basta con existir.\n\nUna empresa necesita ser visible, clara y recordable.\n\nLa publicidad visual ayuda a responder tres preguntas en segundos:\n\n- quién eres,\n- qué ofreces,\n- por qué deberían acercarse.\n\nSi una fachada, lona, vinil o señalética no comunica eso, la marca pierde oportunidades.\n\nDestacar no siempre significa hacer algo más grande.\n\nA veces significa comunicar mejor.'},
-      {sem:2,dia:'Sábado',  copy:'Si una empresa quiere ganar visibilidad, puede empezar con tres acciones simples:\n\n1. Revisar si su fachada comunica claramente qué ofrece.\n2. Usar sus espacios físicos como puntos de contacto con el cliente.\n3. Mantener consistencia visual entre promociones, señalética, vehículos y materiales impresos.\n\nLa marca no vive solo en redes sociales.\n\nTambién vive en el local, en la calle, en el punto de venta.\n\nCuando todo comunica de forma consistente, la empresa se vuelve más fácil de reconocer y recordar.'},
-      {sem:2,dia:'Domingo', copy:'El punto de venta también comunica.\n\nNo solo vende quien atiende.\n\nTambién venden:\n\n- los menús,\n- las promociones,\n- los cristales,\n- los muros,\n- los exhibidores,\n- la señalética,\n- la fachada.\n\nCada elemento puede ayudar a que el cliente entienda mejor, confíe más y tome una decisión.\n\nLa publicidad visual no debe estar puesta al azar.\n\nDebe tener una función.'},
-      {sem:3,dia:'Miércoles',copy:'En un mercado competitivo, una empresa necesita ser fácil de encontrar, entender y recordar.\n\nLa visibilidad no depende solo de estar en redes.\n\nTambién depende de cómo se presenta físicamente:\n\n- su fachada,\n- sus anuncios,\n- sus promociones,\n- sus vehículos,\n- su punto de venta,\n- su señalética.\n\nSi el cliente pasa frente a tu negocio y no entiende qué haces, hay una oportunidad perdida.'},
-      {sem:3,dia:'Sábado',  copy:'Hay errores visuales que hacen que una marca pierda fuerza:\n\n1. Mensajes demasiado largos.\n2. Letras pequeñas para la distancia.\n3. Colores con poco contraste.\n4. Material incorrecto para exterior.\n5. Promociones sin jerarquía.\n6. Fachadas sin claridad.\n7. Publicidad que no dice qué hacer después.\n\nLa publicidad visual debe ayudar al cliente a entender rápido.\n\nComunicar mejor también es vender mejor.'},
-      {sem:3,dia:'Domingo', copy:'Ganar visibilidad no siempre significa hacer el anuncio más grande.\n\nA veces significa hacerlo más claro.\n\nMás directo.\n\nMás fácil de leer.\n\nMás consistente con la marca.\n\nMuchas empresas llenan sus piezas visuales de información pensando que así comunican más.\n\nPero el cliente normalmente necesita entender rápido:\n\n- quién eres,\n- qué ofreces,\n- qué debe hacer después.\n\nLa buena comunicación visual no grita.\n\nOrdena el mensaje para que la marca sea más fácil de recordar.'},
-      {sem:4,dia:'Miércoles',copy:'Si una empresa quiere que su publicidad funcione, necesita que sea visible, legible y que diga algo claro.\n\nNo es solo estética.\n\nEs estrategia de comunicación.\n\nCuando una pieza visual cumple esos tres criterios, se convierte en una herramienta de venta.\n\nCuando no los cumple, solo ocupa espacio.'},
-      {sem:4,dia:'Sábado',  copy:'En este mes hemos hablado de visibilidad, mensajes claros y decisiones de compra.\n\nPero todo se resume en una idea:\n\nlas empresas que comunican mejor, venden mejor.\n\nLa publicidad visual no es decoración.\n\nEs parte del proceso comercial.\n\nY cuando está bien pensada, puede abrir puertas que de otra forma permanecerían cerradas.'},
-      {sem:4,dia:'Domingo', copy:'Cerrar un mes de contenido es también una oportunidad de revisar:\n\n- ¿Qué aprendieron las personas de esta cuenta?\n- ¿Qué conversaciones se abrieron?\n- ¿Qué preguntas llegaron?\n\nEn Impresionante del Sureste seguimos construyendo autoridad en publicidad visual para empresas del sureste.\n\nSi tienes un proyecto en mente o quieres conversar, este es un buen momento para conectar.'},
+      {sem:1,dia:'Martes',hora:'9:00 AM',copy:'Las marcas que logran destacar no lo hacen por casualidad.\n\nDetrás de una empresa visible normalmente hay decisiones muy concretas:\n\n- dónde aparece la marca,\n- qué mensaje repite,\n- cómo se ve frente a su competencia,\n- qué tan fácil es reconocerla,\n- qué confianza transmite en sus espacios físicos.\n\nEn publicidad visual, cada pieza comunica algo.\n\nUna marca visible es una marca con más oportunidades.'},
+      {sem:1,dia:'Miércoles',hora:'10:00 AM',copy:'Antes de cotizar publicidad para tu negocio, conviene tener claras 3 cosas:\n\n1. Dónde se va a colocar.\n2. A qué distancia debe leerse.\n3. Qué acción quieres que genere.\n\nNo es lo mismo imprimir para una fachada, un evento, un punto de venta o una campaña temporal.\n\nEl material, el tamaño y el mensaje deben responder al objetivo.\n\nUna buena cotización empieza con buenas preguntas.'},
+      {sem:1,dia:'Jueves',hora:'9:00 AM',copy:'Una marca tiene pocos segundos para ser entendida.\n\nCuando alguien pasa frente a un local, ve una fachada o recibe una promoción, normalmente no se detiene a analizar todo.\n\nPrimero responde tres preguntas:\n\n- ¿Qué es este negocio?\n- ¿Qué ofrece?\n- ¿Por qué debería importarme?\n\nSi la comunicación visual no responde eso rápido, la marca pierde fuerza.\n\nSe trata de crear mensajes visibles, claros y fáciles de recordar.'},
+      {sem:2,dia:'Martes',hora:'9:00 AM',copy:'En mercados competitivos, no basta con existir.\n\nUna empresa necesita ser visible, clara y recordable.\n\nLa publicidad visual ayuda a responder tres preguntas en segundos:\n\n- quién eres,\n- qué ofreces,\n- por qué deberían acercarse.\n\nDestacar no siempre significa hacer algo más grande.\n\nA veces significa comunicar mejor.'},
+      {sem:2,dia:'Miércoles',hora:'10:00 AM',copy:'Si una empresa quiere ganar visibilidad, puede empezar con tres acciones simples:\n\n1. Revisar si su fachada comunica claramente qué ofrece.\n2. Usar sus espacios físicos como puntos de contacto con el cliente.\n3. Mantener consistencia visual entre promociones, señalética, vehículos y materiales impresos.\n\nLa marca no vive solo en redes sociales.\n\nCuando todo comunica de forma consistente, la empresa se vuelve más fácil de reconocer y recordar.'},
+      {sem:2,dia:'Jueves',hora:'9:00 AM',copy:'El punto de venta también comunica.\n\nNo solo vende quien atiende.\n\nTambién venden:\n\n- los menús,\n- las promociones,\n- los cristales,\n- los muros,\n- los exhibidores,\n- la señalética,\n- la fachada.\n\nCada elemento puede ayudar a que el cliente entienda mejor, confíe más y tome una decisión.\n\nLa publicidad visual no debe estar puesta al azar.\n\nDebe tener una función.'},
+      {sem:3,dia:'Martes',hora:'9:00 AM',copy:'En un mercado competitivo, una empresa necesita ser fácil de encontrar, entender y recordar.\n\nLa visibilidad no depende solo de estar en redes.\n\nTambién depende de cómo se presenta físicamente:\n\n- su fachada,\n- sus anuncios,\n- sus promociones,\n- sus vehículos,\n- su punto de venta,\n- su señalética.\n\nSi el cliente pasa frente a tu negocio y no entiende qué haces, hay una oportunidad perdida.'},
+      {sem:3,dia:'Miércoles',hora:'10:00 AM',copy:'Hay errores visuales que hacen que una marca pierda fuerza:\n\n1. Mensajes demasiado largos.\n2. Letras pequeñas para la distancia.\n3. Colores con poco contraste.\n4. Material incorrecto para exterior.\n5. Promociones sin jerarquía.\n6. Fachadas sin claridad.\n7. Publicidad que no dice qué hacer después.\n\nComunicar mejor también es vender mejor.'},
+      {sem:3,dia:'Jueves',hora:'9:00 AM',copy:'Ganar visibilidad no siempre significa hacer el anuncio más grande.\n\nA veces significa hacerlo más claro.\n\nMás directo.\n\nMás fácil de leer.\n\nMás consistente con la marca.\n\nLa buena comunicación visual no grita.\n\nOrdena el mensaje para que la marca sea más fácil de recordar.'},
+      {sem:4,dia:'Martes',hora:'9:00 AM',copy:'Si una empresa quiere ganar presencia de marca, puede empezar con acciones concretas:\n\n1. Hacer que su fachada sea clara y visible.\n2. Usar señalética para orientar y comunicar mejor.\n3. Convertir sus vehículos, cristales o muros en puntos de contacto.\n\nNo siempre se necesita una campaña enorme.\n\nA veces se necesita aprovechar mejor los espacios que la empresa ya tiene.'},
+      {sem:4,dia:'Miércoles',hora:'10:00 AM',copy:'La publicidad física sigue siendo importante porque acompaña al cliente en el mundo real.\n\nLa ve al pasar por una calle.\nLa ve al entrar a un negocio.\nLa ve en una sucursal.\nLa ve en un vehículo.\nLa ve en una promoción.\n\nY en pocos segundos decide si una marca se percibe clara, confiable y profesional.\n\nPor eso, cada pieza visual debe tener intención.\n\nNo se trata de llenar espacios.\n\nSe trata de comunicar mejor.'},
+      {sem:4,dia:'Jueves',hora:'9:00 AM',copy:'Una de las ideas más importantes en publicidad visual es esta:\n\nel cliente no compra solo un producto.\n\nCompra una solución.\n\nUna lona puede resolver visibilidad.\nUn vinil puede mejorar la imagen de un espacio.\nUna señalética puede orientar mejor.\nUna rotulación puede convertir un vehículo en publicidad.\n\nCuando entendemos el objetivo, el producto correcto aparece con más claridad.\n\nPor eso, antes de vender, hay que preguntar.\n\nY antes de imprimir, hay que entender.'}
     ]
   },
-  luisdiego:{
-    nombre:'Luis Diego', rol:'Educación y Sector Técnico', color:'#16A34A', emoji:'👨‍🔧', pin:'6254',
+  luisdiego: {
+    nombre:'Luis Diego', rol:'Técnico-Comercial', color:'#16A34A', emoji:'👨‍🔧', pin:'6254',
     auditoria:{
-      diagnostico:'Perfil con potencial técnico diferenciador. Debe posicionarse como el experto en materiales, tecnologías y procesos de impresión. Su contenido debe elevar el criterio de compra del cliente B2B.',
-      titular:'Asesor Técnico en Impresionante del Sureste | Impresión de gran formato, materiales, instalación y comunicación visual B2B',
-      acercaDe:`Ayudo a empresas a tomar mejores decisiones en sus proyectos de impresión y publicidad visual.
-
-Mi enfoque es técnico y práctico: explico qué materiales funcionan mejor para cada uso, qué tecnología conviene para cada proyecto y qué detalles técnicos pueden hacer la diferencia entre un trabajo que dura años y uno que falla en semanas.
-
-Trabajo con equipos de marketing, compras y operaciones que necesitan un asesor que entienda tanto el proceso de producción como el objetivo de negocio.
-
-Si tienes un proyecto de impresión o publicidad visual y quieres hacerlo bien desde el principio, podemos conversar.`,
-      experiencia:`• Asesor técnico - Impresionante del Sureste: asesoría en materiales, tecnologías de impresión, procesos de producción e instalación para proyectos B2B.
-• Especificar tecnologías manejadas: gran formato, DTF, UV, sublimación, corte.
-• Agregar tipos de proyectos: señalética corporativa, rotulación vehicular, material POP, textiles corporativos.`,
-      habilidades:['Impresión digital','Gran formato','DTF','UV','Sublimación','Señalética','Rotulación vehicular','Control de color','Instalación','Materiales de impresión','Ventas técnicas','Asesoría B2B','Producción gráfica'],
-      destacados:`1) Post técnico sobre materiales para exterior.
-2) Guía: cómo preparar archivos para impresión.
-3) Comparativa de tecnologías DTF vs sublimación.`,
-      red:'Conectar con diseñadores gráficos, directores de arte, jefes de compras y gerentes de marketing que toman decisiones técnicas de impresión.',
-      prioridad:'Publicar contenido técnico que ningún otro asesor en el sureste está publicando. Ese es el diferenciador.',
-      checklist:['Foto profesional en entorno de trabajo o producción','Banner técnico con servicios y tecnologías de Impresionante','Titular técnico con tecnologías específicas','Acerca de enfocado en asesoría técnica y toma de decisiones','Experiencia con tecnologías y tipos de proyecto específicos','Destacados con guías técnicas descargables','Actividad consistente con contenido educativo','Habilidades técnicas validadas por clientes y compañeros','Recomendaciones de clientes que destaquen criterio técnico','Datos de contacto profesionales y consistentes'],
-      reglas:['Contenido técnico diferenciador, no genérico','Explicar conceptos que el cliente no conoce pero necesita','Sin jerga excesiva — técnico pero accesible','Incluir datos y especificaciones cuando aplique','Responder preguntas técnicas en comentarios con profundidad','Usar imágenes de proceso y materiales reales','Evitar contenido promocional disfrazado de técnico']
+      diagnostico:'El perfil tiene potencial técnico por el Ing., pero está demasiado breve. Debe convertirse en autoridad técnico-comercial: materiales, instalación, durabilidad, rotulación, gran formato y decisiones que evitan retrabajos.',
+      titular:'Ing. Diego Jiménez | Asesor técnico-comercial en publicidad visual, gran formato e instalación publicitaria',
+      acercaDe:'Ayudo a empresas a elegir soluciones de publicidad visual que comuniquen mejor y funcionen en el contexto real donde serán instaladas.\n\nMi enfoque combina asesoría comercial con criterio técnico: material adecuado, superficie, durabilidad, legibilidad, instalación y calidad final.\n\nEn Impresionante del Sureste trabajamos con impresión, gran formato, rotulación, materiales para interior/exterior y soluciones visuales para negocios.\n\nSi tu empresa necesita que su publicidad se vea bien y dure lo necesario, puedo ayudarte a revisar la mejor opción antes de producir.',
+      experiencia:'- Asesor comercial - Impresionante del Sureste: asesor técnico-comercial en materiales, gran formato, rotulación e instalación.\n- Incluir responsabilidades: levantamiento de necesidades, recomendación de materiales, revisión de uso final, seguimiento de producción e instalación.\n- Agregar ejemplos: exterior, vehículos, punto de venta, fachadas, señalética o materiales rígidos.',
+      habilidades:['Gran formato','Materiales gráficos','Instalación publicitaria','Rotulación vehicular','Vinil','Lonas','Impresión digital','Publicidad exterior','Asesoría técnica','Producción gráfica','Calidad de impresión','Durabilidad','Atención a clientes','Ventas técnicas','Comunicación visual'],
+      destacados:'1) Post: no todos los materiales sirven para exterior.\n2) Comparativa vinil/lona/rígido.\n3) Video corto de instalación o revisión de material.',
+      red:'Conectar con operaciones, flotillas, constructoras, talleres, empresas de servicios, marketing operativo y encargados de mantenimiento.',
+      prioridad:'Optimizar titular y acerca de antes de publicar; después sostener 2 posts técnicos por semana.',
+      checklist:['Foto de perfil profesional en entorno de trabajo','Banner técnico con servicios y tecnologías de Impresionante','Titular técnico con especialidades específicas','Acerca de enfocado en asesoría técnica','Experiencia con tecnologías y tipos de proyecto','Destacados con guías técnicas','Actividad consistente con contenido educativo','Habilidades técnicas validadas','Recomendaciones de clientes que destaquen criterio técnico','Datos de contacto profesionales y consistentes'],
+      reglas:['Contenido técnico diferenciador, no genérico','Explicar conceptos que el cliente necesita saber','Técnico pero accesible, sin jerga excesiva','Incluir datos y especificaciones cuando aplique','Responder preguntas técnicas con profundidad','Usar imágenes de proceso y materiales reales','Evitar contenido promocional disfrazado de técnico']
     },
     posts:[
-      {sem:1,dia:'Martes',  copy:'Hay una diferencia entre imprimir y comunicar.\n\nImprimir es técnico: tintas, materiales, medidas, resolución.\n\nComunicar es estratégico: mensaje, audiencia, objetivo, resultado.\n\nMuchas empresas contratan impresión cuando en realidad necesitan comunicación.\n\nCuando los dos mundos se conectan bien, el resultado no es solo un material impreso.\n\nEs una herramienta que trabaja por la marca.'},
-      {sem:1,dia:'Jueves',  copy:'Antes de elegir el material para tu publicidad, hay una pregunta clave:\n\n¿Dónde va a estar expuesto?\n\nNo es lo mismo imprimir para:\n\n- interior con luz controlada,\n- exterior bajo sol directo,\n- zona con lluvia o humedad,\n- espacio temporal de pocos días,\n- instalación permanente de años.\n\nCada condición requiere un material distinto.\n\nElegir el material correcto es también eficiencia: el material dura lo que debe durar y no más.'},
-      {sem:1,dia:'Sábado',  copy:'En publicidad exterior, el tamaño importa.\n\nPero no en la forma en que mucha gente cree.\n\nNo siempre más grande es mejor.\n\nLo que importa es la relación entre:\n\n- tamaño del mensaje,\n- distancia de lectura,\n- velocidad del espectador,\n- contexto visual del entorno.\n\nUna pieza bien calculada se lee bien aunque sea pequeña.\n\nUna pieza mal calculada puede ser enorme y pasar desapercibida.\n\nLa legibilidad es el primer objetivo en publicidad exterior.'},
-      {sem:2,dia:'Martes',  copy:'Tres tecnologías que han cambiado lo que es posible imprimir:\n\n1. DTF (Direct to Film): permite transferir diseños a textiles sin limitaciones de color ni cantidad mínima.\n\n2. UV: imprime sobre materiales rígidos como acrílico, madera o metal con resultados de alta resolución.\n\n3. Sublimación: convierte cualquier diseño en parte del tejido, ideal para uniformes y artículos promocionales.\n\nCada tecnología tiene sus casos ideales.\n\nElegir bien depende del material, el uso y el volumen del proyecto.'},
-      {sem:2,dia:'Jueves',  copy:'La señalética tiene un trabajo muy específico:\n\nguiar.\n\nNo decorar. No impresionar. Guiar.\n\nCuando alguien llega a un espacio nuevo, su cerebro busca de forma automática:\n\n- dónde estoy,\n- a dónde puedo ir,\n- qué debo hacer,\n- qué está prohibido.\n\nUna buena señalética responde esas preguntas antes de que el visitante las formule.\n\nCuando la señalética falla, hay confusión, fricción y una experiencia que empieza mal.'},
-      {sem:2,dia:'Sábado',  copy:'Impresión en gran formato: cinco cosas que vale la pena revisar antes de producir.\n\n1. Resolución del archivo: mínimo 100 dpi a escala real para exteriores.\n2. Perfil de color: RGB para pantalla, CMYK para impresión.\n3. Sangrados: dejar al menos 5 cm de margen en piezas grandes.\n4. Tipo de ojales o acabado: depende del método de instalación.\n5. Material: lona, mesh, vinil o papel según el entorno y tiempo de uso.\n\nPreparar bien el archivo evita retrasos y sorpresas en el resultado final.'},
-      {sem:3,dia:'Martes',  copy:'La rotulación vehicular tiene una lógica diferente a otros formatos.\n\nEl vehículo se mueve. El espectador también.\n\nEso significa que el tiempo de lectura es de segundos, a veces fracciones.\n\nPor eso una buena rotulación debe:\n\n- tener un mensaje principal muy claro,\n- usar tipografía legible a distancia y en movimiento,\n- aprovechar las superficies disponibles sin saturar,\n- incluir un dato de contacto fácil de recordar.\n\nUn vehículo bien rotulado es publicidad en movimiento que trabaja 24 horas.'},
-      {sem:3,dia:'Jueves',  copy:'Los colores en impresión no siempre se ven igual que en pantalla.\n\nHay razones técnicas:\n\n- Las pantallas usan luz (RGB). La impresión usa tintas (CMYK).\n- Algunos colores de pantalla no tienen equivalente en tinta.\n- La superficie del material también afecta cómo se percibe el color.\n\nPor eso en proyectos donde el color es crítico para la marca, lo correcto es trabajar con valores Pantone o hacer una prueba antes de producir.\n\nCuidar el color es cuidar la identidad de la marca.'},
-      {sem:3,dia:'Sábado',  copy:'Hay proyectos que requieren más que imprimir.\n\nRequieren instalar.\n\nY la instalación tiene sus propias variables:\n\n- tipo de superficie (concreto, cristal, metal, tela, madera),\n- condiciones del entorno (interior, exterior, altura, clima),\n- método de fijación (pegamento, tornillos, tensores, ojales),\n- tiempo disponible para instalar.\n\nUn proyecto bien instalado puede durar años.\n\nUno mal instalado puede dañarse en semanas y afectar la imagen de la marca.'},
-      {sem:4,dia:'Martes',  copy:'El control de color en impresión es una disciplina en sí misma.\n\nNo basta con "que se vea parecido".\n\nCuando una marca tiene lineamientos de color definidos, cada pieza impresa debe respetar esos valores.\n\nPara eso existen herramientas: perfiles ICC, calibración de equipos, referencias Pantone, pruebas de color.\n\nEn proyectos corporativos, el color incorrecto puede representar una inconsistencia de marca que afecta la percepción del cliente.\n\nLa calidad en impresión también se mide en consistencia.'},
-      {sem:4,dia:'Jueves',  copy:'¿Cuál es la diferencia entre vinil y lona?\n\nLona: tela con recubrimiento, más resistente, ideal para exteriores largos, se puede tensar.\n\nVinil: más delgado y flexible, ideal para cristales, vehículos y superficies lisas.\n\n¿Y el mesh?\n\nMesh: lona perforada que permite el paso del aire, ideal para grandes superficies exteriores donde el viento puede ser un problema.\n\nCada material tiene su caso ideal. Elegir bien es parte del servicio.'},
-      {sem:4,dia:'Sábado',  copy:'Cuatro semanas publicando sobre impresión, señalética y publicidad visual.\n\nLo que más se ha confirmado:\n\nLas empresas que tratan la comunicación visual como inversión obtienen mejores resultados.\n\nLas que la tratan como gasto terminan repitiendo el trabajo.\n\nLa diferencia está en el proceso:\n\nobjetivo claro → material correcto → producción de calidad → instalación adecuada → resultado que dura.\n\nEn Impresionante del Sureste trabajamos así.'},
+      {sem:1,dia:'Martes',hora:'9:00 AM',copy:'No todos los materiales sirven para exterior.\n\nAntes de elegir entre lona, vinil, microperforado o material rígido, hay que revisar el contexto:\n\n- sol,\n- lluvia,\n- superficie,\n- tiempo de uso,\n- distancia de lectura,\n- forma de instalación.\n\nEl material correcto no siempre es el más caro.\n\nEs el que resuelve mejor el lugar donde se va a usar.\n\nSi tu publicidad va a estar expuesta al clima, la decisión técnica importa tanto como el diseño.'},
+      {sem:1,dia:'Miércoles',hora:'10:00 AM',copy:'Gran formato no significa solo imprimir grande.\n\nTambién implica pensar en:\n\n- legibilidad,\n- distancia,\n- resolución,\n- color,\n- material,\n- instalación,\n- durabilidad.\n\nUna pieza puede verse bien en pantalla y aun así fallar cuando se instala.\n\nPor eso, antes de producir, conviene revisar archivo, medidas, superficie y objetivo.\n\nLa calidad final empieza mucho antes de imprimir.'},
+      {sem:1,dia:'Jueves',hora:'9:00 AM',copy:'Antes de imprimir, el archivo también debe revisarse.\n\nUn diseño puede verse bien en pantalla, pero tener problemas al producirse si no cumple con puntos básicos:\n\n- medidas correctas,\n- buena resolución,\n- textos legibles,\n- colores preparados,\n- márgenes seguros,\n- imágenes de calidad,\n- formato adecuado para producción.\n\nCuando el archivo llega listo, se reducen errores, retrasos y retrabajos.\n\nLa calidad final no empieza en la máquina.\n\nEmpieza desde el archivo que se entrega.'},
+      {sem:2,dia:'Martes',hora:'9:00 AM',copy:'Vinil, lona o material rígido: no son lo mismo.\n\nCada uno responde a una necesidad distinta.\n\nLa lona suele funcionar bien para comunicación visible, eventos, fachadas temporales o promociones.\n\nEl vinil es útil cuando necesitas adherir la imagen a una superficie: cristal, pared, vehículo o exhibidor.\n\nLos materiales rígidos ayudan cuando se busca mayor presencia, estructura o una imagen más firme y profesional.\n\nAntes de elegir material, hay que entender dónde va a vivir la pieza.'},
+      {sem:2,dia:'Miércoles',hora:'10:00 AM',copy:'El vinil no falla solo.\n\nMuchas veces el problema está en la superficie.\n\nAntes de instalar, hay que revisar:\n\n- si está limpia,\n- si tiene polvo,\n- si tiene humedad,\n- si está porosa,\n- si tiene grasa,\n- si recibe mucho sol,\n- si la textura permite adherencia.\n\nUna buena instalación depende tanto del material como de la preparación.\n\nPor eso, cuando se trata de publicidad visual, no basta con imprimir bien.\n\nTambién hay que instalar correctamente.'},
+      {sem:2,dia:'Jueves',hora:'9:00 AM',copy:'Un error común en gran formato es diseñar como si todos fueran a verlo de cerca.\n\nPero muchas piezas se leen desde la calle, desde un auto, desde una banqueta o desde varios metros de distancia.\n\nPor eso hay que revisar:\n\n- tamaño de letra,\n- contraste,\n- cantidad de texto,\n- jerarquía del mensaje,\n- ubicación,\n- velocidad con la que pasa el cliente.\n\nEn gran formato, menos texto y más claridad casi siempre funciona mejor.'},
+      {sem:3,dia:'Martes',hora:'9:00 AM',copy:'Una buena impresión puede arruinarse con una mala instalación.\n\nAlgunos errores comunes:\n\n- no medir correctamente,\n- no limpiar la superficie,\n- elegir material incorrecto,\n- no considerar clima o exposición,\n- instalar con prisa,\n- no revisar nivelación,\n- no contemplar mantenimiento.\n\nLa instalación es parte del resultado final.\n\nNo es un paso secundario.\n\nCuando una pieza visual queda bien instalada, se ve mejor, dura más y protege la imagen de la marca.'},
+      {sem:3,dia:'Miércoles',hora:'10:00 AM',copy:'Un vehículo rotulado puede trabajar como publicidad todos los días.\n\nPero para que funcione bien, hay que cuidar varios puntos:\n\n- diseño legible,\n- datos de contacto claros,\n- material adecuado,\n- preparación de superficie,\n- instalación correcta,\n- ubicación de la información,\n- resistencia al uso diario.\n\nLa rotulación vehicular no es solo poner un logo en una unidad.\n\nEs convertir un vehículo en un medio de visibilidad para la marca.'},
+      {sem:3,dia:'Jueves',hora:'9:00 AM',copy:'La publicidad exterior exige más que una buena impresión.\n\nDebe resistir condiciones reales:\n\n- sol,\n- lluvia,\n- polvo,\n- viento,\n- humedad,\n- limpieza,\n- roce,\n- tiempo de exposición.\n\nCuando se elige un material incorrecto, el problema aparece después: decoloración, desprendimiento, desgaste o necesidad de reinstalar.\n\nPor eso conviene pensar en durabilidad desde el inicio.\n\nNo todo material sirve para todo espacio.'},
+      {sem:4,dia:'Martes',hora:'9:00 AM',copy:'La calidad de impresión no se mide solo por que "se vea bonito".\n\nTambién se nota en:\n\n- nitidez,\n- color,\n- resolución,\n- material,\n- acabado,\n- resistencia,\n- instalación,\n- consistencia con la marca.\n\nUn archivo puede verse bien en pantalla, pero necesitar ajustes para producirse correctamente.\n\nPor eso es importante revisar medidas, resolución y uso final antes de imprimir.\n\nLa calidad empieza en el archivo y termina en la instalación.'},
+      {sem:4,dia:'Miércoles',hora:'10:00 AM',copy:'La durabilidad de una pieza visual no depende solo del material.\n\nTambién depende de:\n\n- dónde se instala,\n- cómo se instala,\n- cuánto sol recibe,\n- si está expuesta a lluvia,\n- si se limpia correctamente,\n- si tiene roce o movimiento,\n- si el material era el adecuado para ese uso.\n\nPensar en durabilidad desde el inicio evita retrabajos y protege la inversión del cliente.'},
+      {sem:4,dia:'Jueves',hora:'9:00 AM',copy:'Cuatro semanas hablando de materiales, instalación y publicidad visual.\n\nLo que más se confirma:\n\nLas empresas que piensan antes de imprimir obtienen mejores resultados.\n\nEligen mejor el material.\nRevisan el archivo.\nCuidan la instalación.\nPiensan en durabilidad.\n\nLa diferencia entre un trabajo que dura y uno que hay que repetir casi siempre está en la decisión técnica que se tomó al inicio.\n\nEn Impresionante del Sureste trabajamos así.'}
     ]
   },
-  jessica:{
+  jessica: {
     nombre:'Jessica', rol:'Conexión y Comunidad', color:'#D97706', emoji:'👩‍🎨', pin:'9146',
     auditoria:{
       diagnostico:'Perfil con potencial de conexión humana y comunidad local. Debe posicionarse como el puente entre Impresionante y los negocios del sureste, especialmente PyMEs y emprendedores. Su contenido debe ser cálido, cercano y orientado a la comunidad empresarial de Chiapas.',
       titular:'Asesora Comercial en Impresionante del Sureste | Ayudo a negocios del sureste a verse más profesionales y ganar visibilidad en su mercado',
-      acercaDe:`Acompaño a negocios del sureste de México a fortalecer su imagen y ganar visibilidad en su mercado local.
-
-Trabajo con emprendedores, PyMEs y empresas establecidas que quieren verse más profesionales, comunicar mejor y convertir su presencia física en una ventaja competitiva.
-
-Me interesa conectar con personas que están construyendo sus negocios y entienden que la imagen también es parte de crecer.
-
-Si tienes un negocio en Chiapas y quieres que tu marca se vea a la altura de lo que ofreces, podemos conversar.`,
-      experiencia:`• Asesora comercial - Impresionante del Sureste: atención y desarrollo de clientes locales, asesoría en publicidad visual e imagen de marca para negocios del sureste.
-• Agregar sectores atendidos: comercio local, restaurantes, escuelas, eventos, negocios de servicio.
-• Destacar enfoque en comunidad: negocios locales, emprendedores, PyMEs de Chiapas.`,
-      habilidades:['Ventas','Atención al cliente','Desarrollo de negocios locales','Publicidad visual','Imagen de marca','Comunicación','Emprendimiento','PyMEs','Comunidad empresarial','Redes sociales','Prospeccion','Servicio al cliente'],
-      destacados:`1) Post sobre negocios locales que se ven profesionales.
-2) Historia de un cliente del sureste con resultado visual.
-3) Recurso: checklist de imagen para PyMEs.`,
+      acercaDe:'Acompaño a negocios del sureste de México a fortalecer su imagen y ganar visibilidad en su mercado local.\n\nTrabajo con emprendedores, PyMEs y empresas establecidas que quieren verse más profesionales, comunicar mejor y convertir su presencia física en una ventaja competitiva.\n\nMe interesa conectar con personas que están construyendo sus negocios y entienden que la imagen también es parte de crecer.\n\nSi tienes un negocio en Chiapas y quieres que tu marca se vea a la altura de lo que ofreces, podemos conversar.',
+      experiencia:'- Asesora comercial - Impresionante del Sureste: atención y desarrollo de clientes locales, asesoría en publicidad visual e imagen de marca para negocios del sureste.\n- Agregar sectores atendidos: comercio local, restaurantes, escuelas, eventos, negocios de servicio.\n- Destacar enfoque en comunidad: negocios locales, emprendedores, PyMEs de Chiapas.',
+      habilidades:['Ventas','Atención al cliente','Desarrollo de negocios locales','Publicidad visual','Imagen de marca','Comunicación','Emprendimiento','PyMEs','Comunidad empresarial','Redes sociales','Prospección','Servicio al cliente'],
+      destacados:'1) Post sobre negocios locales que se ven profesionales.\n2) Historia de un cliente del sureste con resultado visual.\n3) Recurso: checklist de imagen para PyMEs.',
       red:'Conectar con emprendedores, dueños de negocio local, cámaras de comercio, asociaciones empresariales y comunidades de negocios en Tuxtla Gutiérrez y Chiapas.',
       prioridad:'Construir comunidad local. Ser la cara más cercana y accesible de Impresionante para el mercado local y PyMEs.',
       checklist:['Foto cálida y profesional que transmita cercanía','Banner de Impresionante con enfoque en negocios locales','Titular orientado a negocios del sureste','Acerca de en primera persona con tono cercano','Experiencia con enfoque en comunidad y negocios locales','Destacados con recursos útiles para PyMEs','Actividad constante con contenido cercano y accesible','Habilidades de atención, ventas y comunidad','Recomendaciones de clientes locales','Vinculación con grupos y comunidades empresariales locales'],
-      reglas:['Tono cálido y cercano, no corporativo frío','Hablar de negocios locales y realidad del sureste','Contenido que conecte emocionalmente antes de vender','Compartir historias reales de negocios cuando sea posible','Responder con empatía y seguimiento genuino','Conectar con comunidades y grupos locales','Evitar lenguaje demasiado técnico — ser accesible']
+      reglas:['Tono cálido y cercano, no corporativo frío','Hablar de negocios locales y realidad del sureste','Contenido que conecte emocionalmente antes de vender','Compartir historias reales de negocios cuando sea posible','Responder con empatía y seguimiento genuino','Conectar con comunidades y grupos locales','Evitar lenguaje demasiado técnico, ser accesible']
     },
     posts:[
-      {sem:1,dia:'Miércoles',copy:'Hay negocios que se ven establecidos desde el primer momento.\n\nY hay negocios que, aunque llevan años operando, todavía no transmiten esa solidez.\n\nLa diferencia muchas veces no está en el producto.\n\nEstá en cómo se ve la marca:\n\n- la fachada,\n- el local,\n- los materiales,\n- la señalética,\n- la consistencia visual.\n\nLa primera impresión no ocurre en redes.\n\nOcurre en el mundo físico.\n\nY ahí es donde la publicidad visual hace su trabajo.'},
-      {sem:1,dia:'Viernes', copy:'Emprender en el sureste de México tiene sus retos.\n\nUno de ellos es la visibilidad.\n\nNo todos los negocios tienen presupuesto para grandes campañas.\n\nPero todos pueden mejorar cómo se ven.\n\nUna fachada clara. Un letrero legible. Una promoción bien presentada. Materiales consistentes.\n\nNo se necesita invertir en todo al mismo tiempo.\n\nSe puede empezar por lo que más impacto tiene en tu tipo de negocio.\n\nLa visibilidad es un proceso, no un evento.'},
-      {sem:1,dia:'Domingo', copy:'Cuando un cliente ve tu negocio por primera vez, en segundos decide si entra o sigue de largo.\n\nEsa decisión no está basada solo en el producto.\n\nEstá basada en:\n\n- cómo se ve el lugar,\n- qué tan claro es el mensaje,\n- qué tan profesional parece,\n- si genera confianza o no.\n\nLa publicidad visual es parte de esa primera conversación.\n\nY la primera conversación importa.'},
-      {sem:2,dia:'Miércoles',copy:'Una cosa que he aprendido trabajando con negocios del sureste:\n\nno importa el tamaño de la empresa.\n\nImporta qué tan bien comunica lo que hace.\n\nHe visto negocios pequeños que se ven más profesionales que empresas grandes.\n\nY he visto empresas grandes que pierden clientes porque su comunicación visual es confusa.\n\nLa imagen de tu marca es una decisión, no un resultado automático.'},
-      {sem:2,dia:'Viernes', copy:'¿Qué hace que un negocio parezca confiable antes de que el cliente hable con alguien?\n\nVarias cosas:\n\n- que su nombre sea visible y claro,\n- que su espacio esté ordenado,\n- que sus materiales estén en buen estado,\n- que haya consistencia entre lo que promete y lo que muestra.\n\nLa confianza se construye en detalles.\n\nY la publicidad visual es uno de esos detalles que muchas veces se descuida.'},
-      {sem:2,dia:'Domingo', copy:'En Chiapas hay negocios increíbles que nadie conoce.\n\nNo porque no sean buenos.\n\nSino porque no se hacen visibles.\n\nLa visibilidad no es vanidad.\n\nEs parte del proceso de ventas.\n\nSi nadie sabe que existes, nadie puede comprarte.\n\nY si te ven pero no entienden qué haces, tampoco.\n\nUna buena comunicación visual ayuda a resolver ese problema.'},
-      {sem:3,dia:'Miércoles',copy:'Hay algo que muchos negocios pasan por alto:\n\nel cliente que ya tienes también necesita ser recordado constantemente de que estás ahí.\n\nLa publicidad visual no es solo para atraer nuevos clientes.\n\nTambién sirve para:\n\n- recordar a clientes actuales que tienes novedades,\n- comunicar promociones en el punto de venta,\n- reforzar la imagen de la marca en cada visita.\n\nLa comunicación visual es parte del servicio, no un extra.'},
-      {sem:3,dia:'Viernes', copy:'He notado que cuando un negocio cuida su imagen visual, también cuida otros aspectos.\n\nNo es coincidencia.\n\nLas empresas que invierten en verse bien también suelen:\n\n- cuidar la atención al cliente,\n- tener procesos más ordenados,\n- pensar más en la experiencia del comprador.\n\nLa imagen visual es un reflejo de cómo una empresa se percibe a sí misma.\n\nY eso se nota.'},
-      {sem:3,dia:'Domingo', copy:'Una pregunta para negocios del sureste:\n\n¿Tu marca se ve igual de bien en todos los puntos donde aparece?\n\n- ¿En la fachada?\n- ¿En los materiales impresos?\n- ¿En los vehículos?\n- ¿En las redes sociales?\n- ¿En el punto de venta?\n\nLa consistencia visual construye reconocimiento.\n\nY el reconocimiento construye confianza.\n\nSi hay diferencias entre cómo aparece tu marca en distintos lugares, es una oportunidad de mejora.'},
-      {sem:4,dia:'Miércoles',copy:'Ser visible no es lo mismo que ser reconocible.\n\nPuedes aparecer en muchos lugares y que nadie te identifique.\n\nEl reconocimiento viene de la consistencia:\n\n- el mismo color,\n- la misma tipografía,\n- el mismo tono,\n- el mismo estilo visual.\n\nCuando una marca es consistente, cada punto de contacto refuerza a los demás.\n\nY el cliente empieza a reconocerla sin necesitar leer el nombre.'},
-      {sem:4,dia:'Viernes', copy:'Cuatro semanas compartiendo ideas sobre visibilidad, imagen y comunicación visual.\n\nLo que más me llevo:\n\nlas marcas que mejor se ven no siempre son las que más invierten.\n\nSon las que mejor piensan qué quieren comunicar y dónde.\n\nEn Impresionante del Sureste ayudamos a negocios de todos los tamaños a mejorar su presencia visual.\n\nSi tienes un proyecto o una duda, puedes escribirme.'},
-      {sem:4,dia:'Domingo', copy:'Cerrar un mes de contenido es también una forma de hacer comunidad.\n\nGracias a quienes comentaron, compartieron o simplemente leyeron.\n\nEn LinkedIn se construyen relaciones antes de negocios.\n\nY las relaciones se construyen con consistencia, valor y presencia.\n\nEso es lo que seguiremos haciendo desde Impresionante del Sureste.\n\nSi quieres conectar, aquí estamos.'},
+      {sem:1,dia:'Martes',hora:'9:00 AM',copy:'Hay negocios que se ven establecidos desde el primer momento.\n\nY hay negocios que, aunque llevan años operando, todavía no transmiten esa solidez.\n\nLa diferencia muchas veces no está en el producto.\n\nEstá en cómo se ve la marca:\n\n- la fachada,\n- el local,\n- los materiales,\n- la señalética,\n- la consistencia visual.\n\nLa primera impresión no ocurre en redes.\n\nOcurre en el mundo físico.\n\nY ahí es donde la publicidad visual hace su trabajo.'},
+      {sem:1,dia:'Miércoles',hora:'10:00 AM',copy:'Emprender en el sureste de México tiene sus retos.\n\nUno de ellos es la visibilidad.\n\nNo todos los negocios tienen presupuesto para grandes campañas.\n\nPero todos pueden mejorar cómo se ven.\n\nUna fachada clara. Un letrero legible. Una promoción bien presentada. Materiales consistentes.\n\nNo se necesita invertir en todo al mismo tiempo.\n\nSe puede empezar por lo que más impacto tiene en tu tipo de negocio.\n\nLa visibilidad es un proceso, no un evento.'},
+      {sem:1,dia:'Jueves',hora:'9:00 AM',copy:'Cuando un cliente ve tu negocio por primera vez, en segundos decide si entra o sigue de largo.\n\nEsa decisión no está basada solo en el producto.\n\nEstá basada en:\n\n- cómo se ve el lugar,\n- qué tan claro es el mensaje,\n- qué tan profesional parece,\n- si genera confianza o no.\n\nLa publicidad visual es parte de esa primera conversación.\n\nY la primera conversación importa.'},
+      {sem:2,dia:'Martes',hora:'9:00 AM',copy:'Una cosa que he aprendido trabajando con negocios del sureste:\n\nno importa el tamaño de la empresa.\n\nImporta qué tan bien comunica lo que hace.\n\nHe visto negocios pequeños que se ven más profesionales que empresas grandes.\n\nY he visto empresas grandes que pierden clientes porque su comunicación visual es confusa o inconsistente.\n\nLa imagen de tu marca es una decisión, no un resultado automático.'},
+      {sem:2,dia:'Miércoles',hora:'10:00 AM',copy:'¿Qué hace que un negocio parezca confiable antes de que el cliente hable con alguien?\n\nVarias cosas:\n\n- que su nombre sea visible y claro,\n- que su espacio esté ordenado,\n- que sus materiales estén en buen estado,\n- que haya consistencia entre lo que promete y lo que muestra.\n\nLa confianza se construye en detalles.\n\nY la publicidad visual es uno de esos detalles que muchas veces se descuida.'},
+      {sem:2,dia:'Jueves',hora:'9:00 AM',copy:'En Chiapas hay negocios increíbles que nadie conoce.\n\nNo porque no sean buenos.\n\nSino porque no se hacen visibles.\n\nLa visibilidad no es vanidad.\n\nEs parte del proceso de ventas.\n\nSi nadie sabe que existes, nadie puede comprarte.\n\nY si te ven pero no entienden qué haces, tampoco.\n\nUna buena comunicación visual ayuda a resolver ese problema.'},
+      {sem:3,dia:'Martes',hora:'9:00 AM',copy:'Hay algo que muchos negocios pasan por alto:\n\nel cliente que ya tienes también necesita ser recordado constantemente de que estás ahí.\n\nLa publicidad visual no es solo para atraer nuevos clientes.\n\nTambién sirve para:\n\n- recordar a clientes actuales que tienes novedades,\n- comunicar promociones en el punto de venta,\n- reforzar la imagen de la marca en cada visita.\n\nLa comunicación visual es parte del servicio, no un extra.'},
+      {sem:3,dia:'Miércoles',hora:'10:00 AM',copy:'He notado que cuando un negocio cuida su imagen visual, también cuida otros aspectos.\n\nNo es coincidencia.\n\nLas empresas que invierten en verse bien también suelen:\n\n- cuidar la atención al cliente,\n- tener procesos más ordenados,\n- pensar más en la experiencia del comprador.\n\nLa imagen visual es un reflejo de cómo una empresa se percibe a sí misma.\n\nY eso se nota.'},
+      {sem:3,dia:'Jueves',hora:'9:00 AM',copy:'Una pregunta para negocios del sureste:\n\n¿Tu marca se ve igual de bien en todos los puntos donde aparece?\n\n- ¿En la fachada?\n- ¿En los materiales impresos?\n- ¿En los vehículos?\n- ¿En las redes sociales?\n- ¿En el punto de venta?\n\nLa consistencia visual construye reconocimiento.\n\nY el reconocimiento construye confianza.\n\nSi hay diferencias entre cómo aparece tu marca en distintos lugares, es una oportunidad de mejora.'},
+      {sem:4,dia:'Martes',hora:'9:00 AM',copy:'Ser visible no es lo mismo que ser reconocible.\n\nPuedes aparecer en muchos lugares y que nadie te identifique.\n\nEl reconocimiento viene de la consistencia:\n\n- el mismo color,\n- la misma tipografía,\n- el mismo tono,\n- el mismo estilo visual.\n\nCuando una marca es consistente, cada punto de contacto refuerza a los demás.\n\nY el cliente empieza a reconocerla sin necesitar leer el nombre.'},
+      {sem:4,dia:'Miércoles',hora:'10:00 AM',copy:'Cuatro semanas compartiendo ideas sobre visibilidad, imagen y comunicación visual.\n\nLo que más me llevo:\n\nlas marcas que mejor se ven no siempre son las que más invierten.\n\nSon las que mejor piensan qué quieren comunicar y dónde.\n\nEn Impresionante del Sureste ayudamos a negocios de todos los tamaños a mejorar su presencia visual.\n\nSi tienes un proyecto o una duda, puedes escribirme.'},
+      {sem:4,dia:'Jueves',hora:'9:00 AM',copy:'Cerrar un mes de contenido es también una forma de hacer comunidad.\n\nGracias a quienes comentaron, compartieron o simplemente leyeron.\n\nEn LinkedIn se construyen relaciones antes de negocios.\n\nY las relaciones se construyen con consistencia, valor y presencia.\n\nEso es lo que seguiremos haciendo desde Impresionante del Sureste.\n\nSi quieres conectar, aquí estamos.'}
     ]
   }
+};
+
+var EXTRA={"marilyn": [["Para quienes trabajan en marketing, compras o dirección comercial: ¿qué valoran más al elegir un proveedor de publicidad visual: rapidez, calidad, asesoría o instalación?", ["#PublicidadVisual", "#BrandingCorporativo", "#VentasB2B", "#MarketingB2B", "#Chiapas"]], ["Si compras publicidad para tu empresa: ¿compras por precio o por resultado?", ["#VentasB2B", "#Branding", "#PublicidadVisual", "#ComprasB2B", "#ImpresionDigital"]], ["¿Tu marca comunica lo que debe en los primeros 5 segundos?", ["#ComunicacionVisual", "#PublicidadVisual", "#MarcaB2B", "#Impresionante", "#Chiapas"]], ["¿Tu proveedor actual cumple con estos 6 criterios?", ["#ComprasB2B", "#ProveedorConfiable", "#PublicidadVisual", "#VentasB2B", "#Chiapas"]], ["¿Tu última compra de publicidad fue una decisión estratégica o una urgencia?", ["#EstrategiaDeMarketing", "#PublicidadVisual", "#BrandingB2B", "#ComprasB2B", "#ImpresionDigital"]], ["¿Has tenido que repetir un trabajo de publicidad visual por elegir solo por precio?", ["#GestionDeRiesgo", "#ComprasB2B", "#PublicidadVisual", "#VentasB2B", "#Chiapas"]], ["¿En cuántos puntos físicos aparece tu marca y todos comunican lo mismo?", ["#BrandingCorporativo", "#IdentidadDeMarca", "#ComunicacionVisual", "#MarketingB2B", "#Impresionante"]], ["¿Cómo defines tú la confianza con un proveedor B2B antes de contratar?", ["#VentasB2B", "#ConfianzaComercial", "#PublicidadVisual", "#Liderazgo", "#Chiapas"]], ["¿Tu proveedor actual te hace esas tres preguntas antes de producir?", ["#CasoDeExito", "#PublicidadVisual", "#BrandingCorporativo", "#VentasB2B", "#Impresionante"]], ["¿Tu próxima campaña visual empieza con el objetivo o con el presupuesto?", ["#EstrategiaDeMarketing", "#CampanaVisual", "#PublicidadB2B", "#BrandingCorporativo", "#Chiapas"]], ["¿Cuál es el punto de contacto visual de tu marca que más necesita mejorar?", ["#Branding", "#IdentidadDeMarca", "#PublicidadVisual", "#MarketingB2B", "#Impresionante"]], ["¿Qué aprendizaje te llevas tú este mes sobre comunicación de marca?", ["#ComunicacionVisual", "#PublicidadVisual", "#BrandingB2B", "#Impresionante", "#Chiapas"]]], "frida": [["¿Tu marca es reconocible para quien la ve por primera vez?", ["#VisibilidadDeMarca", "#PublicidadVisual", "#MarketingB2B", "#Branding", "#Chiapas"]], ["¿Tu proveedor te hace estas preguntas antes de cotizar?", ["#Cotizacion", "#PublicidadVisual", "#VentasB2B", "#MarketingOperativo", "#Chiapas"]], ["¿Tu fachada responde esas tres preguntas en 5 segundos?", ["#VisibilidadDeMarca", "#PublicidadVisual", "#Fachada", "#MarketingLocal", "#Chiapas"]], ["¿Tu marca destaca frente a tu competencia en el espacio físico?", ["#VisibilidadDeMarca", "#Competencia", "#PublicidadVisual", "#MarketingB2B", "#Chiapas"]], ["¿Tu marca es consistente en todos sus puntos de contacto físicos?", ["#VisibilidadDeMarca", "#ConsistenciaVisual", "#MarketingLocal", "#Branding", "#Chiapas"]], ["¿Cada elemento visual de tu punto de venta tiene una función definida?", ["#PuntoDeVenta", "#PublicidadVisual", "#VentasRetail", "#MarketingLocal", "#Chiapas"]], ["¿Cuántos de esos puntos físicos de tu marca están comunicando bien hoy?", ["#VisibilidadDeMarca", "#MarketingFisico", "#PublicidadVisual", "#OmnichannelMarketing", "#Chiapas"]], ["¿Cuántos de estos errores tiene tu comunicación visual actual?", ["#ErroresDeMarketing", "#PublicidadVisual", "#VisibilidadDeMarca", "#Branding", "#Chiapas"]], ["¿Tu comunicación visual es clara o está intentando decir demasiado?", ["#DisenoVisual", "#ComunicacionVisual", "#PublicidadVisual", "#MarketingSimple", "#Chiapas"]], ["¿Cuál de estas tres acciones podrías aplicar esta semana?", ["#PresenciaDeMarca", "#MarketingLocal", "#PublicidadVisual", "#PyMEs", "#Chiapas"]], ["¿La publicidad física comunica lo que quieres que el cliente perciba?", ["#PublicidadFisica", "#ComunicacionVisual", "#MarketingB2B", "#VisibilidadDeMarca", "#Chiapas"]], ["¿Tu proveedor entiende primero el objetivo o empieza con el material?", ["#PublicidadVisual", "#SolucionVisual", "#MarketingB2B", "#Impresionante", "#Chiapas"]]], "luisdiego": [["¿Tu proveedor pregunta estas condiciones antes de recomendar un material?", ["#MaterialesDeImpresion", "#PublicidadExterior", "#Vinil", "#Lona", "#Chiapas"]], ["¿Tu próximo proyecto de gran formato tiene estos factores revisados?", ["#GranFormato", "#ImpresionDigital", "#PublicidadVisual", "#Materiales", "#Chiapas"]], ["¿Tu equipo de diseño conoce las especificaciones técnicas para producción?", ["#PreparacionDeArchivo", "#ImpresionDigital", "#DisenoGrafico", "#GranFormato", "#Chiapas"]], ["¿Conoces las diferencias entre estos materiales antes de cotizar?", ["#MaterialesGraficos", "#Vinil", "#Lona", "#ImpresionDigital", "#Chiapas"]], ["¿Tu proveedor revisa la superficie antes de instalar?", ["#InstalacionPublicitaria", "#Vinil", "#PublicidadVisual", "#Mantenimiento", "#Chiapas"]], ["¿Tu señalética se lee bien desde la distancia real de tu cliente?", ["#GranFormato", "#Legibilidad", "#DisenoParaImpresion", "#PublicidadExterior", "#Chiapas"]], ["¿Tu proveedor incluye la instalación como parte del proceso?", ["#InstalacionPublicitaria", "#CalidadDeImpresion", "#PublicidadVisual", "#Materiales", "#Chiapas"]], ["¿Tus vehículos están trabajando como publicidad o solo como transporte?", ["#RotulacionVehicular", "#PublicidadMovil", "#GranFormato", "#Flotillas", "#Chiapas"]], ["¿Tu publicidad exterior está hecha con el material correcto para su ubicación?", ["#DurabilidadDeMateriales", "#PublicidadExterior", "#MaterialesGraficos", "#GranFormato", "#Chiapas"]], ["¿Tu proveedor revisa el archivo antes de producir?", ["#CalidadDeImpresion", "#ImpresionDigital", "#PublicidadVisual", "#GranFormato", "#Chiapas"]], ["¿Cuánto dura tu publicidad visual antes de necesitar reemplazo?", ["#DurabilidadDeMateriales", "#InstalacionPublicitaria", "#PublicidadExterior", "#MantenimientoVisual", "#Chiapas"]], ["¿Tu proceso de compra incluye estas decisiones técnicas?", ["#ImpresionTecnica", "#PublicidadVisual", "#CalidadDeImpresion", "#Impresionante", "#Chiapas"]]], "jessica": [["¿Tu negocio transmite la solidez que merece desde el primer vistazo?", ["#PrimeraImpresion", "#ImagenDeMarca", "#PublicidadVisual", "#NegociosLocales", "#Chiapas"]], ["¿Por cuál elemento visual empezarías a mejorar tu negocio?", ["#Emprendimiento", "#PyMEs", "#VisibilidadDeMarca", "#NegociosLocales", "#Chiapas"]], ["¿Qué le dice tu negocio al cliente en los primeros 5 segundos?", ["#DecisionDeCompra", "#ImagenDeMarca", "#PublicidadVisual", "#NegociosLocales", "#Chiapas"]], ["¿La imagen de tu negocio refleja la calidad de lo que ofreces?", ["#ImagenDeMarca", "#PyMEs", "#PublicidadVisual", "#NegociosLocales", "#Chiapas"]], ["¿Tu negocio genera confianza desde antes de que el cliente entre?", ["#ConfianzaDeMarca", "#ImagenDeNegocio", "#PublicidadVisual", "#NegociosLocales", "#Chiapas"]], ["¿Cuántas personas pasan frente a tu negocio sin saber qué ofreces?", ["#NegociosChiapas", "#VisibilidadLocal", "#PublicidadVisual", "#Tuxtla", "#Emprendimiento"]], ["¿Tu comunicación visual trabaja también para tus clientes actuales?", ["#RetencionDeClientes", "#PublicidadVisual", "#MarketingLocal", "#PuntoDeVenta", "#Chiapas"]], ["¿La imagen de tu negocio refleja el nivel de servicio que ofreces?", ["#CulturaEmpresarial", "#ImagenDeMarca", "#PublicidadVisual", "#CalidadDeServicio", "#Chiapas"]], ["¿En cuál punto tu marca necesita más coherencia visual?", ["#ConsistenciaVisual", "#IdentidadDeMarca", "#PublicidadVisual", "#NegociosLocales", "#Chiapas"]], ["¿Tu marca se reconoce sin necesitar leer el nombre?", ["#ReconocimientoDeMarca", "#IdentidadVisual", "#Branding", "#ConsistenciaVisual", "#Chiapas"]], ["¿Qué cambio visual haría más diferencia en tu negocio este mes?", ["#ImagenDeMarca", "#PublicidadVisual", "#NegociosChiapas", "#Impresionante", "#Tuxtla"]], ["¿Qué tema sobre imagen visual te gustaría explorar el próximo mes?", ["#Comunidad", "#LinkedIn", "#PublicidadVisual", "#NegociosChiapas", "#Impresionante"]]]};
+
+var CU=null;
+var STK='imp_v5';
+function ld(){try{return JSON.parse(localStorage.getItem(STK)||'{}')}catch(e){return{}}}
+function sv(d){localStorage.setItem(STK,JSON.stringify(d))}
+var ST=ld();
+function pk(a,i){return a+'_'+i}
+function isD(a,i){return!!ST[pk(a,i)]}
+function dAt(a,i){return ST[pk(a,i)]||null}
+function tog(a,i){
+  var k=pk(a,i);
+  if(ST[k])delete ST[k];
+  else ST[k]=new Date().toLocaleString('es-MX',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+  sv(ST);
+  rAsesor(a,null,true);
 }
 
-const INSIGHTS = [
-  {
-    "title": "Depth Score",
-    "text": "LinkedIn 2026 pondera mas dwell time, guardados, compartidos por mensaje privado y profundidad de comentarios que likes vacios."
-  },
-  {
-    "title": "Perfiles personales",
-    "text": "Los asesores deben ser el motor principal de alcance: el contenido personal suele superar por mucho a la pagina corporativa."
-  },
-  {
-    "title": "Enlaces externos",
-    "text": "Evitar URLs en el cuerpo del post. La publicacion debe entregar valor completo dentro de LinkedIn."
-  },
-  {
-    "title": "Formatos ganadores",
-    "text": "Carruseles PDF nativos de 6-9 laminas y videos nativos de menos de 30 segundos con subtitulos."
-  },
-  {
-    "title": "CTAs suaves",
-    "text": "Cerrar con preguntas reales de negocio. Evitar 'comenta SI' o cualquier engagement bait."
-  },
-  {
-    "title": "Comentarios profundos",
-    "text": "Responder con seguimiento, datos o una pregunta adicional para crear conversaciones multicapa."
-  },
-  {
-    "title": "Hashtags",
-    "text": "Usar 3-5 hashtags especificos: mezcla sector, solucion y ubicacion. Evitar listas largas."
-  },
-  {
-    "title": "4-1-1",
-    "text": "Por cada 6 publicaciones: 4 educativas/historias, 1 caso o promocion suave y 1 venta directa ligera."
+function toast(m){
+  var t=document.getElementById('TOAST');
+  t.textContent=m;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show')},2000);
+}
+function cpTxt(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  navigator.clipboard.writeText(el.textContent||el.value||'').then(function(){toast('Copiado')});
+}
+function cpStr(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  navigator.clipboard.writeText(el.dataset.val||'').then(function(){toast('Copiado')});
+}
+
+// LOGIN
+document.getElementById('ENTRAR').addEventListener('click',function(){
+  var s=document.getElementById('SEL').value;
+  var p=document.getElementById('PIN').value.trim();
+  var e=document.getElementById('ERR');
+  if(!s){e.textContent='Selecciona tu nombre.';return}
+  if(!p){e.textContent='Ingresa tu PIN.';return}
+  if(PINS[p]!==s){e.textContent='PIN incorrecto.';document.getElementById('PIN').value='';return}
+  CU=s;
+  document.getElementById('SL').style.display='none';
+  document.getElementById('AP').style.display='flex';
+  document.getElementById('NU').textContent=s==='supervisor'?'Supervisor':(ASESORES[s]?ASESORES[s].nombre:s);
+  if(s==='supervisor')rSup();else rAsesor(s);
+});
+document.getElementById('PIN').addEventListener('keydown',function(e){
+  if(e.key==='Enter')document.getElementById('ENTRAR').click();
+});
+document.getElementById('SALIR').addEventListener('click',function(){
+  CU=null;
+  document.getElementById('SL').style.display='flex';
+  document.getElementById('AP').style.display='none';
+  document.getElementById('ERR').textContent='';
+  document.getElementById('PIN').value='';
+  document.getElementById('SEL').value='';
+});
+
+// SUPERVISOR
+function rSup(){
+  var total=0,done=0;
+  Object.values(ASESORES).forEach(function(as){total+=as.posts.length});
+  done=Object.keys(ST).length;
+  var pct=total?Math.round((done/total)*100):0;
+  var url='https://impresionante-web.vercel.app/dashboard-linkedin-impresionante.html';
+
+  var tiles='';
+  Object.entries(ASESORES).forEach(function(entry){
+    var id=entry[0],as=entry[1];
+    var tot=as.posts.length;
+    var dn=as.posts.filter(function(_,i){return isD(id,i)}).length;
+    var p=tot?Math.round((dn/tot)*100):0;
+    tiles+='<div class="at" data-id="'+id+'">'
+      +'<span class="ae">'+as.emoji+'</span>'
+      +'<div class="an">'+as.nombre+'</div>'
+      +'<div class="ar">'+as.rol+'</div>'
+      +'<div class="abr"><div class="af" style="width:'+p+'%;background:'+as.color+'"></div></div>'
+      +'<div class="ap">'+dn+' / '+tot+' posts &middot; '+p+'%</div>'
+      +'</div>';
+  });
+
+  var accesos='';
+  Object.entries(ASESORES).forEach(function(entry){
+    var id=entry[0],as=entry[1];
+    var msg='Hola '+as.nombre+' 👋\n\nEste es tu cronograma de LinkedIn.\n\n🔗 '+url+'\n🔑 PIN: '+as.pin+'\n\n¡Entra y marca cada publicación cuando la subas!';
+    var mid='msg-'+id;
+    accesos+='<div class="xr">'
+      +'<div class="xi"><div class="xn">'+as.nombre+'</div><div class="xp">PIN: '+as.pin+'</div></div>'
+      +'<span id="'+mid+'" data-val="'+encodeURIComponent(msg)+'" style="display:none"></span>'
+      +'<button class="cb" onclick="cpMsg(\''+mid+'\')">Copiar msg</button>'
+      +'</div>';
+  });
+
+  document.getElementById('CONT').innerHTML=
+    '<div class="sw">'
+    +'<div class="gc">'
+    +'<div class="glb">Progreso global</div>'
+    +'<div style="display:flex;align-items:baseline;gap:.5rem;margin-bottom:.5rem"><span class="gp">'+pct+'%</span><span style="font-size:.78rem;color:var(--gr)">'+done+' de '+total+' publicaciones</span></div>'
+    +'<div class="gbr"><div class="gf" style="width:'+pct+'%"></div></div>'
+    +'</div>'
+    +'<div class="ag">'+tiles+'</div>'
+    +'<div class="xc"><div class="xt">Links y PINs para compartir</div>'+accesos+'</div>'
+    +'</div>';
+
+  document.querySelectorAll('.at').forEach(function(el){
+    el.addEventListener('click',function(){rAsesor(el.dataset.id,true)});
+  });
+}
+
+function cpMsg(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  navigator.clipboard.writeText(decodeURIComponent(el.dataset.val||'')).then(function(){toast('Mensaje copiado')});
+}
+
+// ASESOR
+function rAsesor(aid,fromSup,keepTab){
+  var as=ASESORES[aid];
+  if(!as)return;
+  var tot=as.posts.length;
+  var dn=as.posts.filter(function(_,i){return isD(aid,i)}).length;
+  var pct=tot?Math.round((dn/tot)*100):0;
+
+  var curTab='posts';
+  if(keepTab){
+    var onTab=document.querySelector('.tab.on');
+    if(onTab)curTab=onTab.dataset.t||'posts';
   }
-];
 
+  var bk=fromSup||CU==='supervisor'?'<button class="bk" id="BK">&#8592; Volver</button>':'';
 
-// ─── STORAGE ───
-const SK = 'imp_li_v5';
-function load(){ try{ return JSON.parse(localStorage.getItem(SK)||'{}') }catch(e){ return {} } }
-function save(d){ localStorage.setItem(SK, JSON.stringify(d)) }
-let STATE = load();
-function pk(aid,i){ return `${aid}_${i}` }
-function isDone(aid,i){ return !!STATE[pk(aid,i)] }
-function toggle(aid,i){
-  const k=pk(aid,i);
-  if(STATE[k]){ delete STATE[k] } else { STATE[k]=true }
-  save(STATE); 
-  if(currentUser==='supervisor' && supViewAsesor){
-    renderAsesorDetail(supViewAsesor);
-  } else {
-    renderAsesor();
+  document.getElementById('CONT').innerHTML=
+    '<div class="aw">'
+    +bk
+    +'<div class="ah">'
+    +'<div class="aht"><span class="ahe">'+as.emoji+'</span><div><div class="ahn">'+as.nombre+'</div><div class="ahr">'+as.rol+'</div></div></div>'
+    +'<div class="ahbw"><div class="ahb"><div class="ahf" style="width:'+pct+'%"></div></div><span class="ahp">'+pct+'%</span><span class="ahc">'+dn+'/'+tot+'</span></div>'
+    +'</div>'
+    +'<div class="tabs">'
+    +'<button class="tab'+(curTab==='posts'?' on':'')+'" data-t="posts">📅 Posts</button>'
+    +'<button class="tab'+(curTab==='perfil'?' on':'')+'" data-t="perfil">👤 Perfil</button>'
+    +'<button class="tab'+(curTab==='est'?' on':'')+'" data-t="est">⚡ Estrategia</button>'
+    +'</div>'
+    +'<div id="TC-posts" class="tc'+(curTab==='posts'?' on':'')+'" style="padding:1rem;flex:1;overflow-y:auto">'+bPosts(aid,as)+'</div>'
+    +'<div id="TC-perfil" class="tc'+(curTab==='perfil'?' on':'')+'" style="padding:1rem;flex:1;overflow-y:auto">'+bPerfil(as)+'</div>'
+    +'<div id="TC-est" class="tc'+(curTab==='est'?' on':'')+'" style="padding:1rem;flex:1;overflow-y:auto">'+bEst()+'</div>'
+    +'<div id="TC-msg" class="tc'+(curTab==='msg'?' on':'')+'" style="padding:1rem;flex:1;overflow-y:auto">'+bMensajes(aid)+'</div>'
+    +'</div>';
+
+  document.querySelectorAll('.tab').forEach(function(tab){
+    tab.addEventListener('click',function(){
+      var t=tab.dataset.t;
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.toggle('on',x===tab)});
+      ['posts','perfil','est','msg'].forEach(function(x){
+        var el=document.getElementById('TC-'+x);
+        if(el)el.classList.toggle('on',x===t);
+      });
+    });
+  });
+
+  if(document.getElementById('BK')){
+    document.getElementById('BK').addEventListener('click',function(){rSup()});
   }
 }
 
-// ─── STATE ───
-let currentUser = null;
-let currentTab = 'posts';
-let currentFilter = 'all';
-
-let supTab = 'equipo';
-let supViewAsesor = null; // if supervisor is viewing an advisor
-
-function login(){
-  const s=document.getElementById('user-sel').value;
-  const p=document.getElementById('user-pin').value.trim();
-  const e=document.getElementById('login-err');
-  if(!s){ e.textContent='Selecciona un usuario.'; return; }
-  if(!p){ e.textContent='Ingresa el PIN.'; return; }
-  if(PINS[p]!==s){ e.textContent='PIN incorrecto.'; return; }
-  
-  currentUser = s;
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  
-  if(currentUser==='supervisor') { supTab='equipo'; supViewAsesor=null; renderSupervisor(); }
-  else { currentTab='posts'; currentFilter='all'; renderAsesor(); }
+function bPosts(aid,as){
+  var sems={};
+  as.posts.forEach(function(p,i){if(!sems[p.sem])sems[p.sem]=[];sems[p.sem].push({p:p,i:i})});
+  var html='';
+  Object.keys(sems).sort(function(a,b){return a-b}).forEach(function(s){
+    var posts=sems[s];
+    var sd=posts.filter(function(x){return isD(aid,x.i)}).length;
+    html+='<div class="wl" style="'+(s>1?'margin-top:1rem':'')+'">Semana '+s+' &nbsp;'+sd+'/'+posts.length+'</div>';
+    posts.forEach(function(x){
+      var p=x.p,i=x.i;
+      var done=isD(aid,i);
+      var at=dAt(aid,i);
+      var copyId='cp-'+aid+'-'+i;
+      var textId='tx-'+aid+'-'+i;
+      html+='<div class="pc'+(done?' dn':'')+'" id="PC-'+aid+'-'+i+'">'
+        +'<div class="ph">'
+        +'<div style="display:flex;gap:.4rem;align-items:center"><span class="pd">'+p.dia+'</span><span class="ps">S'+p.sem+(p.hora?' · '+p.hora:'')+'</span></div>'
+        +'<div class="chk" data-aid="'+aid+'" data-idx="'+i+'">'
+        +'<svg class="chki" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg>'
+        +'</div>'
+        +'</div>'
+        +'<div class="pb">'
+        +'<div id="'+textId+'" style="display:none">'+p.copy+'</div>'
+        +'<div class="pcp" id="'+copyId+'">'+p.copy.replace(/\n/g,'<br>')+'</div>'
+        +'<div class="pax">'
+        +'<button class="bex" data-cid="'+copyId+'">ver más ↓</button>'
+        +'<button class="bcp" data-tid="'+textId+'">📋 Copiar</button>'
+        +(done&&at?'<span class="pda">✓ '+at+'</span>':'')
+        +'</div>'
+        +'</div>'
+        +'</div>';
+      html+=(ex.cta?'<div class="cta-blk"><div class="cta-label">CTA</div><div class="cta-text">'+ex.cta+'</div></div>':'');
+      html+=(ex.tags&&ex.tags.length?'<div class="tags-blk">'+ex.tags.map(function(t){return'<span class="tag">'+t+'</span>'}).join('')+'</div>':'');
+    });
+  });
+  return html;
 }
 
-function logout(){
-  currentUser = null;
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('user-sel').value = '';
-  document.getElementById('user-pin').value = '';
-  document.getElementById('login-err').textContent = '';
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2500);
-}
-
-function renderTabBar(tabs, activeCallbackStr) {
-  const tb = document.getElementById('tab-bar');
-  tb.innerHTML = tabs.map(t => `
-    <div class="tab-item ${t.id === (currentUser==='supervisor' && !supViewAsesor ? supTab : currentTab) ? 'active' : ''}" onclick="${activeCallbackStr}('${t.id}')">
-      ${t.svg}
-      <span>${t.label}</span>
-    </div>
-  `).join('');
-}
-
-const SVG_TEAM = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>`;
-const SVG_POSTS = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2z"/></svg>`;
-const SVG_AUDIT = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>`;
-const SVG_ESTR = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 2v4.26a6.002 6.002 0 0 0-4.74 8.65L2.4 18.77a.996.996 0 0 0 .22 1.38l1.22.88c.4.29 1.05.15 1.39-.24l3.86-3.86A5.99 5.99 0 0 0 13 18v-5.26a5.98 5.98 0 0 0 4.74-8.66l3.86-3.86c.39-.39.25-1.04-.04-1.44l-1.22-.88a.996.996 0 0 0-1.38.22L15.1 2.01A5.992 5.992 0 0 0 11 2zm2 10c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>`;
-const SVG_LINKS = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>`;
-
-// ─── SUPERVISOR ───
-function setSupTab(t){ supTab=t; supViewAsesor=null; renderSupervisor(); }
-
-function renderSupervisor(){
-  if(supViewAsesor){
-    renderAsesorDetail(supViewAsesor);
+// Event delegation para posts
+document.addEventListener('click',function(e){
+  // Checkbox
+  var chk=e.target.closest('.chk');
+  if(chk&&chk.dataset.aid){tog(chk.dataset.aid,parseInt(chk.dataset.idx));return}
+  // Ver más
+  var bex=e.target.closest('.bex');
+  if(bex){
+    var cid=bex.dataset.cid;
+    var el=document.getElementById(cid);
+    if(el){el.classList.toggle('op');bex.textContent=el.classList.contains('op')?'ver menos ↑':'ver más ↓'}
     return;
   }
-  
-  document.getElementById('nav-title').textContent = 'Supervisor';
-  document.getElementById('nav-left').innerHTML = '';
-  renderTabBar([
-    {id:'equipo', label:'Equipo', svg:SVG_TEAM},
-    {id:'estrategia', label:'Estrategia', svg:SVG_ESTR},
-    {id:'accesos', label:'Accesos', svg:SVG_LINKS}
-  ], 'setSupTab');
-  
-  const c = document.getElementById('main-content');
-  if(supTab==='equipo'){
-    const total = Object.values(ASESORES).reduce((a,as)=>a+as.posts.length,0);
-    const done = Object.keys(STATE).length;
-    
-    let html = `
-      <div class="stat-card">
-        <div class="stat-value">${done}/${total}</div>
-        <div class="stat-label">Publicaciones<br>completadas globales</div>
-      </div>
-      <h2 class="section-title">Asesores</h2>
-    `;
-    
-    for(const [id, as] of Object.entries(ASESORES)){
-      const tot = as.posts.length;
-      const dn = as.posts.filter((_,i)=>isDone(id,i)).length;
-      html += `
-        <div class="asesor-list-item" onclick="viewAsesor('${id}')">
-          <div class="ali-left">
-            <div class="ali-avatar" style="background:${as.color}">${as.emoji}</div>
-            <div class="ali-info">
-              <h3>${as.nombre}</h3>
-              <p>${as.rol}</p>
-            </div>
-          </div>
-          <div class="ali-right">
-            <div class="ali-progress">${dn}/${tot}</div>
-            <div class="ali-arrow">›</div>
-          </div>
-        </div>
-      `;
+  // Copiar post
+  var bcp=e.target.closest('.bcp');
+  if(bcp){
+    var tid=bcp.dataset.tid;
+    var tel=document.getElementById(tid);
+    if(tel)navigator.clipboard.writeText(tel.textContent||'').then(function(){toast('Copiado')});
+    return;
+  }
+});
+
+function bPerfil(as){
+  var a=as.auditoria;
+  var habs=a.habilidades.map(function(h){return '<span class="chip">'+h+'</span>'}).join('');
+  var chk=a.checklist.map(function(c){return '<li>'+c+'</li>'}).join('');
+  var reg=a.reglas.map(function(r){return '<li>'+r+'</li>'}).join('');
+  var titId='tit-'+Date.now();
+  var abtId='abt-'+Date.now();
+  return '<div class="pfb">'
+    +'<div class="pft">🔍 Diagnóstico</div>'
+    +'<div class="pftx">'+a.diagnostico+'</div>'
+    +'</div>'
+    +'<div class="pfb">'
+    +'<div class="pft">✏️ Titular recomendado <button class="bcf" data-tid="'+titId+'">Copiar</button></div>'
+    +'<div class="pftx" id="'+titId+'">'+a.titular+'</div>'
+    +'</div>'
+    +'<div class="pfb">'
+    +'<div class="pft">📝 Acerca de <button class="bcf" data-tid="'+abtId+'">Copiar</button></div>'
+    +'<div class="pftx" id="'+abtId+'">'+a.acercaDe+'</div>'
+    +'</div>'
+    +'<div class="pfb">'
+    +'<div class="pft">💼 Experiencia — qué mejorar</div>'
+    +'<div class="pftx">'+a.experiencia+'</div>'
+    +'</div>'
+    +'<div class="pfb">'
+    +'<div class="pft">🏷️ Habilidades</div>'
+    +'<div class="chips">'+habs+'</div>'
+    +'</div>'
+    +'<div class="pfb">'
+    +'<div class="pft">⭐ Destacados</div>'
+    +'<div class="pftx">'+a.destacados+'</div>'
+    +'</div>'
+    +'<div class="pfb">'
+    +'<div class="pft">🤝 Red</div>'
+    +'<div class="pftx">'+a.red+'</div>'
+    +'</div>'
+    +'<div class="pfb">'
+    +'<div class="pft">✅ Checklist perfil</div>'
+    +'<ul class="cl">'+chk+'</ul>'
+    +'</div>'
+    +'<div class="pfb">'
+    +'<div class="pft">⚠️ Reglas</div>'
+    +'<ul class="rl">'+reg+'</ul>'
+    +'</div>';
+}
+
+document.addEventListener('click',function(e){
+  var bcf=e.target.closest('.bcf');
+  if(bcf){
+    var el=document.getElementById(bcf.dataset.tid);
+    if(el)navigator.clipboard.writeText(el.textContent||'').then(function(){toast('Copiado')});
+  }
+});
+
+function bMensajes(aid){
+  var M={
+    marilyn:{
+      prospectos:'Gerentes de marketing, compras, administracion, direccion comercial, duenos de PyME, hoteles, escuelas y cadenas locales.',
+      valueDrop:'Guia breve: 5 criterios para elegir proveedor de publicidad visual sin poner en riesgo marca, tiempos ni presupuesto.',
+      dolor:'Costo de improvisar comunicacion visual: materiales que no duran, instalacion que falla, imagen inconsistente o campana que no cumple su objetivo.',
+      conexion:'Hola [Nombre]. Vi que trabajas en [empresa/sector]. En Impresionante del Sureste comparto ideas sobre comunicacion visual, senaletica y publicidad B2B. Me gustaria conectar.',
+      bienvenida:'Gracias por conectar, [Nombre]. Vi que en [empresa] trabajan con [sector]. Comparto aprendizajes sobre como mejorar visibilidad fisica de marca. Espero que sea util.',
+      softPitch:'Pregunta rapida: cuando trabajan materiales visuales o senaletica, el mayor reto suele ser tiempo, calidad, instalacion o consistencia de marca?',
+      intencion:'Hola [Nombre], vi que [empresa] esta expandiendo. En Impresionante apoyamos con comunicacion visual para ese tipo de proyectos. Podria ser util conversar.',
+      nota:'Apertura 10 seg: quien eres y a quien ayudas. Valor 30 seg: criterio util sobre publicidad visual B2B. Cierre 10 seg: pregunta de exploracion sin pedir reunion.'
+    },
+    frida:{
+      prospectos:'Emprendedores B2B, duenos de restaurantes, marcas locales, encargados de ventas y marketing, negocios en crecimiento en Tuxtla y Chiapas.',
+      valueDrop:'Checklist visual: 3 senales de que tu fachada o punto de venta esta perdiendo clientes sin que lo notes.',
+      dolor:'Negocios que no son reconocibles aunque llevan anos operando porque su presencia visual no comunica con claridad.',
+      conexion:'Hola [Nombre]. Vi tu publicacion sobre visibilidad de marca. Comparto ideas similares desde Impresionante del Sureste. Me gustaria conectar.',
+      bienvenida:'Gracias por conectar, [Nombre]. Comparto ideas sobre como ganar visibilidad fisica de marca sin grandes presupuestos. Espero que sea util.',
+      softPitch:'Pregunta rapida: cuando alguien pasa frente a tu negocio, en segundos entiende exactamente que ofreces?',
+      intencion:'Hola [Nombre], vi que [empresa] esta renovando imagen. En Impresionante apoyamos ese tipo de proyectos con comunicacion visual.',
+      nota:'Apertura 10 seg: quien eres y a que negocio ayudas. Valor 30 seg: idea sobre visibilidad o fachada. Cierre 10 seg: pregunta ligera sobre su negocio.'
+    },
+    luisdiego:{
+      prospectos:'Responsables de operaciones, flotillas, constructoras, talleres, empresas de servicios, marketing operativo y encargados de mantenimiento.',
+      valueDrop:'Mini guia: como preparar superficie y archivo antes de instalar para que el vinil o lona dure el doble.',
+      dolor:'Materiales que fallan por mala eleccion tecnica: vinil que se despega, lona que se decolora, instalacion que queda mal por superficie incorrecta.',
+      conexion:'Hola [Nombre]. Vi tu publicacion sobre [tema tecnico]. Comparto criterios de materiales e instalacion desde Impresionante. Me gustaria conectar.',
+      bienvenida:'Gracias por conectar, [Nombre]. Comparto aprendizajes tecnicos sobre materiales, instalacion y publicidad visual para negocios. Espero que sea util.',
+      softPitch:'Cuando instalan publicidad exterior, el mayor problema suele ser el material, la superficie o el diseno del archivo?',
+      intencion:'Hola [Nombre], vi que [empresa] tiene flotilla o proyecto nuevo. En Impresionante apoyamos con rotulacion y publicidad visual tecnica.',
+      nota:'Apertura 10 seg: asesor tecnico en publicidad visual. Valor 30 seg: dato util sobre material o instalacion. Cierre 10 seg: pregunta sobre su proyecto.'
+    },
+    jessica:{
+      prospectos:'Restaurantes, tiendas, escuelas, hoteles, negocios locales, marcas de consumo y emprendedores de Chiapas.',
+      valueDrop:'Historia breve: lo que aprendi de 4 anos atendiendo clientes y como una pregunta simple mejora el resultado de cada proyecto.',
+      dolor:'Negocios locales que invierten en publicidad sin claridad del objetivo y terminan con materiales que no resuelven lo que necesitaban.',
+      conexion:'Hola [Nombre]. Vi tu publicacion sobre [negocio local]. En Impresionante ayudamos a negocios del sureste a verse mejor. Me gustaria conectar.',
+      bienvenida:'Gracias por conectar, [Nombre]. Con 4 anos en Impresionante tengo experiencia atendiendo distintos sectores locales. Espero que mis ideas sean utiles.',
+      softPitch:'Cuando un cliente llega a tu negocio por primera vez, que es lo primero que ve y que decision toma en los primeros 10 segundos?',
+      intencion:'Hola [Nombre], vi que [empresa] esta abriendo sucursal o remodelando. En Impresionante apoyamos con imagen visual para ese tipo de proyectos.',
+      nota:'Apertura 10 seg: 4 anos asesorando en publicidad visual. Valor 30 seg: aprendizaje sobre imagen para negocios locales. Cierre 10 seg: pregunta sobre su negocio.'
     }
-    c.innerHTML = html;
-  }
-  else if(supTab==='estrategia'){
-    let html = `<h2 class="section-title">Estrategia Global (Insights)</h2><div class="insight-grid">`;
-    INSIGHTS.forEach(i => {
-      html += `<div class="insight-card"><h4>${i.title}</h4><p>${i.text}</p></div>`;
-    });
-    html += `</div>`;
-    c.innerHTML = html;
-  }
-  else if(supTab==='accesos'){
-    let html = `<h2 class="section-title">Enlaces de Acceso</h2>`;
-    const b = window.location.origin + window.location.pathname;
-    for(const [id, as] of Object.entries(ASESORES)){
-      const l = `${b}?asesor=${id}`;
-      html += `
-        <div class="card">
-          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
-             <div class="ali-avatar" style="background:${as.color}">${as.emoji}</div>
-             <div>
-               <h3 style="font-size:1.1rem">${as.nombre}</h3>
-               <p style="font-size:0.85rem;color:var(--muted)">PIN: <b>${as.pin}</b></p>
-             </div>
-          </div>
-          <input type="text" readonly class="form-input" style="font-size:0.8rem;padding:0.6rem;margin-bottom:0.75rem" value="${l}">
-          <button class="btn" style="padding:0.75rem;font-size:0.85rem" onclick="navigator.clipboard.writeText('${l}');showToast('¡Copiado!')">Copiar Enlace</button>
-        </div>
-      `;
-    }
-    c.innerHTML = html;
-  }
+  };
+  var m=M[aid]||M.marilyn;
+  function row(title,txt){return '<div class="eb"><div class="et">'+title+'</div><div class="ei">'+txt+'</div></div>';}
+  return row('👥 Prospectos prioritarios',m.prospectos)
+    +row('🎯 Value drop recomendado',m.valueDrop)
+    +row('💬 Dolor de conversacion',m.dolor)
+    +'<div class="eb"><div class="et">📨 Guiones de conexion</div>'
+    +'<div class="ei"><b>Solicitud de conexion:</b><br>'+m.conexion+'</div>'
+    +'<div class="ei" style="margin-top:.5rem"><b>Bienvenida tras aceptar:</b><br>'+m.bienvenida+'</div>'
+    +'<div class="ei" style="margin-top:.5rem"><b>Señal de intencion:</b><br>'+m.intencion+'</div>'
+    +'<div class="ei" style="margin-top:.5rem"><b>Soft pitch:</b><br>'+m.softPitch+'</div></div>'
+    +row('🎙️ Nota 10-30-10',m.nota)
+    +'<div class="eb"><div class="et">⚠️ Reglas anti-bot</div>'
+    +'<div class="ei"><b>Inbound-first:</b> Iniciar conversacion, no cerrar venta en frio.</div>'
+    +'<div class="ei" style="margin-top:.35rem"><b>Human-centered:</b> Contexto real, observacion util, cero lenguaje de bot.</div>'
+    +'<div class="ei" style="margin-top:.35rem"><b>Señales de intencion:</b> Visitas al perfil, cambios de puesto, expansion, remodelaciones, comentarios recientes.</div>'
+    +'<div class="ei" style="margin-top:.35rem"><b>No pitch-slapping:</b> No enviar catalogo apenas acepten. Primero agradecer, aportar valor y abrir pregunta ligera.</div>'
+    +'<div class="ei" style="margin-top:.35rem"><b>Prueba de voz alta:</b> Si suena incomodo o robotico al leerlo, reescribirlo antes de enviar.</div></div>';
 }
 
-function viewAsesor(id){
-  supViewAsesor = id;
-  currentTab = 'posts';
-  currentFilter = 'all';
-  renderAsesorDetail(id);
-}
-
-function renderAsesorDetail(id){
-  const as = ASESORES[id];
-  document.getElementById('nav-title').textContent = as.nombre;
-  document.getElementById('nav-left').innerHTML = `<button class="btn-back" onclick="supViewAsesor=null;renderSupervisor()">‹ Volver</button>`;
-  
-  renderTabBar([
-    {id:'posts', label:'Posts', svg:SVG_POSTS},
-    {id:'audit', label:'Auditoría', svg:SVG_AUDIT}
-  ], 'setTab');
-  
-  renderAsesorContent(id, as);
-}
-
-// ─── ASESOR ───
-function setTab(t){ currentTab=t; if(currentUser==='supervisor') renderAsesorDetail(supViewAsesor); else renderAsesor(); }
-function setFilter(f){ currentFilter=f; if(currentUser==='supervisor') renderAsesorDetail(supViewAsesor); else renderAsesor(); }
-
-function renderAsesor(){
-  const as = ASESORES[currentUser];
-  document.getElementById('nav-title').textContent = 'Mi Cronograma';
-  document.getElementById('nav-left').innerHTML = '';
-  
-  renderTabBar([
-    {id:'posts', label:'Posts', svg:SVG_POSTS},
-    {id:'audit', label:'Auditoría', svg:SVG_AUDIT},
-    {id:'estrategia', label:'Estrategia', svg:SVG_ESTR}
-  ], 'setTab');
-  
-  renderAsesorContent(currentUser, as);
-}
-
-function renderAsesorContent(aid, as){
-  const c = document.getElementById('main-content');
-  if(currentTab==='posts'){
-    let html = `
-      <div class="segmented-control">
-        <div class="segment ${currentFilter==='all'?'active':''}" onclick="setFilter('all')">Todos</div>
-        <div class="segment ${currentFilter==='pending'?'active':''}" onclick="setFilter('pending')">Pendientes</div>
-        <div class="segment ${currentFilter==='done'?'active':''}" onclick="setFilter('done')">Completados</div>
-      </div>
-    `;
-    
-    as.posts.forEach((p, i) => {
-      const d = isDone(aid, i);
-      if(currentFilter==='pending' && d) return;
-      if(currentFilter==='done' && !d) return;
-      
-      html += `
-        <div class="post-card ${d?'done':''}">
-          <div class="post-head">
-            <span class="post-badge">Semana ${p.sem} · ${p.dia}</span>
-          </div>
-          <div class="post-body">
-            ${p.formato && Object.keys(p.formato).length > 0 ? `
-            <div style="margin-bottom:12px; font-size:0.85rem">
-              <strong style="color:var(--brand)">Formato:</strong><br>
-              ${Object.entries(p.formato).map(([k,v])=>`<b>${k}:</b> ${v}`).join('<br>')}
-            </div>` : ''}
-            
-            ${p.visual && Object.keys(p.visual).length > 0 ? `
-            <div style="margin-bottom:12px; font-size:0.85rem">
-              <strong style="color:var(--brand)">Visual:</strong><br>
-              ${Object.entries(p.visual).map(([k,v])=>`<b>${k}:</b> ${v}`).join('<br>')}
-            </div>` : ''}
-            
-            <div style="margin-bottom:12px; font-size:0.85rem">
-              <strong style="color:var(--brand)">Copy:</strong><br>
-              ${p.copy}
-            </div>
-            
-            ${p.cta ? `
-            <div style="margin-bottom:12px; font-size:0.85rem">
-              <strong style="color:var(--brand)">CTA:</strong><br>
-              ${p.cta}
-            </div>` : ''}
-            
-            ${p.hashtags && p.hashtags.length > 0 ? `
-            <div style="margin-bottom:12px; font-size:0.85rem; color:var(--brand)">
-              ${p.hashtags.join(' ')}
-            </div>` : ''}
-          </div>
-          <div class="post-foot">
-            <label class="chk-label">
-              <input type="checkbox" class="chk-input" ${d?'checked':''} onchange="toggle('${aid}',${i})">
-              <div class="chk-box"></div>
-              Publicado
-            </label>
-          </div>
-        </div>
-      `;
-    });
-    c.innerHTML = html;
-  }
-  else if(currentTab==='audit'){
-    const au = as.auditoria;
-    let html = `
-      <div class="card">
-        <h3 style="color:var(--brand);margin-bottom:0.5rem">Diagnóstico</h3>
-        <p style="font-size:0.9rem;line-height:1.5">${au.diagnostico}</p>
-      </div>
-      <div class="card">
-        <h3 style="color:var(--brand);margin-bottom:0.5rem">Titular Recomendado</h3>
-        <p style="font-size:0.9rem;line-height:1.5;background:var(--soft);padding:1rem;border-radius:8px">${au.titular}</p>
-      </div>
-      <div class="card">
-        <h3 style="color:var(--brand);margin-bottom:0.5rem">Checklist de Perfil</h3>
-        <ul class="audit-list">
-          ${au.checklist.map(x=>`<li>${x}</li>`).join('')}
-        </ul>
-      </div>
-      <div class="card">
-        <h3 style="color:var(--brand);margin-bottom:0.5rem">Reglas de Publicación</h3>
-        <ul class="audit-list">
-          ${au.reglas.map(x=>`<li>${x}</li>`).join('')}
-        </ul>
-      </div>
-    `;
-    c.innerHTML = html;
-  }
-  else if(currentTab==='estrategia'){
-    let html = `<h2 class="section-title">Estrategia Global (Insights)</h2><div class="insight-grid">`;
-    INSIGHTS.forEach(i => {
-      html += `<div class="insight-card"><h4>${i.title}</h4><p>${i.text}</p></div>`;
-    });
-    html += `</div>`;
-    c.innerHTML = html;
-  }
-}
-
-// Init
-const urlParams = new URLSearchParams(window.location.search);
-const pAsesor = urlParams.get('asesor');
-if(pAsesor && ASESORES[pAsesor]){
-  document.getElementById('user-sel').value = pAsesor;
+function bEst(){
+  return '<div class="eb">'
+    +'<div class="et">Horarios B2B 2026</div>'
+    +'<div class="ei"><b>Martes</b> — 9:00 AM a 12:00 PM</div>'
+    +'<div class="ei"><b>Miércoles</b> — 10:00 AM a 12:00 PM</div>'
+    +'<div class="ei"><b>Jueves</b> — 9:00 AM a 11:00 AM</div>'
+    +'</div>'
+    +'<div class="eb">'
+    +'<div class="et">Bucle de interacción inmediata</div>'
+    +'<div class="ei">1. Comentar 3-5 posts <b>15-30 min antes</b> de publicar</div>'
+    +'<div class="ei">2. Publicar tu post</div>'
+    +'<div class="ei">3. <b>No editar los primeros 60 min</b></div>'
+    +'<div class="ei">4. Responder comentarios en la <b>primera hora</b></div>'
+    +'<div class="ei">5. Comentar en otros posts <b>15-30 min después</b></div>'
+    +'</div>'
+    +'<div class="eb">'
+    +'<div class="et">Checklist antes de publicar</div>'
+    +'<div class="ei">Primeras 2 líneas exponen un problema real antes de "ver más"</div>'
+    +'<div class="ei">Sin enlace externo en el cuerpo del post</div>'
+    +'<div class="ei">3 a 5 hashtags específicos (sector + solución + ciudad)</div>'
+    +'<div class="ei">Suena a persona humana, no a folleto corporativo</div>'
+    +'<div class="ei">Pregunta genuina al final, no engagement bait</div>'
+    +'</div>'
+    +'<div class="eb">'
+    +'<div class="et">Regla 4-1-1</div>'
+    +'<div class="ei"><b>4</b> posts educativos / historias personales</div>'
+    +'<div class="ei"><b>1</b> caso o promoción suave</div>'
+    +'<div class="ei"><b>1</b> venta directa ligera</div>'
+    +'<div class="ei" style="margin-top:.25rem;color:var(--gr)">Por cada 6 publicaciones</div>'
+    +'</div>'
+    +'<div class="eb">'
+    +'<div class="et">Depth Score 2026</div>'
+    +'<div class="ei">Pondera: <b>dwell time, guardados, compartidos por DM</b> y profundidad de comentarios</div>'
+    +'<div class="ei">Formatos top: <b>carruseles PDF</b> 6-9 láminas y <b>videos nativos</b> &lt;30 seg con subtítulos</div>'
+    +'</div>';
 }
 </script>
 </body>
