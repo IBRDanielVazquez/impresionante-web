@@ -1858,6 +1858,21 @@ function rAsesor(aid,fromSup,keepTab){
   }
 }
 
+function formatCopy(text) {
+  text = text.replace(/^- /gm, '🔹 ');
+  var lines = text.split('\n');
+  if(lines.length > 0) {
+    var first = lines[0];
+    lines[0] = first.split('').map(function(c){
+      var code = c.charCodeAt(0);
+      if(code>=65 && code<=90) return String.fromCodePoint(code - 65 + 0x1D5D4);
+      if(code>=97 && code<=122) return String.fromCodePoint(code - 97 + 0x1D5EE);
+      return c;
+    }).join('');
+  }
+  return lines.join('\n');
+}
+
 function bPosts(aid,as){
   var sems={};
   as.posts.forEach(function(p,i){if(!sems[p.sem])sems[p.sem]=[];sems[p.sem].push({p:p,i:i})});
@@ -1872,10 +1887,10 @@ function bPosts(aid,as){
       var at=dAt(aid,i);
       var copyId='cp-'+aid+'-'+i;
       var textId='tx-'+aid+'-'+i;
-      var fmtHtml = p.formato && Object.keys(p.formato).length > 0 ? '<div style="margin-top:0.875rem;padding-top:0.875rem;border-top:1px solid var(--bdr);font-size:0.75rem;color:var(--gr);line-height:1.4"><strong>Formato sugerido:</strong><ul style="padding-left:1rem;margin-top:0.3rem">' + Object.entries(p.formato).map(function(e){return '<li style="margin-bottom:0.2rem"><b style="color:var(--ink)">'+e[0]+':</b> '+e[1]+'</li>'}).join('') + '</ul></div>' : '';
-      var visHtml = p.visual && Object.keys(p.visual).length > 0 ? '<div style="margin-top:0.5rem;font-size:0.75rem;color:var(--gr);line-height:1.4"><strong>Contenido Visual:</strong><ul style="padding-left:1rem;margin-top:0.3rem">' + Object.entries(p.visual).map(function(e){return '<li style="margin-bottom:0.2rem"><b style="color:var(--ink)">'+e[0]+':</b> '+e[1]+'</li>'}).join('') + '</ul></div>' : '';
+      var fmtHtml = p.formato && Object.keys(p.formato).length > 0 ? '<details style="margin-top:0.8rem;background:#F9FAFB;padding:0.5rem;border-radius:6px;border:1px solid #E5E7EB"><summary style="cursor:pointer;font-size:0.75rem;font-weight:600;color:var(--gr)">⚙️ Ver Formato sugerido</summary><ul style="padding-left:1.2rem;margin-top:0.4rem;font-size:0.75rem;color:var(--gr);line-height:1.4">' + Object.entries(p.formato).map(function(e){return '<li style="margin-bottom:0.3rem"><b style="color:var(--ink)">'+e[0]+':</b> '+e[1]+'</li>'}).join('') + '</ul></details>' : '';
+      var visHtml = p.visual && Object.keys(p.visual).length > 0 ? '<details style="margin-top:0.4rem;background:#F9FAFB;padding:0.5rem;border-radius:6px;border:1px solid #E5E7EB"><summary style="cursor:pointer;font-size:0.75rem;font-weight:600;color:var(--gr)">📸 Ver Contenido Visual</summary><ul style="padding-left:1.2rem;margin-top:0.4rem;font-size:0.75rem;color:var(--gr);line-height:1.4">' + Object.entries(p.visual).map(function(e){return '<li style="margin-bottom:0.3rem"><b style="color:var(--ink)">'+e[0]+':</b> '+e[1]+'</li>'}).join('') + '</ul></details>' : '';
       
-      var plainText = p.copy;
+      var plainText = formatCopy(p.copy);
       if(p.cta) plainText += '\n\n' + p.cta;
       if(p.hashtags && p.hashtags.length) plainText += '\n\n' + p.hashtags.join(' ');
       
@@ -1889,17 +1904,17 @@ function bPosts(aid,as){
         +'<div class="pb">'
         +'<div id="'+textId+'" style="display:none">'+plainText+'</div>'
         +'<div class="pcp" id="'+copyId+'">'
-        +p.copy.replace(/\n/g,'<br>')
+        +formatCopy(p.copy).replace(/\n/g,'<br>')
         +(p.cta?'<br><br><b>CTA:</b> '+p.cta:'')
         +(p.hashtags&&p.hashtags.length?'<br><br><span style="color:var(--bl)">'+p.hashtags.join(' ')+'</span>':'')
-        +fmtHtml
-        +visHtml
         +'</div>'
         +'<div class="pax">'
         +'<button class="bex" data-cid="'+copyId+'">ver más ↓</button>'
-        +'<button class="bcp" data-tid="'+textId+'">📋 Copiar</button>'
+        +'<button class="bcp" data-tid="'+textId+'">📋 Copiar LinkedIn</button>'
         +(done&&at?'<span class="pda">✓ '+at+'</span>':'')
         +'</div>'
+        +fmtHtml
+        +visHtml
         +'</div>'
         +'</div>';
     });
