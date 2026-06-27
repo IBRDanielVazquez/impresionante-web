@@ -1794,7 +1794,7 @@ function rSup(){
       +'<div class="abr"><div class="af" style="width:'+p+'%;background:'+as.color+'"></div></div>'
       +'<div class="ap" style="margin-bottom:0.75rem">'+dn+' / '+tot+' posts &middot; '+p+'%</div>'
       +'<div style="display:flex;gap:0.5rem;margin-top:auto" onclick="event.stopPropagation()">'
-      +'<a href="https://wa.me/'+(as.telefono?as.telefono.replace('+',''):'')+'?text='+encodeURIComponent('Hola '+as.nombre+', aquí están tus accesos al Dashboard de LinkedIn.\n\n🔗 https://impresionante-web.vercel.app/dashboard-linkedin-impresionante.html\n🔑 PIN: '+as.pin)+'" target="_blank" style="flex:1;background:#25D366;color:#fff;text-decoration:none;font-size:0.65rem;font-weight:700;padding:0.4rem;border-radius:6px;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.2rem;box-shadow:0 1px 2px rgba(0,0,0,0.1)">💬 WA</a>'
+      +'<a href="https://wa.me/'+(as.telefono?as.telefono.replace('+',''):'')+'" target="_blank" style="flex:1;background:#25D366;color:#fff;text-decoration:none;font-size:0.65rem;font-weight:700;padding:0.4rem;border-radius:6px;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.2rem;box-shadow:0 1px 2px rgba(0,0,0,0.1)">💬 WA</a>'
       +'<a href="'+(as.linkedin?as.linkedin:'#')+'" target="_blank" style="flex:1;background:#0077B5;color:#fff;text-decoration:none;font-size:0.65rem;font-weight:700;padding:0.4rem;border-radius:6px;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.2rem;box-shadow:0 1px 2px rgba(0,0,0,0.1)">💼 IN</a>'
       +'</div>'
       +'</div>';
@@ -1803,12 +1803,11 @@ function rSup(){
   var accesos='';
   Object.entries(ASESORES).forEach(function(entry){
     var id=entry[0],as=entry[1];
-    var msg='Hola '+as.nombre+' 👋\n\nEste es tu cronograma de LinkedIn.\n\n🔗 '+url+'\n🔑 PIN: '+as.pin+'\n\n¡Entra y marca cada publicación cuando la subas!';
-    var mid='msg-'+id;
+    var msg='Hola '+as.nombre+' 👋\n\nEste es tu Dashboard de LinkedIn, aquí podrás marcar como publicadas todas tus tareas asignadas en tu calendario de contenido.\n\n🔗 Dashboard: '+url+'\n🔑 PIN: '+as.pin+'\n\n¡Guarda este link en tus favoritos y no lo pierdas!';
+    var waUrl='https://wa.me/'+(as.telefono?as.telefono.replace('+',''):'')+'?text='+encodeURIComponent(msg);
     accesos+='<div class="xr">'
       +'<div class="xi"><div class="xn">'+as.nombre+'</div><div class="xp">PIN: '+as.pin+'</div></div>'
-      +'<span id="'+mid+'" data-val="'+encodeURIComponent(msg)+'" style="display:none"></span>'
-      +'<button class="cb" onclick="cpMsg(\''+mid+'\')">Copiar msg</button>'
+      +'<a href="'+waUrl+'" target="_blank" style="background:#25D366;color:#fff;text-decoration:none;font-size:0.75rem;font-weight:700;padding:0.4rem 0.8rem;border-radius:6px;display:flex;align-items:center;gap:0.3rem;box-shadow:0 1px 2px rgba(0,0,0,0.1)">💬 Enviar datos</a>'
       +'</div>';
   });
 
